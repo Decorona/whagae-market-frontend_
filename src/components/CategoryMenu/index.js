@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     height: 37.6,
     paddingTop: 8.6,
     paddingBottom: 9,
+    borderBottomColor: colors.lightgrey1,
+    borderBottomWidth: 0.5,
   },
 });
 
