@@ -44,7 +44,6 @@ const Banners = ({banners}) => {
   const renderDots = React.useCallback(
     (items) => {
       return items.map((item, index) => {
-        console.log(index);
         return (
           <View
             style={[

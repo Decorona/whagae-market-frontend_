@@ -1,17 +1,18 @@
 import * as React from 'react';
-import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import {View, Text, StyleSheet} from 'react-native';
 import {colors, fonts} from '../../../constants';
-import {getWidth} from '../../../utils/helper';
-import {Banners, RenderItemsComponents} from '../../../components';
+import {
+  Banners,
+  RenderItemsComponents,
+  CategoryMenu,
+} from '../../../components';
 
 const styles = StyleSheet.create({
   HomePageContainer: {
     flex: 1,
   },
-  HomePageUserlocationNameContainer: {
+  HomePageUserLocationNameContainer: {
     height: 35,
-
     paddingTop: 10,
     paddingBottom: 5.4,
     borderBottomWidth: 0.5,
@@ -26,21 +27,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.Medium,
     color: colors.grey,
     alignSelf: 'center',
-  },
-  HomePageStoreCategoryContainer: {
-    height: 37.6,
-    paddingTop: 8.6,
-    paddingBottom: 9,
-  },
-  HomePageStoreCategoryName: {
-    fontSize: 14,
-    fontWeight: '500',
-    fontStyle: 'normal',
-    lineHeight: 20,
-    letterSpacing: -1.05,
-    fontFamily: fonts.Medium,
-    color: colors.grey,
-    marginLeft: 16,
   },
 });
 
@@ -71,30 +57,14 @@ const HomePage = () => {
     {temp: 3},
   ]);
 
-  const renderStoreCategory = React.useCallback(({item}) => {
-    return (
-      <TouchableOpacity>
-        <Text style={styles.HomePageStoreCategoryName}>{item.name}</Text>
-      </TouchableOpacity>
-    );
-  }, []);
-
   return (
     <View style={styles.HomePageContainer}>
-      <View style={styles.HomePageUserlocationNameContainer}>
+      <View style={styles.HomePageUserLocationNameContainer}>
         <Text style={styles.HomePageUserlocationNameText}>
           서울 성북구 삼선동 1가
         </Text>
       </View>
-      <View style={styles.HomePageStoreCategoryContainer}>
-        <FlatList
-          data={storeCategory}
-          renderItem={renderStoreCategory}
-          keyExtractor={(item) => item.name}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <CategoryMenu category={storeCategory} />
       <Banners banners={banners} />
       <RenderItemsComponents stores={stores} />
     </View>

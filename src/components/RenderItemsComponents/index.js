@@ -115,7 +115,7 @@ const RenderItemsComponents = ({stores}) => {
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
-              BRAND TEXT
+              {item.name} 가게
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
             <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
@@ -151,6 +151,7 @@ const RenderItemsComponents = ({stores}) => {
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

@@ -8,6 +8,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Text} from 'react-native';
 
 import {HomePage} from '../../pages/Home';
+import {SearchPage} from '../../pages/Search';
+import {MarketPage} from '../../pages/Market';
 
 const RootStack = createStackNavigator();
 
@@ -37,9 +39,21 @@ const Login = () => {
   return <LoginStack.Navigator headerMode={false}></LoginStack.Navigator>;
 };
 
-const Search = () => {};
+const Search = () => {
+  return (
+    <SearchStack.Navigator headerMode={false}>
+      <SearchStack.Screen name="SearchPage" component={SearchPage} />
+    </SearchStack.Navigator>
+  );
+};
 
-const Market = () => {};
+const Market = () => {
+  return (
+    <MarketStack.Navigator headerMode={false}>
+      <MarketStack.Screen name="MarketPage" component={MarketPage} />
+    </MarketStack.Navigator>
+  );
+};
 
 const MyPage = () => {};
 
