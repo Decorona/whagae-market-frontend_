@@ -1,15 +1,16 @@
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
   StackNavigationOptions,
-} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Text} from 'react-native';
+} from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text } from "react-native";
 
-import {HomePage} from '../../pages/Home';
-import {SearchPage} from '../../pages/Search';
-import {MarketPage} from '../../pages/Market';
+import { HomePage } from "../../pages/Home";
+import { SearchPage } from "../../pages/Search";
+import { MarketPage } from "../../pages/Market";
+import { BasketPage } from "../../pages/Basket";
 
 const RootStack = createStackNavigator();
 
@@ -57,7 +58,13 @@ const Market = () => {
 
 const MyPage = () => {};
 
-const Basket = () => {};
+const Basket = () => {
+  return (
+    <BasketStack.Navigator headerMode={false}>
+      <BasketStack.Screen name="BasketPage" component={BasketPage} />
+    </BasketStack.Navigator>
+  );
+};
 
 const Root = () => {
   return (
