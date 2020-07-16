@@ -1,16 +1,14 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createStackNavigator,
-  StackNavigationOptions,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, Text } from "react-native";
-
+import { View, Text, StyleSheet, Image } from "react-native";
+import { icons } from "../../assets";
 import { HomePage } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
 import { BasketPage } from "../../pages/Basket";
+import { colors } from "../../constants";
 
 const RootStack = createStackNavigator();
 
@@ -27,6 +25,8 @@ const MarketStack = createStackNavigator();
 const MyPageStack = createStackNavigator();
 
 const BasketStack = createStackNavigator();
+
+//
 
 const Home = () => {
   return (
@@ -75,9 +75,90 @@ const Root = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  tabContainer: {
+    height: 58,
+    backgroundColor: colors.greya5,
+  },
+  tabHomeIcon: {
+    width: 28,
+    height: 43,
+  },
+  tabSearchIcon: {
+    width: 25.6,
+    height: 43,
+  },
+  tabMarketIcon: {
+    width: 36,
+    height: 44.2,
+  },
+  tabMyPageIcon: {
+    width: 23.1,
+    height: 24.8,
+    alignSelf: "center",
+  },
+  tabMyPageText: {
+    width: 46,
+    height: 15,
+    marginTop: 4,
+  },
+  tabBasketIcon: {
+    width: 36,
+    height: 36.2,
+  },
+});
+
 const Tab = () => {
   return (
-    <TabNavigator.Navigator initialRouteName="Home">
+    <TabNavigator.Navigator
+      initialRouteName="Home"
+      screenOptions={({ route }) => ({
+        tabBarIcon: () => {
+          switch (route.name) {
+            case "Home":
+              return (
+                <Image style={styles.tabHomeIcon} source={icons.tabHome} />
+              );
+              break;
+            case "Search":
+              return (
+                <Image style={styles.tabSearchIcon} source={icons.tabSearch} />
+              );
+              break;
+            case "Market":
+              return (
+                <Image style={styles.tabMarketIcon} source={icons.tabMarket} />
+              );
+              break;
+            case "MyPage":
+              return (
+                <View>
+                  <Image
+                    style={styles.tabMyPageIcon}
+                    source={icons.tabMypage}
+                  />
+                  <Image
+                    style={styles.tabMyPageText}
+                    source={icons.tabMypageText}
+                  />
+                </View>
+              );
+              break;
+            case "Basket":
+              return (
+                <Image style={styles.tabBasketIcon} source={icons.tabBasket} />
+              );
+              break;
+            default:
+              break;
+          }
+        },
+      })}
+      tabBarOptions={{
+        showLabel: false,
+        tabStyle: styles.tabContainer,
+      }}
+    >
       <TabNavigator.Screen name="Home" component={Home} />
       <TabNavigator.Screen name="Search" component={Search} />
       <TabNavigator.Screen name="Market" component={Market} />
