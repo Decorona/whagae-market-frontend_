@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { icons } from "../../assets";
-import { HomePage, SetAddress } from "../../pages/Home";
+import { HomePage } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
 import { BasketPage } from "../../pages/Basket";
@@ -32,7 +32,6 @@ const Home = () => {
   return (
     <HomeStack.Navigator headerMode={false} initialRouteName="HomePage">
       <HomeStack.Screen name="HomePage" component={HomePage} />
-      <HomeStack.Screen name="SetAddress" component={SetAddress} />
     </HomeStack.Navigator>
   );
 };
