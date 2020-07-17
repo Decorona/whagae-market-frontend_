@@ -1,3 +1,4 @@
-import HomePage from './HomePage';
+import HomePage from "./HomePage";
+import SetAddress from "./SetAddress";
 
-export {HomePage};
+export { HomePage, SetAddress };
