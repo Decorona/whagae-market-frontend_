@@ -5,6 +5,8 @@ import CategoryMenu from "./CategoryMenu";
 import RenderMarketTheme from "./RenderMarketTheme";
 import RenderBasketItems from "./RenderBasketItems";
 import BasketItemCard from "./BasketItemCard";
+import RenderStoreDetailItems from "./RenderStoreDetailItems";
+import StoreDetailItemCard from "./StoreDetailItemCard";
 export {
   Banners,
   RenderItemsComponents,
@@ -13,4 +15,6 @@ export {
   RenderMarketTheme,
   RenderBasketItems,
   BasketItemCard,
+  RenderStoreDetailItems,
+  StoreDetailItemCard,
 };
