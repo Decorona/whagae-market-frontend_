@@ -1,8 +1,14 @@
-import * as React from 'react';
-import {View, StyleSheet, FlatList, Text, TouchableOpacity} from 'react-native';
-import {getWidth, getHeight} from '../../utils/helper';
-import {colors, fonts} from '../../constants';
-
+import * as React from "react";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { getWidth, getHeight } from "../../utils/helper";
+import { colors, fonts } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
@@ -13,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   RenderItemsComponentsFlatList: {
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   RenderItemsComponentsItemContainer: {
     width: getWidth(166),
@@ -28,12 +34,12 @@ const styles = StyleSheet.create({
   },
   RenderItemsComponentsItemInfoContainer: {},
   RenderItemsComponentsItemTitleAndScoreContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   RenderItemsComponentsItemTitle: {
     fontSize: 16,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
@@ -41,56 +47,56 @@ const styles = StyleSheet.create({
   },
   RenderItemsComponentsItemScoreText: {
     fontSize: 14,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 3,
   },
   RenderItemsComponentsItemScoreIcon: {
     width: 12,
     height: 12,
-    backgroundColor: 'red',
-    alignSelf: 'center',
+    backgroundColor: "red",
+    alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: colors.grey,
     paddingBottom: 6.8,
   },
   RenderItemsComponentsItemReviewText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     fontFamily: fonts.Medium,
   },
   RenderItemsComponentsItemCommentText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 3,
     fontFamily: fonts.Medium,
   },
   RenderItemsComponentsItemDeliveryContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingTop: 4.2,
   },
   RenderItemsComponentsItemDeliveryFeeText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
@@ -98,8 +104,8 @@ const styles = StyleSheet.create({
   },
   RenderItemsComponentsItemDeliveryTimeText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
@@ -107,10 +113,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderItemsComponents = ({stores}) => {
-  const renderItems = React.useCallback(({item}) => {
+const RenderItemsComponents = ({ stores }) => {
+  const navigation = useNavigation();
+  const renderItems = React.useCallback(({ item }) => {
     return (
-      <TouchableOpacity style={styles.RenderItemsComponentsItemContainer}>
+      <TouchableOpacity
+        style={styles.RenderItemsComponentsItemContainer}
+        onPress={() => navigation.navigate("StoreDetail")}
+      >
         <View style={styles.RenderItemsComponentsItemImage} />
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
@@ -122,7 +132,8 @@ const RenderItemsComponents = ({stores}) => {
             <Text style={styles.RenderItemsComponentsItemScoreText}>4.2</Text>
           </View>
           <View
-            style={styles.RenderItemsComponentsItemReviewAndCommentContainer}>
+            style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
+          >
             <Text style={styles.RenderItemsComponentsItemReviewText}>
               최근리뷰 10+
             </Text>
