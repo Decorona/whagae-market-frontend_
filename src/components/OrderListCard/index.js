@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   OrderListCardContainer: {
@@ -105,8 +106,14 @@ const styles = StyleSheet.create({
 });
 
 const OrderListCard = ({ item }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.OrderListCardContainer}>
+    <TouchableOpacity
+      style={styles.OrderListCardContainer}
+      onPress={() => {
+        navigation.navigate("OrderListDtl");
+      }}
+    >
       <View style={styles.OrderListCardIcon}></View>
       <View style={styles.OrderListCardNameAndCategoryContainer}>
         <Text style={styles.OrderListCardNameText}>{item.name}</Text>
