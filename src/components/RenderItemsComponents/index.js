@@ -9,6 +9,7 @@ import {
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch, useStore } from "react-redux";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
@@ -115,6 +116,8 @@ const styles = StyleSheet.create({
 
 const RenderItemsComponents = ({ stores }) => {
   const navigation = useNavigation();
+  const appStatus = useSelector((state) => state.appStatus);
+  const dispatch = useDispatch();
   const renderItems = React.useCallback(({ item }) => {
     return (
       <TouchableOpacity
@@ -125,11 +128,13 @@ const RenderItemsComponents = ({ stores }) => {
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
-              {item.name} 가게
+              {item.marketName}
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
             <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
-            <Text style={styles.RenderItemsComponentsItemScoreText}>4.2</Text>
+            <Text style={styles.RenderItemsComponentsItemScoreText}>
+              {item.marketStarPoint}
+            </Text>
           </View>
           <View
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
@@ -137,9 +142,9 @@ const RenderItemsComponents = ({ stores }) => {
             <Text style={styles.RenderItemsComponentsItemReviewText}>
               최근리뷰 10+
             </Text>
-            <Text style={styles.RenderItemsComponentsItemCommentText}>
+            {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
@@ -157,7 +162,7 @@ const RenderItemsComponents = ({ stores }) => {
   return (
     <View style={styles.RenderItemsComponentsContainer}>
       <FlatList
-        data={stores}
+        data={appStatus.stores}
         renderItem={renderItems}
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}
