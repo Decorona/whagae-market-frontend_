@@ -9,6 +9,7 @@ const icons = {
   leftArrowBlack: require("./left_arrow_black.png"),
   optionCheckedBox: require("./option_checked_box.png"),
   optionCheckBox: require("./option_check_box.png"),
+  star: require("./star.png"),
 };
 
 export default icons;

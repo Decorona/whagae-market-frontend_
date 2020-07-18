@@ -9,6 +9,9 @@ import RenderStoreDetailItems from "./RenderStoreDetailItems";
 import StoreDetailItemCard from "./StoreDetailItemCard";
 import LongBottomButton from "./LongBottomButton";
 import OrderTab from "./OrderTab";
+import ShortButton from "./ShortButton";
+import ReviewCard from "./ReviewCard";
+import RenderReviewCards from "./RenderReviewCards";
 export {
   Banners,
   RenderItemsComponents,
@@ -21,4 +24,7 @@ export {
   StoreDetailItemCard,
   LongBottomButton,
   OrderTab,
+  ShortButton,
+  ReviewCard,
+  RenderReviewCards,
 };
