@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { RenderStoreDetailItems } from "../../../components";
 import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
