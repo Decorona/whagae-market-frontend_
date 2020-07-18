@@ -1,7 +1,8 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../../constants";
 import MyPageButton from "../../../components/MyPageButton";
+import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
 
 const styles = StyleSheet.create({
   MyPageContainer: {
@@ -12,18 +13,29 @@ const styles = StyleSheet.create({
     height: 35,
     paddingTop: 10,
     paddingBottom: 5.4,
-    borderBottomWidth: 0.5,
     borderBottomColor: colors.grey,
     justifyContent: "center",
     alignItems: "center",
   },
   MyPageContainerDown: {
     flex: 0.5,
-    borderBottomColor: colors.grey,
   },
   MyPageUserTitletext: {
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: 20,
+    marginTop: 10,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    letterSpacing: -1.05,
+    textAlign: "center",
+    fontFamily: fonts.Medium,
+    color: colors.grey,
+  },
+  MyPageUserPointtext: {
+    fontSize: 16,
+    marginTop: 5,
+    fontWeight: "bold",
+    lineHeight: 18,
+    marginBottom: 20,
     fontStyle: "normal",
     letterSpacing: -1.05,
     textAlign: "center",
@@ -37,7 +49,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -1.05,
     textAlign: "center",
-    paddingBottom: 15,
+    paddingBottom: 10,
     fontFamily: fonts.Medium,
     color: colors.grey,
   },
@@ -66,22 +78,42 @@ const styles = StyleSheet.create({
   UserProfileArea: {
     flex: 0.5,
     marginTop: 30,
+    justifyContent: "center",
   },
   preVillage: {
     flex: 0.5,
     paddingTop: 20,
-    width: 300,
-    borderWidth: 0.1,
+    width: 332,
+    marginTop: 10,
     marginBottom: 25,
-    backgroundColor: colors.greyf0,
+    borderRadius: 10,
+    backgroundColor: colors.greyeb,
   },
   UserIcon: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 48,
+    height: 48,
+    borderRadius: 29,
     backgroundColor: colors.greyb5,
-    marginLeft: 6,
     marginTop: 5.5,
+  },
+  ButtonArea: {
+    marginBottom: 10,
+    paddingTop: 10,
+  },
+  ButtonAreaText: {
+    fontSize: 12,
+    letterSpacing: 0.9,
+    lineHeight: 24,
+    fontWeight: "bold",
+    color: colors.grey,
+    fontFamily: fonts.Medium,
+    textAlign: "center",
+  },
+  TouchableArea: {
+    marginTop: 10,
+    borderRadius: 10,
+    backgroundColor: colors.greye0,
+    justifyContent: "center",
   },
 });
 
@@ -92,20 +124,23 @@ const MyPage = () => {
         <View style={styles.UserProfileArea}>
           <Text style={styles.UserIcon}></Text>
           <Text style={styles.MyPageUserTitletext}>USER</Text>
+          <Text style={styles.MyPageUserPointtext}>200P</Text>
         </View>
         <View style={styles.preVillage}>
-          <Text style={styles.MyPageTitletext}>화개멤버 전용 혜택</Text>
-          <Text style={styles.MyPageSubTitletext}>모든 상품 100%무료배송</Text>
+          <Text style={styles.MyPageTitletext}>화개 멤버 전용 혜택</Text>
+          <Text style={styles.MyPageSubTitletext}>모든 상품 100% 무료배송</Text>
           <Text style={styles.MyPageSubTitletext}>5% 포인트 적립</Text>
-          <MyPageButton title={"지금 무료체험 신청하기"} />
+          <TouchableOpacity style={styles.TouchableArea}>
+            <View style={styles.ButtonArea}>
+              <Text style={styles.ButtonAreaText}>지금 무료체험 신청하기 </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.MyPageContainerDown}>
-        <MyPageButton title={"찜한가게"} />
-        <MyPageButton title={"주문목록"} />
-        <MyPageButton title={"화개 멤버십"} />
-        <MyPageButton title={"구매후기"} />
-        <MyPageButton title={"고객센터"} />
+        <RenderMyPageMenu menu="찜한가게" />
+        <RenderMyPageMenu menu="주문목록" />
+        <RenderMyPageMenu menu="화개 멤버십" />
       </View>
     </View>
   );
