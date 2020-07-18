@@ -1,8 +1,10 @@
 import * as React from "react";
+
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../../constants";
 import MyPageButton from "../../../components/MyPageButton";
 import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
+
 
 const styles = StyleSheet.create({
   MyPageContainer: {
@@ -13,6 +15,7 @@ const styles = StyleSheet.create({
     height: 35,
     paddingTop: 10,
     paddingBottom: 5.4,
+    borderBottomWidth: 0.5,
     borderBottomColor: colors.grey,
     justifyContent: "center",
     alignItems: "center",
@@ -36,6 +39,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 18,
     marginBottom: 20,
+    borderBottomColor: colors.grey,
+  },
+  MyPageUserTitletext: {
+    fontSize: 18,
+    fontWeight: "500",
     fontStyle: "normal",
     letterSpacing: -1.05,
     textAlign: "center",
@@ -77,12 +85,12 @@ const styles = StyleSheet.create({
   },
   UserProfileArea: {
     flex: 0.5,
-    marginTop: 30,
     justifyContent: "center",
   },
   preVillage: {
     flex: 0.5,
     paddingTop: 20,
+
     width: 332,
     marginTop: 10,
     marginBottom: 25,
@@ -115,6 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greye0,
     justifyContent: "center",
   },
+
 });
 
 const MyPage = () => {

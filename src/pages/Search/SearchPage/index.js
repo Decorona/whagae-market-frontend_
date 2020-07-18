@@ -1,7 +1,13 @@
-import * as React from 'react';
-import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
-import {SearchBar, RenderItemsComponents} from '../../../components';
-import {colors, fonts} from '../../../constants';
+import * as React from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { SearchBar, RenderItemsComponents } from "../../../components";
+import { colors, fonts } from "../../../constants";
 const styles = StyleSheet.create({
   SearchPageContainer: {
     flex: 1,
@@ -15,13 +21,13 @@ const styles = StyleSheet.create({
   },
   SearchPageLocationNameText: {
     fontSize: 14,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   SearchPageSearchBarMarginTop: {
     marginTop: 11.6,
@@ -30,12 +36,12 @@ const styles = StyleSheet.create({
 
 const SearchPage = () => {
   const [stores, setStores] = React.useState([
-    {name: '순이네'},
-    {name: '점순이네'},
-    {name: '털보네'},
-    {name: '돌쇠네'},
-    {name: '초삼이네'},
-    {name: '돌석이네'},
+    { name: "순이네" },
+    { name: "점순이네" },
+    { name: "털보네" },
+    { name: "돌쇠네" },
+    { name: "초삼이네" },
+    { name: "돌석이네" },
   ]);
   return (
     <View style={styles.SearchPageContainer}>

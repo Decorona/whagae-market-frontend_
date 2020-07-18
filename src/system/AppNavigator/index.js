@@ -4,7 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { icons } from "../../assets";
-import { HomePage, SetAddress, StoreDetail } from "../../pages/Home";
+import {
+  HomePage,
+  SetAddress,
+  StoreDetail,
+  ItemDetail,
+  ReadReviewPage,
+} from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
 import { MyPageComponent } from "../../pages/MyPage";
@@ -31,10 +37,12 @@ const BasketStack = createStackNavigator();
 
 const Home = () => {
   return (
-    <HomeStack.Navigator headerMode={false} initialRouteName="HomePage">
+    <HomeStack.Navigator headerMode={false} initialRouteName="ReadReviewPage">
       <HomeStack.Screen name="HomePage" component={HomePage} />
       <HomeStack.Screen name="SetAddress" component={SetAddress} />
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
+      <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
+      <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
     </HomeStack.Navigator>
   );
 };
