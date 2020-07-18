@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { fonts, colors } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   ShortButtonContainer: {
@@ -28,9 +29,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ShortButton = ({ containerStyle, children }) => {
+const ShortButton = ({ containerStyle, children, onPress }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={[styles.ShortButtonContainer, containerStyle]}>
+    <TouchableOpacity
+      style={[styles.ShortButtonContainer, containerStyle]}
+      onPress={onPress}
+    >
       <Text style={styles.ShortButtonText}>{children}</Text>
     </TouchableOpacity>
   );

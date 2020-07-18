@@ -10,6 +10,7 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
+  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
@@ -71,6 +72,7 @@ const Market = () => {
   return (
     <MarketStack.Navigator headerMode={false}>
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
+      <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
     </MarketStack.Navigator>
   );
 };

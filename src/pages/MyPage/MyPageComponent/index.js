@@ -146,7 +146,7 @@ const MyPage = () => {
       </View>
       <View style={styles.MyPageContainerDown}>
         <RenderMyPageMenu menu="찜한가게" route="DibsMarket" />
-        <RenderMyPageMenu menu="주문목록" route="DibsMarket" />
+        <RenderMyPageMenu menu="주문목록" route="OrderList" />
         <RenderMyPageMenu menu="화개 멤버십" route="DibsMarket" />
       </View>
     </View>
