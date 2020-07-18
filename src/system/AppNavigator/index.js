@@ -10,7 +10,6 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
-  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
@@ -46,6 +45,7 @@ const Home = () => {
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
       <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
       <HomeStack.Screen name="OrderList" component={OrderList} />
+
     </HomeStack.Navigator>
   );
 };
@@ -66,7 +66,7 @@ const Market = () => {
   return (
     <MarketStack.Navigator headerMode={false}>
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
-    <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
+      <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
     </MarketStack.Navigator>
   );
 };
