@@ -5,11 +5,13 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, useStore } from "react-redux";
+import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   RenderItemsComponentsItemImage: {
-    backgroundColor: colors.lightgrey,
+    backgroundColor: colors.white,
     width: getWidth(166),
     height: getHeight(166),
   },
@@ -57,10 +59,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginLeft: 3,
   },
-  RenderItemsComponentsItemScoreIcon: {
+  FullStar: {
     width: 12,
     height: 12,
-    backgroundColor: "red",
     alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
@@ -112,6 +113,10 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontFamily: fonts.Medium,
   },
+  logoOption: {
+    width: getWidth(166),
+    height: getHeight(156),
+  },
 });
 
 const RenderItemsComponents = ({ stores }) => {
@@ -124,14 +129,16 @@ const RenderItemsComponents = ({ stores }) => {
         style={styles.RenderItemsComponentsItemContainer}
         onPress={() => navigation.navigate("StoreDetail")}
       >
-        <View style={styles.RenderItemsComponentsItemImage} />
+        <View style={styles.RenderItemsComponentsItemImage}>
+          <Image source={icons.marketLogo} style={styles.logoOption}></Image>
+        </View>
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
               {item.marketName}
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
-            <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
+            <Image source={icons.fullStar} style={styles.FullStar}></Image>
             <Text style={styles.RenderItemsComponentsItemScoreText}>
               {item.marketStarPoint}
             </Text>
