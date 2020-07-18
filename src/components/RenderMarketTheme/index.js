@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   StyleSheet,
@@ -6,10 +6,10 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-} from 'react-native';
-import {getWidth, getHeight} from '../../utils/helper';
-import {colors, fonts} from '../../constants';
-
+} from "react-native";
+import { getWidth, getHeight } from "../../utils/helper";
+import { colors, fonts } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   RenderMarketThemeContainer: {
     paddingHorizontal: 11,
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   RenderMarketThemeTitleText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    fontStyle: 'normal',
+    fontWeight: "bold",
+    fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     marginBottom: 11.5,
   },
   RenderMarketSticker: {
-    position: 'absolute',
+    position: "absolute",
     width: 38,
     height: 38,
     borderRadius: 19,
@@ -42,47 +42,47 @@ const styles = StyleSheet.create({
   RenderMarketThemeScoreIcon: {
     width: 12,
     height: 12,
-    backgroundColor: 'red',
-    alignSelf: 'center',
+    backgroundColor: "red",
+    alignSelf: "center",
   },
   RenderMarketThemeScoreText: {
     fontSize: 14,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 3,
   },
   RenderMarketThemeReviewText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     fontFamily: fonts.Medium,
   },
   RenderMarketThemeCommentText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 3,
     fontFamily: fonts.Medium,
   },
   RenderMarketThemeDeliveryContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingTop: 4.2,
   },
   RenderMarketThemeReviewAndCommentContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: colors.grey,
     paddingBottom: 6.8,
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   },
   RenderMarketThemeItemTitleText: {
     fontSize: 16,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
@@ -104,15 +104,15 @@ const styles = StyleSheet.create({
   },
   RenderMarketThemeDeliveryTimeText: {
     fontSize: 8,
-    fontWeight: '500',
-    fontStyle: 'normal',
+    fontWeight: "500",
+    fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
     color: colors.grey,
     fontFamily: fonts.Medium,
   },
   RenderMarketThemeItemTitleAndScoreContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   RenderMarketThemeItemImage: {
     backgroundColor: colors.lightgrey,
@@ -122,10 +122,14 @@ const styles = StyleSheet.create({
   RenderMarketThemeFlatList: {},
 });
 
-const RenderMarketTheme = ({theme}) => {
-  const renderItems = React.useCallback(({item}) => {
+const RenderMarketTheme = ({ theme }) => {
+  const navigation = useNavigation();
+  const renderItems = React.useCallback(({ item }) => {
     return (
-      <TouchableOpacity style={styles.RenderMarketThemeItemAndInfoContainer}>
+      <TouchableOpacity
+        style={styles.RenderMarketThemeItemAndInfoContainer}
+        onPress={() => navigation.navigate("StoreDetail")}
+      >
         <View style={styles.RenderMarketThemeItemImage}>
           <View style={styles.RenderMarketSticker}></View>
         </View>
@@ -152,7 +156,7 @@ const RenderMarketTheme = ({theme}) => {
     );
   }, []);
 
-  const renderTheme = React.useCallback(({item}) => {
+  const renderTheme = React.useCallback(({ item }) => {
     return (
       <View>
         <Text style={styles.RenderMarketThemeTitleText}>
