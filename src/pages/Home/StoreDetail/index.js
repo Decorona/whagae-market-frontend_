@@ -5,6 +5,16 @@ import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
+import {
+  storeItemsUpdate,
+  storeReviewsUpdate,
+} from "../../../actions/appStatus";
+import {
+  URL_GET_STORE_ITEMS,
+  URL_GET_STORE_REVIEWS,
+} from "../../../constants/api";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import axios from "axios";
 const styles = StyleSheet.create({
   StoreDetailContainer: {
     flex: 1,
@@ -48,7 +58,6 @@ const styles = StyleSheet.create({
   StoreDetailStoreImage: {
     width: getWidth(375),
     height: getHeight(174),
-    backgroundColor: "red",
   },
   StoreDetailStoreTextInfoContainer: {
     flexDirection: "row",
@@ -193,22 +202,43 @@ const styles = StyleSheet.create({
   },
 });
 
-const StoreDetail = () => {
-  const [popularItems, setPopularitems] = React.useState([
-    { name: "수세미" },
-    { name: "샴푸" },
-    { name: "바디워시" },
-    { name: "락스" },
-    { name: "고무장갑" },
-  ]);
-  const [totalItems, setTotalItems] = React.useState([
-    { name: "수세미" },
-    { name: "샴푸" },
-    { name: "바디워시" },
-  ]);
+const StoreDetail = ({ route }) => {
+  const dispatch = useDispatch();
+  const _getStoreItems = async (id) => {
+    try {
+      const res = await axios.get(URL_GET_STORE_ITEMS(id), {});
+      if (res.status === 200) {
+        dispatch(storeItemsUpdate(res.data));
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
+
+  const _getStoreReviews = async (id) => {
+    try {
+      const res = await axios.get(URL_GET_STORE_REVIEWS(id), {});
+      if (res.status === 200) {
+        dispatch(storeReviewsUpdate(res.data));
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
 
   const [listJudge, setListJudge] = React.useState(true);
   const navigation = useNavigation();
+  const { id } = route.params;
+
+  const appStatus = useSelector((state) => state.appStatus);
+
+  React.useEffect(() => {
+    _getStoreItems(id);
+    _getStoreReviews(id);
+  }, []);
+
   return (
     <View style={styles.StoreDetailContainer}>
       <View style={styles.StoreDetailGobackAndDibButtonContainer}>
@@ -224,20 +254,24 @@ const StoreDetail = () => {
           />
         </TouchableOpacity>
         <View style={styles.StoreDetailEmpty} />
-        <TouchableOpacity style={styles.StoreDetaildibButtonContainer}>
+        {/* <TouchableOpacity style={styles.StoreDetaildibButtonContainer}>
           <Image
             source={icons.emptyHeart}
             style={styles.StoreDetaildibButton}
           />
           <Text style={styles.StoreDetaildibText}>37</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.StoreDetailStoreInfo}>
-        <View style={styles.StoreDetailStoreImage} />
+        <Image source={icons.storeImage} style={styles.StoreDetailStoreImage} />
         <View style={styles.StoreDetailStoreTextInfoContainer}>
           <View style={styles.StoreDetailStoreTextInfoContainer1}>
-            <Text style={styles.StoreDetailStoreCategoryText}>마트</Text>
-            <Text style={styles.StoreDetailStoreNameText}>Brand Text</Text>
+            <Text style={styles.StoreDetailStoreCategoryText}>
+              {appStatus.storeItems.marketCategory}
+            </Text>
+            <Text style={styles.StoreDetailStoreNameText}>
+              {appStatus.storeItems.marketName}
+            </Text>
             <View style={styles.StoreDetailStoreTextInfoContainer2}>
               <Text style={styles.StoreDetailStoreFeeText}>배달비 무료</Text>
             </View>
@@ -249,7 +283,9 @@ const StoreDetail = () => {
                 style={styles.StoreDetailStoreScoreIcon}
                 source={icons.star}
               />
-              <Text style={styles.StoreDetailStoreScoreText}>4.2</Text>
+              <Text style={styles.StoreDetailStoreScoreText}>
+                {appStatus.storeItems.marketStarPoint}
+              </Text>
             </View>
             <ShortButton
               containerStyle={styles.StoreDetailStoreReviewButton}
@@ -257,7 +293,7 @@ const StoreDetail = () => {
                 navigation.navigate("ReadReviewPage");
               }}
             >
-              리뷰 01
+              리뷰 {appStatus.storeReviews.length}
             </ShortButton>
           </View>
         </View>
@@ -291,9 +327,9 @@ const StoreDetail = () => {
         </View>
         <View style={styles.StoreDetailStoreItemsFlatListContainer}>
           {listJudge == true ? (
-            <RenderStoreDetailItems items={totalItems} />
+            <RenderStoreDetailItems />
           ) : (
-            <RenderStoreDetailItems items={popularItems} />
+            <RenderStoreDetailItems />
           )}
         </View>
       </View>

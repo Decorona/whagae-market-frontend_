@@ -5,16 +5,19 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, useStore } from "react-redux";
+import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
     paddingTop: 17.5,
     flex: 1,
+    backgroundColor: colors.greyef,
   },
   RenderItemsComponentsEmpty: {
     flex: 1,
@@ -29,7 +32,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   RenderItemsComponentsItemImage: {
-    backgroundColor: colors.lightgrey,
     width: getWidth(166),
     height: getHeight(166),
   },
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   RenderItemsComponentsItemScoreIcon: {
     width: 12,
     height: 12,
-    backgroundColor: "red",
+
     alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderItemsComponents = ({ stores }) => {
+const RenderItemsComponents = ({ store }) => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
@@ -122,16 +124,26 @@ const RenderItemsComponents = ({ stores }) => {
     return (
       <TouchableOpacity
         style={styles.RenderItemsComponentsItemContainer}
-        onPress={() => navigation.navigate("StoreDetail")}
+        onPress={() =>
+          navigation.navigate("StoreDetail", {
+            id: item.id,
+          })
+        }
       >
-        <View style={styles.RenderItemsComponentsItemImage} />
+        <Image
+          source={icons.storeImage}
+          style={styles.RenderItemsComponentsItemImage}
+        />
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
               {item.marketName}
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
-            <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
+            <Image
+              source={icons.goldStar}
+              style={styles.RenderItemsComponentsItemScoreIcon}
+            />
             <Text style={styles.RenderItemsComponentsItemScoreText}>
               {item.marketStarPoint}
             </Text>
@@ -140,7 +152,7 @@ const RenderItemsComponents = ({ stores }) => {
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
           >
             <Text style={styles.RenderItemsComponentsItemReviewText}>
-              최근리뷰 10+
+              최근리뷰 {item.MarketReviews.length}
             </Text>
             {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
@@ -162,7 +174,8 @@ const RenderItemsComponents = ({ stores }) => {
   return (
     <View style={styles.RenderItemsComponentsContainer}>
       <FlatList
-        data={appStatus.stores}
+        // data={appStatus.stores}
+        data={store}
         renderItem={renderItems}
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}

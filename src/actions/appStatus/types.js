@@ -1,2 +1,5 @@
 //redux의 타입 정의
 export const STORES_UPDATE = "STORE_UPDATE";
+export const STORE_ITEMS_UPDATE = "STORE_ITEMS_UPDATE";
+export const ITEM_DETAIL_UPDATE = "ITEM_DETAIL_UPDATE";
+export const STORE_REVIEW_UPDATE = "STORE_REVIEW_UPDATE";

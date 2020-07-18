@@ -1,6 +1,6 @@
 import * as types from "../actions/user/types";
 const initialState = {
-  location: {},
+  location: { key: "마포구", display: "서울 성북구 삼선동 1가" },
 };
 
 const user = (state = initialState, action) => {

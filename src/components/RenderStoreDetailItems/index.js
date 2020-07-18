@@ -8,6 +8,8 @@ import {
   FlatList,
 } from "react-native";
 import { StoreDetailItemCard } from "../../components";
+import { useSelector } from "react-redux";
+
 const styles = StyleSheet.create({
   RenderStoreDetailItemsContainer: {
     // flex: 1,
@@ -15,18 +17,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderStoreDetailItems = ({ items }) => {
+const RenderStoreDetailItems = ({}) => {
+  const appStatus = useSelector((state) => state.appStatus);
+
   const renderItem = React.useCallback(({ item }) => {
-    return <StoreDetailItemCard />;
+    return <StoreDetailItemCard item={item} />;
   }, []);
   return (
     <View style={styles.RenderStoreDetailItemsContainer}>
       <FlatList
-        data={items}
+        data={appStatus.storeItems.Goods}
         renderItem={renderItem}
         keyExtractor={(item) => item.name}
       />
-      <StoreDetailItemCard />
     </View>
   );
 };

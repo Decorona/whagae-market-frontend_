@@ -5,6 +5,7 @@ import { fonts, colors } from "../../../constants";
 import { getWidth, getHeight } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 const styles = StyleSheet.create({
   ReadReviewPageContainer: {
     flex: 1,
@@ -90,6 +91,8 @@ const styles = StyleSheet.create({
 
 const ReadReviewPage = () => {
   const navigation = useNavigation();
+  const appStatus = useSelector((state) => state.appStatus);
+  const dispatch = useDispatch();
   const [reviews, setReviews] = React.useState([
     { name: "점순이", score: 5, text: "와 정말 저렴하고 좋아요!", image: null },
     { name: "아이유", score: 5, text: "여기 물건 엄청 좋아요!", image: null },
@@ -126,14 +129,16 @@ const ReadReviewPage = () => {
       <View style={styles.ReadReviewPageTextInfoAndButtonContainer}>
         <View>
           <Text style={styles.ReadReviewPageReviewCountText}>
-            최근 리뷰 2개
+            최근 리뷰 {appStatus.storeReviews.length}개
           </Text>
           <Text style={styles.ReadReviewPageShopKeeperCommentCountText}>
             사장님 댓글 2개
           </Text>
           <View style={styles.ReadReviewPageScoreContainer}>
             <Image source={icons.star} style={styles.ReadReviewPageScoreIcon} />
-            <Text style={styles.ReadReviewPageScoreText}>4.2</Text>
+            <Text style={styles.ReadReviewPageScoreText}>
+              {appStatus.storeItems.marketStarPoint}
+            </Text>
           </View>
         </View>
         <View style={styles.ReadReviewPageEmpty}></View>
@@ -148,7 +153,7 @@ const ReadReviewPage = () => {
           </ShortButton>
         </View>
       </View>
-      <RenderReviewCards reviews={reviews} />
+      <RenderReviewCards />
     </View>
   );
 };

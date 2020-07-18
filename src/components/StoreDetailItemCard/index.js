@@ -59,17 +59,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const StoreDetailItemCard = () => {
+const StoreDetailItemCard = ({ item }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.StoreDetailItemCardContainer}
-      onPress={() => navigation.navigate("ItemDetail")}
+      onPress={() =>
+        navigation.navigate("ItemDetail", {
+          id: item.id,
+        })
+      }
     >
       <View style={styles.StoreDetailItemCardImage}></View>
       <View style={styles.StoreDetailItemCardTextContainer}>
-        <Text style={styles.StoreDetailItemCardNameText}>상품 이름</Text>
-        <Text style={styles.StoreDetailItemCardPriceText}>45000원</Text>
+        <Text style={styles.StoreDetailItemCardNameText}>{item.goodsName}</Text>
+        <Text style={styles.StoreDetailItemCardPriceText}>{item.price}원</Text>
       </View>
       <View style={styles.StoreDetailItemCardEmpty}></View>
       <View style={styles.StoreDetailItemCardSticker}></View>

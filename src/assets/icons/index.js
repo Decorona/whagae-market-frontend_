@@ -12,6 +12,11 @@ const icons = {
   optionCheckedBox: require("./option_checked_box.png"),
   optionCheckBox: require("./option_check_box.png"),
   star: require("./star.png"),
+  storeImage: require("./store_image.png"),
+  goldStar: require("./gold_star.png"),
+  banner: require("./banner.png"),
+  plusButton: require("./plus_button.png"),
+  minusButton: require("./minus_button.png"),
 };
 
 export default icons;

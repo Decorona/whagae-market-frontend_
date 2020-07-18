@@ -6,3 +6,21 @@ export const storesUpdate = (stores) => {
     stores,
   };
 };
+export const storeItemsUpdate = (items) => {
+  return {
+    type: types.STORE_ITEMS_UPDATE,
+    items,
+  };
+};
+export const itemDetailUpdate = (detail) => {
+  return {
+    type: types.ITEM_DETAIL_UPDATE,
+    detail,
+  };
+};
+export const storeReviewsUpdate = (reviews) => {
+  return {
+    type: types.STORE_REVIEW_UPDATE,
+    reviews,
+  };
+};
