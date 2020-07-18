@@ -5,7 +5,6 @@ import { colors, fonts } from "../../../constants";
 import MyPageButton from "../../../components/MyPageButton";
 import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
 
-
 const styles = StyleSheet.create({
   MyPageContainer: {
     flex: 1,
@@ -123,7 +122,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greye0,
     justifyContent: "center",
   },
-
 });
 
 const MyPage = () => {
@@ -147,9 +145,9 @@ const MyPage = () => {
         </View>
       </View>
       <View style={styles.MyPageContainerDown}>
-        <RenderMyPageMenu menu="찜한가게" />
-        <RenderMyPageMenu menu="주문목록" />
-        <RenderMyPageMenu menu="화개 멤버십" />
+        <RenderMyPageMenu menu="찜한가게" route="DibsMarket" />
+        <RenderMyPageMenu menu="주문목록" route="DibsMarket" />
+        <RenderMyPageMenu menu="화개 멤버십" route="DibsMarket" />
       </View>
     </View>
   );

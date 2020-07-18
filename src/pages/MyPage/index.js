@@ -1,3 +1,4 @@
 import MyPageComponent from "./MyPageComponent";
+import DibsMarket from "./Dibs";
 
-export { MyPageComponent };
+export { DibsMarket, MyPageComponent };
