@@ -10,11 +10,15 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
-  // WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
-import { MyPageComponent, DibsMarket } from "../../pages/MyPage";
+import {
+  MyPageComponent,
+  DibsMarket,
+  OrderList,
+  OrderListDtl,
+} from "../../pages/MyPage";
 import { BasketPage, PurchaseOrderPage } from "../../pages/Basket";
 import { colors } from "../../constants";
 
@@ -44,7 +48,10 @@ const Home = () => {
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
       <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
-      {/* <HomeStack.Screen name="WriteReviewPage" component={WriteReviewPage} /> */}
+      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
+      <HomeStack.Screen name="OrderList" component={OrderList} />
+
+      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </HomeStack.Navigator>
   );
 };
