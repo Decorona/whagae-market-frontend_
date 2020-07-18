@@ -12,6 +12,7 @@ import {
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
+import { MyPageComponent } from "../../pages/MyPage";
 import { BasketPage } from "../../pages/Basket";
 import { colors } from "../../constants";
 
@@ -64,7 +65,13 @@ const Market = () => {
   );
 };
 
-const MyPage = () => {};
+const MyPage = () => {
+  return (
+    <MyPageStack.Navigator headerMode={false}>
+      <MyPageStack.Screen name="MyPage" component={MyPageComponent} />
+    </MyPageStack.Navigator>
+  );
+};
 
 const Basket = () => {
   return (
