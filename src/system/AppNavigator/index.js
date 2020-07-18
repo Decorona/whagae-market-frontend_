@@ -10,12 +10,12 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
-  WriteReviewPage,
+  // WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
 import { MyPageComponent, DibsMarket } from "../../pages/MyPage";
-import { BasketPage } from "../../pages/Basket";
+import { BasketPage, PurchaseOrderPage } from "../../pages/Basket";
 import { colors } from "../../constants";
 
 const RootStack = createStackNavigator();
@@ -44,7 +44,7 @@ const Home = () => {
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
       <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
-      <HomeStack.Screen name="WriteReviewPage" component={WriteReviewPage} />
+      {/* <HomeStack.Screen name="WriteReviewPage" component={WriteReviewPage} /> */}
     </HomeStack.Navigator>
   );
 };
@@ -65,7 +65,7 @@ const Market = () => {
   return (
     <MarketStack.Navigator headerMode={false}>
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
-    <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
+      <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
     </MarketStack.Navigator>
   );
 };
@@ -82,6 +82,10 @@ const Basket = () => {
   return (
     <BasketStack.Navigator headerMode={false}>
       <BasketStack.Screen name="BasketPage" component={BasketPage} />
+      <BasketStack.Screen
+        name="PurchaseOrderPage"
+        component={PurchaseOrderPage}
+      />
     </BasketStack.Navigator>
   );
 };

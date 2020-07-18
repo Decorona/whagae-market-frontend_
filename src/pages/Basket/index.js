@@ -1,3 +1,4 @@
 import BasketPage from "./BasketPage";
+import PurchaseOrderPage from "./PurchaseOrderPage";
 
-export { BasketPage };
+export { BasketPage, PurchaseOrderPage };

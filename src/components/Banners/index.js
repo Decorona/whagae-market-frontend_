@@ -46,14 +46,16 @@ const Banners = ({banners}) => {
       return items.map((item, index) => {
         return (
           <View
+            key={index}
             style={[
               styles.BannersInactiveDots,
               index === activeSlide && styles.BannersActiveDot,
-            ]}></View>
+            ]}
+          ></View>
         );
       });
     },
-    [activeSlide],
+    [activeSlide]
   );
 
   return (
