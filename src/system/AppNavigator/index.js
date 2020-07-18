@@ -10,7 +10,6 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
-  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
@@ -51,6 +50,7 @@ const Home = () => {
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
       <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
       <HomeStack.Screen name="OrderList" component={OrderList} />
+
       <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </HomeStack.Navigator>
   );
