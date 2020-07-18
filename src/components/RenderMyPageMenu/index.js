@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { icons } from "../../assets";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   RenderMyPageMenuContainer: {
@@ -41,9 +42,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderMyPageMenu = ({ menu }) => {
+const RenderMyPageMenu = ({ menu, route }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.RenderMyPageMenuContainer}>
+    <TouchableOpacity
+      style={styles.RenderMyPageMenuContainer}
+      onPress={() => navigation.navigate(route)}
+    >
       <View style={styles.RenderMyPageMenuItemTitleAndScoreContainer}>
         <View style={styles.LeftImageArea}>
           <Image style={styles.listIcon} source={icons.list} />
