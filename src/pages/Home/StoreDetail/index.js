@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     borderTopColor: colors.greye0,
   },
   StoreDetailStoreItemsPopularityText: {
-    fontFamily: "NotoSansCJKkr",
+    fontFamily: "NotoSansCJKkr-Bold",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   StoreDetailStoreItemsTotalText: {
-    fontFamily: "NotoSansCJKkr",
+    fontFamily: "NotoSansCJKkr-Bold",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
