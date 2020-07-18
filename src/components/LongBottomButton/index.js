@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
 const LongBottomButton = ({ children, price }) => {
   return (
     <TouchableOpacity style={styles.LongBottomButtonContainer}>
-      <Text style={styles.LongBottomButtonPriceText}>{price}원</Text>
+      {price && <Text style={styles.LongBottomButtonPriceText}>{price}원</Text>}
+
       <Text style={styles.LongBottomButtonMainText}>{children}</Text>
     </TouchableOpacity>
   );
