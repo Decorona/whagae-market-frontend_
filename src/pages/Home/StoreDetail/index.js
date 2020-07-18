@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { RenderStoreDetailItems } from "../../../components";
+import { RenderStoreDetailItems, ShortButton } from "../../../components";
 import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   StoreDetailStoreScoreIcon: {
     width: 20,
     height: 18.3,
-    backgroundColor: colors.greyb5,
   },
   StoreDetailStoreScoreText: {
     fontSize: 14,
@@ -132,7 +131,6 @@ const styles = StyleSheet.create({
     letterSpacing: -1.05,
     color: colors.grey89,
     fontFamily: fonts.Medium,
-    marginTop: 11.7,
   },
   StoreDetailStoreItemsContainer: { flex: 1 },
   StoreDetailStoreItemsFlatListContainer: {
@@ -188,6 +186,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyeb,
     justifyContent: "center",
   },
+  StoreDetailStoreReviewButton: {
+    width: 56,
+    height: 24,
+    marginTop: 10,
+  },
 });
 
 const StoreDetail = () => {
@@ -236,20 +239,26 @@ const StoreDetail = () => {
             <Text style={styles.StoreDetailStoreCategoryText}>마트</Text>
             <Text style={styles.StoreDetailStoreNameText}>Brand Text</Text>
             <View style={styles.StoreDetailStoreTextInfoContainer2}>
-              <Text style={styles.StoreDetailStoreCommentText}>
-                최근 사장님 댓글 10
-              </Text>
-              <View style={styles.StoreDetailStoreBar} />
-              <Text style={styles.StoreDetailStoreReviewText}>최근리뷰 12</Text>
+              <Text style={styles.StoreDetailStoreFeeText}>배달비 무료</Text>
             </View>
           </View>
           <View style={styles.StoreDetailEmpty}></View>
           <View style={styles.StoreDetailStoreScoreAndFeeContainer}>
             <View style={styles.StoreDetailStoreScoreContainer}>
-              <View style={styles.StoreDetailStoreScoreIcon}></View>
+              <Image
+                style={styles.StoreDetailStoreScoreIcon}
+                source={icons.star}
+              />
               <Text style={styles.StoreDetailStoreScoreText}>4.2</Text>
             </View>
-            <Text style={styles.StoreDetailStoreFeeText}>배달비 무료</Text>
+            <ShortButton
+              containerStyle={styles.StoreDetailStoreReviewButton}
+              onPress={() => {
+                navigation.navigate("ReadReviewPage");
+              }}
+            >
+              리뷰 01
+            </ShortButton>
           </View>
         </View>
       </View>

@@ -10,6 +10,7 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
+  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
@@ -37,12 +38,13 @@ const BasketStack = createStackNavigator();
 
 const Home = () => {
   return (
-    <HomeStack.Navigator headerMode={false} initialRouteName="ReadReviewPage">
+    <HomeStack.Navigator headerMode={false} initialRouteName="HomePage">
       <HomeStack.Screen name="HomePage" component={HomePage} />
       <HomeStack.Screen name="SetAddress" component={SetAddress} />
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
       <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
+      <HomeStack.Screen name="WriteReviewPage" component={WriteReviewPage} />
     </HomeStack.Navigator>
   );
 };

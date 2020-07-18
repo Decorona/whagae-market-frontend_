@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
+import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   StoreDetailItemCardContainer: {
     width: getWidth(375),
@@ -59,8 +60,12 @@ const styles = StyleSheet.create({
 });
 
 const StoreDetailItemCard = () => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.StoreDetailItemCardContainer}>
+    <TouchableOpacity
+      style={styles.StoreDetailItemCardContainer}
+      onPress={() => navigation.navigate("ItemDetail")}
+    >
       <View style={styles.StoreDetailItemCardImage}></View>
       <View style={styles.StoreDetailItemCardTextContainer}>
         <Text style={styles.StoreDetailItemCardNameText}>상품 이름</Text>
@@ -68,7 +73,7 @@ const StoreDetailItemCard = () => {
       </View>
       <View style={styles.StoreDetailItemCardEmpty}></View>
       <View style={styles.StoreDetailItemCardSticker}></View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
