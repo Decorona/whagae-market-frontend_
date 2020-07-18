@@ -138,7 +138,12 @@ const ReadReviewPage = () => {
         </View>
         <View style={styles.ReadReviewPageEmpty}></View>
         <View>
-          <ShortButton containerStyle={styles.ReadReviewPageShortButton}>
+          <ShortButton
+            containerStyle={styles.ReadReviewPageShortButton}
+            onPress={() => {
+              navigation.navigate("WriteReviewPage");
+            }}
+          >
             리뷰 작성
           </ShortButton>
         </View>
