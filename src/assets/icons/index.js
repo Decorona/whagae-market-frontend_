@@ -5,6 +5,8 @@ const icons = {
   tabMypage: require("./tab_mypage_button.png"),
   tabMypageText: require("./tab_mypage_text.png"),
   tabBasket: require("./tab_basket_button.png"),
+  emptyHeart: require("./empty_heart.png"),
+  leftArrowBlack: require("./left_arrow_black.png"),
 };
 
 export default icons;

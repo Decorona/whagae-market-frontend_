@@ -9,6 +9,12 @@ const colors = {
   greyb5: "#b5b5b5",
   black2e: "#2e2e2e",
   black6c: "#6c6c6c",
+  grey89: "#898989",
+  black70: "#707070",
+  greye0: "#e0e0e0",
+  greyeb: "#ebebeb",
+  black76: "#767676",
+  greyf7: "#f7f7f7",
 };
 
 export default colors;
