@@ -1,13 +1,16 @@
 import * as React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../../constants";
+import { URL_GET_REGIONAL_MARKET } from "../../../constants/api";
 import {
   Banners,
   RenderItemsComponents,
   CategoryMenu,
 } from "../../../components";
 import { useNavigation } from "@react-navigation/native";
-
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { storesUpdate } from "../../../actions/appStatus";
+import axios from "axios";
 const styles = StyleSheet.create({
   HomePageContainer: {
     flex: 1,
@@ -44,6 +47,7 @@ const HomePage = () => {
     { name: "꽃집" },
     { name: "철물점" },
   ]);
+  // redux store 내용으로 교체예정
   const [stores, setStores] = React.useState([
     { name: "순이네" },
     { name: "점순이네" },
@@ -52,12 +56,38 @@ const HomePage = () => {
     { name: "초삼이네" },
     { name: "돌석이네" },
   ]);
+  //
+  // useSelector : redux store내 state를 사용할 수 있게 해줌
+  // dispatch : redux에 정의한 함수를 사용할 수 있게 해줌
+  // redux내 함수 정의 방법은 actions, reducer 폴더에서 확인 바람
+  const appStatus = useSelector((state) => state.appStatus);
+  const dispatch = useDispatch();
 
   const [banners, setBanners] = React.useState([
     { temp: 1 },
     { temp: 2 },
     { temp: 3 },
   ]);
+
+  // api 통신(현재 마포구 기준), api는 따로 정리해두기
+  const _getStores = async () => {
+    try {
+      const res = await axios.get(URL_GET_REGIONAL_MARKET("마포구"), {});
+      if (res.status === 200) {
+        console.log(res);
+        dispatch(storesUpdate(res.data));
+        console.log(appStatus);
+        alert("success");
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
+
+  React.useEffect(() => {
+    _getStores();
+  }, []);
 
   return (
     <View style={styles.HomePageContainer}>
