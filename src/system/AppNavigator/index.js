@@ -14,7 +14,7 @@ import {
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
-import { MyPageComponent } from "../../pages/MyPage";
+import { MyPageComponent, DibsMarket } from "../../pages/MyPage";
 import { BasketPage } from "../../pages/Basket";
 import { colors } from "../../constants";
 
@@ -65,6 +65,7 @@ const Market = () => {
   return (
     <MarketStack.Navigator headerMode={false}>
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
+    <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
     </MarketStack.Navigator>
   );
 };
