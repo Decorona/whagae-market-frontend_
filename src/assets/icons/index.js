@@ -7,6 +7,8 @@ const icons = {
   tabBasket: require("./tab_basket_button.png"),
   emptyHeart: require("./empty_heart.png"),
   leftArrowBlack: require("./left_arrow_black.png"),
+  arrow: require("./chevron_left.png"),
+  list: require("./list.png"),
   optionCheckedBox: require("./option_checked_box.png"),
   optionCheckBox: require("./option_check_box.png"),
   star: require("./star.png"),
