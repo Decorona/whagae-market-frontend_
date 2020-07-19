@@ -48,10 +48,6 @@ const Home = () => {
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
       <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
-      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
-      <HomeStack.Screen name="OrderList" component={OrderList} />
-
-      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </HomeStack.Navigator>
   );
 };
@@ -81,6 +77,9 @@ const MyPage = () => {
   return (
     <MyPageStack.Navigator headerMode={false}>
       <MyPageStack.Screen name="MyPage" component={MyPageComponent} />
+      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
+      <HomeStack.Screen name="OrderList" component={OrderList} />
+      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </MyPageStack.Navigator>
   );
 };

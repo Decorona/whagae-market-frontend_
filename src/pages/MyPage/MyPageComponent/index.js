@@ -2,153 +2,133 @@ import * as React from "react";
 
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../../constants";
-import MyPageButton from "../../../components/MyPageButton";
 import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
+import { getWidth, getHeight } from "../../../utils/helper";
 
 const styles = StyleSheet.create({
   MyPageContainer: {
     flex: 1,
-  },
-  MyPageContainerUp: {
-    flex: 0.5,
-    height: 35,
-    paddingTop: 10,
-    paddingBottom: 5.4,
-    borderBottomWidth: 0.5,
-    borderBottomColor: colors.grey,
+    backgroundColor: colors.backgroundgrey,
     justifyContent: "center",
+  },
+  MyPageTopIconArea: {
+    padding: 10,
     alignItems: "center",
   },
-  MyPageContainerDown: {
-    flex: 0.5,
+  MyPageUserIcon: {
+    width: getWidth(56),
+    height: getHeight(56),
+    borderRadius: 96,
+    backgroundColor: colors.greyb5,
   },
   MyPageUserTitletext: {
+    marginTop: 15,
+    width: getWidth(52),
+    height: getHeight(29),
+    lineHeight: 24,
     fontSize: 20,
-    marginTop: 10,
     fontWeight: "bold",
     fontStyle: "normal",
-    letterSpacing: -1.05,
     textAlign: "center",
     fontFamily: fonts.Medium,
-    color: colors.grey,
+    color: colors.textblack,
   },
   MyPageUserPointtext: {
-    fontSize: 16,
     marginTop: 5,
+    textAlign: "center",
+    width: getWidth(58),
+    height: getHeight(29),
+    fontSize: 20,
     fontWeight: "bold",
-    lineHeight: 18,
-    marginBottom: 20,
-    borderBottomColor: colors.grey,
-  },
-  MyPageUserTitletext: {
-    fontSize: 18,
-    fontWeight: "500",
-    fontStyle: "normal",
-    letterSpacing: -1.05,
-    textAlign: "center",
-    fontFamily: fonts.Medium,
-    color: colors.grey,
-  },
-  MyPageTitletext: {
-    fontSize: 18,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 20,
-    letterSpacing: -1.05,
-    textAlign: "center",
-    paddingBottom: 10,
-    fontFamily: fonts.Medium,
-    color: colors.grey,
-  },
-  MyPageSubTitletext: {
-    fontSize: 10,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 20,
-    letterSpacing: -1.05,
-    textAlign: "center",
-    fontFamily: fonts.Medium,
-    color: colors.grey,
-  },
-  MyPageDayText: {
-    position: "absolute",
-    right: 18,
-    top: 9,
-    fontSize: 14,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 20,
-    letterSpacing: -0.28,
-    fontFamily: fonts.Medium,
-    color: colors.grey,
-  },
-  UserProfileArea: {
-    flex: 0.5,
-    justifyContent: "center",
-  },
-  preVillage: {
-    flex: 0.5,
-    paddingTop: 20,
-
-    width: 332,
-    marginTop: 10,
-    marginBottom: 25,
-    borderRadius: 10,
-    backgroundColor: colors.greyeb,
-  },
-  UserIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 29,
-    backgroundColor: colors.greyb5,
-    marginTop: 5.5,
-  },
-  ButtonArea: {
-    marginBottom: 10,
-    paddingTop: 10,
-  },
-  ButtonAreaText: {
-    fontSize: 12,
-    letterSpacing: 0.9,
     lineHeight: 24,
+    color: colors.yellow,
+  },
+  MyPagePrevillageContainer: {
+    width: getWidth(342),
+    height: getHeight(148),
+    borderRadius: 8,
+    marginBottom: 10,
+    backgroundColor: colors.whitebox,
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  MyPagePrevillageTitletext: {
+    width: getWidth(127),
+    height: getHeight(24),
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: -1.2,
+    textAlign: "center",
+    fontFamily: fonts.Medium,
+    color: colors.textblack,
+  },
+  MyPagePrevillageSubTitletext: {
+    width: getWidth(105),
+    height: getHeight(15),
+    fontSize: 10,
+    lineHeight: 20,
+    letterSpacing: -0.75,
+    marginBottom: -10,
+    textAlign: "center",
+    fontFamily: fonts.Medium,
+    color: colors.textblack,
+  },
+  MyPageButtonArea: {
+    width: getWidth(316),
+    height: getHeight(38),
+    borderRadius: 8,
+    backgroundColor: colors.yellow,
+    marginBottom: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  MyPageButtonAreaText: {
+    width: getWidth(116),
+    height: getHeight(18),
+    fontSize: 12,
+    letterSpacing: -0.9,
+    lineHeight: 16,
     fontWeight: "bold",
-    color: colors.grey,
+    color: colors.white,
     fontFamily: fonts.Medium,
     textAlign: "center",
   },
-  TouchableArea: {
+  MyPageTouchableArea: {
     marginTop: 10,
     borderRadius: 10,
-    backgroundColor: colors.greye0,
-    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
 const MyPage = () => {
   return (
     <View style={styles.MyPageContainer}>
-      <View style={styles.MyPageContainerUp}>
-        <View style={styles.UserProfileArea}>
-          <Text style={styles.UserIcon}></Text>
+      <TouchableOpacity style={styles.MyPageTouchableArea}>
+        <View style={styles.MyPageTopIconArea}>
+          <Text style={styles.MyPageUserIcon}></Text>
           <Text style={styles.MyPageUserTitletext}>USER</Text>
           <Text style={styles.MyPageUserPointtext}>200P</Text>
         </View>
-        <View style={styles.preVillage}>
-          <Text style={styles.MyPageTitletext}>화개 멤버 전용 혜택</Text>
-          <Text style={styles.MyPageSubTitletext}>모든 상품 100% 무료배송</Text>
-          <Text style={styles.MyPageSubTitletext}>5% 포인트 적립</Text>
-          <TouchableOpacity style={styles.TouchableArea}>
-            <View style={styles.ButtonArea}>
-              <Text style={styles.ButtonAreaText}>지금 무료체험 신청하기 </Text>
-            </View>
-          </TouchableOpacity>
+        <View style={styles.MyPagePrevillageContainer}>
+          <Text style={styles.MyPagePrevillageTitletext}>
+            화개 멤버 전용 혜택
+          </Text>
+          <Text style={styles.MyPagePrevillageSubTitletext}>
+            모든 상품 100% 무료배송
+          </Text>
+          <Text style={styles.MyPagePrevillageSubTitletext}>
+            5% 포인트 적립
+          </Text>
+          <View style={styles.MyPageButtonArea}>
+            <Text style={styles.MyPageButtonAreaText}>
+              지금 무료체험 신청하기{" "}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.MyPageContainerDown}>
         <RenderMyPageMenu menu="찜한가게" route="DibsMarket" />
         <RenderMyPageMenu menu="주문목록" route="OrderList" />
         <RenderMyPageMenu menu="화개 멤버십" route="DibsMarket" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
