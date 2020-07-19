@@ -4,12 +4,14 @@ import {
   StyleSheet,
   FlatList,
   Text,
+  Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderMarketThemeContainer: {
     paddingHorizontal: 11,
@@ -29,15 +31,6 @@ const styles = StyleSheet.create({
     color: colors.grey,
     marginLeft: 5,
     marginBottom: 11.5,
-  },
-  RenderMarketSticker: {
-    position: "absolute",
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: colors.white,
-    marginLeft: 6,
-    marginTop: 5.5,
   },
   RenderMarketThemeScoreIcon: {
     width: 12,
@@ -115,11 +108,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   RenderMarketThemeItemImage: {
-    backgroundColor: colors.lightgrey,
+    backgroundColor: colors.white,
     width: getWidth(166),
     height: getHeight(166),
   },
   RenderMarketThemeFlatList: {},
+  RenderMarketStoreImage: {
+    width: getWidth(166),
+    height: getHeight(166),
+  },
+  RenderMarketThemeStar: {
+    width: getWidth(12),
+    height: getHeight(11),
+  },
 });
 
 const RenderMarketTheme = ({ theme }) => {
@@ -131,13 +132,21 @@ const RenderMarketTheme = ({ theme }) => {
         onPress={() => navigation.navigate("StoreDetail")}
       >
         <View style={styles.RenderMarketThemeItemImage}>
-          <View style={styles.RenderMarketSticker}></View>
+          <Image
+            source={icons.storeImage}
+            style={styles.RenderMarketStoreImage}
+          />
         </View>
         <View style={styles.RenderMarketThemeItemTitleAndScoreContainer}>
           <Text style={styles.RenderMarketThemeItemTitleText}>{item.name}</Text>
           <View style={styles.RenderMarketThemeEmpty}></View>
-          <View style={styles.RenderMarketThemeScoreIcon}></View>
-          <Text style={styles.RenderMarketThemeScoreText}>4.2</Text>
+          <Text style={styles.RenderMarketThemeScoreText}>
+            <Image
+              source={icons.goldStar}
+              style={styles.RenderMarketThemeStar}
+            />
+            4.2
+          </Text>
         </View>
         <View style={styles.RenderMarketThemeReviewAndCommentContainer}>
           <Text style={styles.RenderMarketThemeReviewText}>최근리뷰 10+</Text>

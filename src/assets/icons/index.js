@@ -32,7 +32,7 @@ const icons = {
   app_logo: require("./app_logo.png"),
   checkedheart: require("./icon_heart_checked.png"),
   blankheart: require("./icon_heart_blank.png"),
-
+  profileIcon: require("./icon_profile.png"),
 };
 
 export default icons;
