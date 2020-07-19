@@ -32,9 +32,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   RenderItemsComponentsItemImage: {
-
-
-//     backgroundColor: colors.white,
+    //     backgroundColor: colors.white,
 
     width: getWidth(166),
     height: getHeight(166),
@@ -141,9 +139,6 @@ const RenderItemsComponents = ({ store }) => {
           source={icons.storeImage}
           style={styles.RenderItemsComponentsItemImage}
         />
-//         <View style={styles.RenderItemsComponentsItemImage}>
-//           <Image source={icons.marketLogo} style={styles.logoOption}></Image>
-//         </View>
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
@@ -151,13 +146,7 @@ const RenderItemsComponents = ({ store }) => {
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
 
-            <Image
-              source={icons.goldStar}
-              style={styles.RenderItemsComponentsItemScoreIcon}
-            />
-
-//             <Image source={icons.fullStar} style={styles.FullStar}></Image>
-
+            <Image source={icons.fullStar} style={styles.FullStar}></Image>
             <Text style={styles.RenderItemsComponentsItemScoreText}>
               {item.marketStarPoint}
             </Text>
