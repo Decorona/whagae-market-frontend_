@@ -43,7 +43,7 @@ const BasketStack = createStackNavigator();
 
 const Home = () => {
   return (
-    <HomeStack.Navigator headerMode={false} initialRouteName="WriteReviewPage">
+    <HomeStack.Navigator headerMode={false} initialRouteName="HomePage">
       <HomeStack.Screen name="HomePage" component={HomePage} />
       <HomeStack.Screen name="SetAddress" component={SetAddress} />
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />

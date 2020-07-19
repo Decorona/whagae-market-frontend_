@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   LongBottomButtonContainer: {
     width: getWidth(375),
     height: getHeight(58),
-    backgroundColor: colors.greya5,
+    backgroundColor: colors.gold1,
     position: "absolute",
     justifyContent: "center",
     bottom: 0,
@@ -42,9 +42,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const LongBottomButton = ({ children, price }) => {
+const LongBottomButton = ({ children, price, onPress }) => {
   return (
-    <TouchableOpacity style={styles.LongBottomButtonContainer}>
+    <TouchableOpacity
+      style={styles.LongBottomButtonContainer}
+      onPress={onPress}
+    >
       {price && <Text style={styles.LongBottomButtonPriceText}>{price}원</Text>}
 
       <Text style={styles.LongBottomButtonMainText}>{children}</Text>
