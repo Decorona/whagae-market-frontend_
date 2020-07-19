@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
     height: 37.6,
     paddingTop: 8.6,
     paddingBottom: 9,
-    borderBottomColor: colors.yellow,
-    borderBottomWidth: 0.5,
+    backgroundColor: colors.white,
   },
 });
 

@@ -20,7 +20,11 @@ import {
   OrderList,
   OrderListDtl,
 } from "../../pages/MyPage";
-import { BasketPage } from "../../pages/Basket";
+import {
+  BasketPage,
+  BasketDetail,
+  PurchaseOrderPage,
+} from "../../pages/Basket";
 import { colors } from "../../constants";
 
 const RootStack = createStackNavigator();
@@ -43,7 +47,7 @@ const BasketStack = createStackNavigator();
 
 const Home = () => {
   return (
-    <HomeStack.Navigator headerMode={false} initialRouteName="WriteReviewPage">
+    <HomeStack.Navigator headerMode={false} initialRouteName="HomePage">
       <HomeStack.Screen name="HomePage" component={HomePage} />
       <HomeStack.Screen name="SetAddress" component={SetAddress} />
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
@@ -93,6 +97,11 @@ const Basket = () => {
   return (
     <BasketStack.Navigator headerMode={false}>
       <BasketStack.Screen name="BasketPage" component={BasketPage} />
+      <BasketStack.Screen name="BasketDetail" component={BasketDetail} />
+      <BasketStack.Screen
+        name="PurchaseOrderPage"
+        component={PurchaseOrderPage}
+      />
     </BasketStack.Navigator>
   );
 };

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   OrderTabCategoryAmountText: {
     fontSize: 12,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     letterSpacing: -0.9,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   OrderTabOptionNameText: {
     fontSize: 14,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.grey6f,
     marginLeft: 5,
   },
   OrderTabOptionContainer: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.grey6f,
   },
   OrderTabOptionIcon: {
     width: 16,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   OrderTabOptionCategoryFlatList: {
-    borderBottomColor: colors.grey89,
+    borderBottomColor: colors.yellow,
     borderBottomWidth: 0.5,
     paddingBottom: 18,
     paddingTop: 17,

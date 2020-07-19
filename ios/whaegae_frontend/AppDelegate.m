@@ -27,6 +27,17 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  
+  // Checking Font Name
+  // for (NSString* family in [UIFont familyNames])
+  // {
+  //   NSLog(@"%@", family);
+  //   for (NSString* name in [UIFont fontNamesForFamilyName: family])
+  //   {
+  //     NSLog(@" %@", name);
+  //   }
+  // }
+  
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif

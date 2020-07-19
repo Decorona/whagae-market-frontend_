@@ -28,16 +28,18 @@ const styles = StyleSheet.create({
   },
   StoreDetailItemCardTextContainer: {
     marginLeft: 16.5,
-    marginTop: 31,
+    marginTop: 21,
   },
   StoreDetailItemCardNameText: {
+    width: getWidth(72),
+    height: getHeight(29),
     fontSize: 20,
     fontWeight: "bold",
     fontStyle: "normal",
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   StoreDetailItemCardPriceText: {
     fontSize: 20,
@@ -46,14 +48,14 @@ const styles = StyleSheet.create({
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   StoreDetailItemCardEmpty: {
     flex: 1,
   },
   StoreDetailItemCardSticker: {
-    width: 41,
-    height: 64,
+    width: getWidth(40),
+    height: getHeight(48),
     backgroundColor: colors.grey,
     marginRight: 17,
   },

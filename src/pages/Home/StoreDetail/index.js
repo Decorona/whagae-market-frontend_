@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   StoreDetailGobackAndDibButtonContainer: {
+    width: getWidth(375),
     height: getHeight(61),
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.whitebox,
     marginLeft: 6,
   },
   StoreDetailEmpty: {
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     letterSpacing: -0.9,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   StoreDetailStoreNameText: {
     fontSize: 24,
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     lineHeight: 36,
     letterSpacing: -1.8,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   StoreDetailStoreTextInfoContainer2: {
     flexDirection: "row",
@@ -117,7 +118,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   StoreDetailStoreScoreAndFeeContainer: {},
-  StoreDetailStoreScoreContainer: { flexDirection: "row", marginTop: 24 },
+  StoreDetailStoreScoreContainer: {
+    flexDirection: "row",
+    marginTop: 24,
+    marginLeft: 10,
+  },
   StoreDetailStoreScoreIcon: {
     width: 20,
     height: 18.3,
@@ -133,12 +138,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   StoreDetailStoreFeeText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "bold",
     fontStyle: "normal",
-    lineHeight: 20,
+    lineHeight: 18,
     letterSpacing: -1.05,
-    color: colors.grey89,
+    color: colors.grey8d,
     fontFamily: fonts.Medium,
   },
   StoreDetailStoreItemsContainer: { flex: 1 },
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
     borderTopColor: colors.greye0,
   },
   StoreDetailStoreItemsPopularityText: {
-    fontFamily: "NotoSansCJKkr",
+    fontFamily: "NotoSansCJKkr-Bold",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -162,7 +167,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   StoreDetailStoreItemsTotalText: {
-    fontFamily: "NotoSansCJKkr",
+    fontFamily: "NotoSansCJKkr-Bold",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -199,6 +204,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 24,
     marginTop: 10,
+    borderColor: colors.yellow,
   },
 });
 
@@ -249,18 +255,18 @@ const StoreDetail = ({ route }) => {
           }}
         >
           <Image
-            source={icons.leftArrowBlack}
+            source={icons.leftArrowWhite}
             style={styles.StoreDetailGobackbutton}
           />
         </TouchableOpacity>
         <View style={styles.StoreDetailEmpty} />
-        {/* <TouchableOpacity style={styles.StoreDetaildibButtonContainer}>
+        <TouchableOpacity style={styles.StoreDetaildibButtonContainer}>
           <Image
-            source={icons.emptyHeart}
+            source={icons.checkedheart}
             style={styles.StoreDetaildibButton}
           />
           <Text style={styles.StoreDetaildibText}>37</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
       <View style={styles.StoreDetailStoreInfo}>
         <Image source={icons.storeImage} style={styles.StoreDetailStoreImage} />
@@ -281,7 +287,7 @@ const StoreDetail = ({ route }) => {
             <View style={styles.StoreDetailStoreScoreContainer}>
               <Image
                 style={styles.StoreDetailStoreScoreIcon}
-                source={icons.star}
+                source={icons.goldStar}
               />
               <Text style={styles.StoreDetailStoreScoreText}>
                 {appStatus.storeItems.marketStarPoint}

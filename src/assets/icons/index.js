@@ -10,6 +10,7 @@ const icons = {
   leftArrowWhite: require("./left_arrow_white.png"),
   downArrowBlack: require("./down_arrow_black.png"),
   arrow: require("./chevron_left.png"),
+  arrowDown: require("./chevron_down.png"),
   list: require("./list.png"),
   optionCheckedBox: require("./option_checked_box.png"),
   optionCheckBox: require("./option_check_box.png"),
@@ -24,6 +25,9 @@ const icons = {
   searchIcon: require("./icon_search.png"),
   fullStar: require("./icon_fullstar.png"),
   app_logo: require("./app_logo.png"),
+  checkedheart: require("./icon_heart_checked.png"),
+  blankheart: require("./icon_heart_blank.png"),
+
 };
 
 export default icons;
