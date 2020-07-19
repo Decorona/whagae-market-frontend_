@@ -351,7 +351,9 @@ const ItemDetail = ({ route }) => {
         marketId: appStatus.itemDetail.MarketId,
         totalPayment: itemTotalPrice,
         goodsId: appStatus.itemDetail.id,
+        budleQuantity: itemAmount,
       };
+      console.log(body);
       const res = await axios.post(URL_POST_ADD_ITEM_TO_BASKET, body, {});
 
       if (res.status === 200) {
