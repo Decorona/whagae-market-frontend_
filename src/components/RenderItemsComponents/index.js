@@ -5,46 +5,49 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, useStore } from "react-redux";
+import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
-    paddingTop: 17.5,
+    paddingTop: 12.5,
     flex: 1,
+    backgroundColor: colors.greyef,
   },
   RenderItemsComponentsEmpty: {
-    flex: 1,
+    flex: 0.9,
   },
   RenderItemsComponentsFlatList: {
     flexDirection: "column",
   },
   RenderItemsComponentsItemContainer: {
+    backgroundColor: colors.white,
     width: getWidth(166),
-    height: getHeight(256),
-    marginLeft: 5,
-    marginRight: 5,
+    height: getHeight(246),
+    margin: 5,
   },
   RenderItemsComponentsItemImage: {
-    backgroundColor: colors.lightgrey,
     width: getWidth(166),
     height: getHeight(166),
   },
   RenderItemsComponentsItemInfoContainer: {},
   RenderItemsComponentsItemTitleAndScoreContainer: {
     flexDirection: "row",
+    marginLeft: 5,
   },
   RenderItemsComponentsItemTitle: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.grey,
+    color: colors.textblack,
   },
   RenderItemsComponentsItemScoreText: {
     fontSize: 14,
@@ -57,17 +60,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginLeft: 3,
   },
-  RenderItemsComponentsItemScoreIcon: {
+  FullStar: {
     width: 12,
     height: 12,
-    backgroundColor: "red",
     alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
+    marginLeft: 5,
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
-    paddingBottom: 6.8,
+    borderBottomColor: colors.yellow,
+    paddingBottom: 5.8,
   },
   RenderItemsComponentsItemReviewText: {
     fontSize: 8,
@@ -92,7 +95,8 @@ const styles = StyleSheet.create({
   },
   RenderItemsComponentsItemDeliveryContainer: {
     flexDirection: "row",
-    paddingTop: 4.2,
+    justifyContent: "center",
+    paddingTop: 5,
   },
   RenderItemsComponentsItemDeliveryFeeText: {
     fontSize: 8,
@@ -109,12 +113,16 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
-    color: colors.grey,
+    color: colors.textblack,
     fontFamily: fonts.Medium,
+  },
+  logoOption: {
+    width: getWidth(166),
+    height: getHeight(156),
   },
 });
 
-const RenderItemsComponents = ({ stores }) => {
+const RenderItemsComponents = ({ store }) => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
@@ -122,16 +130,24 @@ const RenderItemsComponents = ({ stores }) => {
     return (
       <TouchableOpacity
         style={styles.RenderItemsComponentsItemContainer}
-        onPress={() => navigation.navigate("StoreDetail")}
+        onPress={() =>
+          navigation.navigate("StoreDetail", {
+            id: item.id,
+          })
+        }
       >
-        <View style={styles.RenderItemsComponentsItemImage} />
+        <Image
+          source={icons.storeImage}
+          style={styles.RenderItemsComponentsItemImage}
+        />
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
               {item.marketName}
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
-            <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
+
+            <Image source={icons.fullStar} style={styles.FullStar}></Image>
             <Text style={styles.RenderItemsComponentsItemScoreText}>
               {item.marketStarPoint}
             </Text>
@@ -140,11 +156,11 @@ const RenderItemsComponents = ({ stores }) => {
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
           >
             <Text style={styles.RenderItemsComponentsItemReviewText}>
-              최근리뷰 10+
+              최근리뷰 {item.MarketReviews.length}
             </Text>
-            {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
+            <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
-            </Text> */}
+            </Text>
           </View>
           <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
@@ -163,6 +179,7 @@ const RenderItemsComponents = ({ stores }) => {
     <View style={styles.RenderItemsComponentsContainer}>
       <FlatList
         data={appStatus.stores}
+        // data={store}
         renderItem={renderItems}
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}

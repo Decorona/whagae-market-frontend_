@@ -2,6 +2,9 @@ import * as types from "../actions/appStatus/types";
 // store에서 관리할 state를 정의하는 곳.
 const initialState = {
   stores: [],
+  storeItems: [],
+  itemDetail: [],
+  storeReviews: [],
 };
 
 const appStatus = (state = initialState, action) => {
@@ -11,6 +14,21 @@ const appStatus = (state = initialState, action) => {
       return {
         ...state,
         stores: action.stores,
+      };
+    case types.STORE_ITEMS_UPDATE:
+      return {
+        ...state,
+        storeItems: action.items,
+      };
+    case types.ITEM_DETAIL_UPDATE:
+      return {
+        ...state,
+        itemDetail: action.detail,
+      };
+    case types.STORE_REVIEW_UPDATE:
+      return {
+        ...state,
+        storeReviews: action.reviews,
       };
     default:
       return state;

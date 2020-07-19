@@ -5,6 +5,7 @@ import { fonts, colors } from "../../../constants";
 import { getWidth, getHeight } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 const styles = StyleSheet.create({
   ReadReviewPageContainer: {
     flex: 1,
@@ -81,32 +82,12 @@ const styles = StyleSheet.create({
   ReadReviewPageEmpty: {
     flex: 1,
   },
-  ReadReviewPageShortButton: {
-    width: 74,
-    height: 36,
-    marginTop: 20,
-  },
 });
 
 const ReadReviewPage = () => {
   const navigation = useNavigation();
-  const [reviews, setReviews] = React.useState([
-    { name: "점순이", score: 5, text: "와 정말 저렴하고 좋아요!", image: null },
-    { name: "아이유", score: 5, text: "여기 물건 엄청 좋아요!", image: null },
-    {
-      name: "김태희",
-      score: 2,
-      text: "여기 물건 품질이 별로 안좋네요..!",
-      image: null,
-    },
-    { name: "지헌", score: 3, text: "그럭저럭 쏘쏘해요", image: null },
-    {
-      name: "혜리",
-      score: 4,
-      text: "쓸만해요. 엄청 좋지는 않구요",
-      image: null,
-    },
-  ]);
+  const appStatus = useSelector((state) => state.appStatus);
+  const dispatch = useDispatch();
   return (
     <View style={styles.ReadReviewPageContainer}>
       <View style={styles.ReadReviewPageHeaderContainer}>
@@ -126,29 +107,20 @@ const ReadReviewPage = () => {
       <View style={styles.ReadReviewPageTextInfoAndButtonContainer}>
         <View>
           <Text style={styles.ReadReviewPageReviewCountText}>
-            최근 리뷰 2개
+            최근 리뷰 {appStatus.storeReviews.length}개
           </Text>
           <Text style={styles.ReadReviewPageShopKeeperCommentCountText}>
             사장님 댓글 2개
           </Text>
           <View style={styles.ReadReviewPageScoreContainer}>
             <Image source={icons.star} style={styles.ReadReviewPageScoreIcon} />
-            <Text style={styles.ReadReviewPageScoreText}>4.2</Text>
+            <Text style={styles.ReadReviewPageScoreText}>
+              {appStatus.storeItems.marketStarPoint}
+            </Text>
           </View>
         </View>
-        <View style={styles.ReadReviewPageEmpty}></View>
-        <View>
-          <ShortButton
-            containerStyle={styles.ReadReviewPageShortButton}
-            onPress={() => {
-              navigation.navigate("WriteReviewPage");
-            }}
-          >
-            리뷰 작성
-          </ShortButton>
-        </View>
       </View>
-      <RenderReviewCards reviews={reviews} />
+      <RenderReviewCards />
     </View>
   );
 };

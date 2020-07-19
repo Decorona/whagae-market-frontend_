@@ -16,11 +16,11 @@ import RenderOrderListDtl from "../../../components/RenderOrderListDtl";
 const styles = StyleSheet.create({
   OrderListDtlContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.greyef,
   },
   StoreDetailGobackAndDibButtonContainer: {
     height: getHeight(61),
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     width: 14,
     height: 23.3,
   },
-  TopText: {
+  OrderListDtlTopText: {
     fontSize: 14,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -0.28,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.whitebox,
     marginLeft: 21,
     alignSelf: "center",
   },
@@ -64,11 +64,11 @@ const OrderListDtl = () => {
           }}
         >
           <Image
-            source={icons.leftArrowBlack}
+            source={icons.leftArrowWhite}
             style={styles.StoreDetailGobackbutton}
           />
         </TouchableOpacity>
-        <Text style={styles.TopText}>주문 목록 상세</Text>
+        <Text style={styles.OrderListDtlTopText}>주문 내역 상세</Text>
       </View>
       <RenderOrderListDtl basketItems={basketItems} />
     </View>

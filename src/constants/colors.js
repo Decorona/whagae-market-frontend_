@@ -20,6 +20,16 @@ const colors = {
   gray3: "#3c3a3a",
   gray6: "#6f6f6f",
   black: "#000000",
+  yellow: "#efb129",
+  backgroundgrey: "#efefef",
+  textblack: "#3c3a3a",
+  whitebox: "#f8f8f8",
+  gold1: "#efb129",
+  greyf8: "#f8f8f8",
+  greyef: "#efefef",
+  greye6: "#e6e6e6",
+  grey8d: "#8d8d8d",
+  grey6f: "#6f6f6f",
 };
 
 export default colors;

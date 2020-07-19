@@ -12,16 +12,17 @@ import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
+
 import RenderOrderList from "../../../components/RenderOrderList";
 
 const styles = StyleSheet.create({
   OrderListContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.greyef,
   },
   StoreDetailGobackAndDibButtonContainer: {
     height: getHeight(61),
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -32,14 +33,14 @@ const styles = StyleSheet.create({
     width: 14,
     height: 23.3,
   },
-  TopText: {
+  OrderListTopText: {
     fontSize: 14,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -0.28,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.greyf8,
     marginLeft: 21,
     alignSelf: "center",
   },
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
 
 const OrderList = () => {
   const navigation = useNavigation();
+
   const [storeCategory, setStoreCategory] = React.useState([
     { name: "전체" },
     { name: "마트" },
@@ -76,11 +78,11 @@ const OrderList = () => {
           }}
         >
           <Image
-            source={icons.leftArrowBlack}
+            source={icons.leftArrowWhite}
             style={styles.StoreDetailGobackbutton}
           />
         </TouchableOpacity>
-        <Text style={styles.TopText}>주문 목록</Text>
+        <Text style={styles.OrderListTopText}>주문 내역</Text>
       </View>
 
       <CategoryMenu category={storeCategory} />

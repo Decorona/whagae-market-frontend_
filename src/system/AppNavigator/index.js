@@ -10,6 +10,7 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
+  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
@@ -52,10 +53,7 @@ const Home = () => {
       <HomeStack.Screen name="StoreDetail" component={StoreDetail} />
       <HomeStack.Screen name="ItemDetail" component={ItemDetail} />
       <HomeStack.Screen name="ReadReviewPage" component={ReadReviewPage} />
-      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
-      <HomeStack.Screen name="OrderList" component={OrderList} />
-
-      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
+      <HomeStack.Screen name="WriteReviewPage" component={WriteReviewPage} />
     </HomeStack.Navigator>
   );
 };
@@ -77,6 +75,9 @@ const Market = () => {
     <MarketStack.Navigator headerMode={false}>
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
       <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
+      <MarketStack.Screen name="OrderList" component={OrderList} />
+
+      <MarketStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </MarketStack.Navigator>
   );
 };
@@ -85,6 +86,9 @@ const MyPage = () => {
   return (
     <MyPageStack.Navigator headerMode={false}>
       <MyPageStack.Screen name="MyPage" component={MyPageComponent} />
+      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
+      <HomeStack.Screen name="OrderList" component={OrderList} />
+      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </MyPageStack.Navigator>
   );
 };
