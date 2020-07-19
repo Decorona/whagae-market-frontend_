@@ -420,7 +420,10 @@ const ItemDetail = ({ route }) => {
       </View>
       <ScrollView style={styles.ItemDetailScrollViewContainer}>
         <View style={styles.ItemDetailInfoContainer1}>
-          <View style={styles.ItemDetailImage1}></View>
+          <Image
+            source={{ uri: appStatus.itemDetail.goodsPhoto }}
+            style={styles.ItemDetailImage1}
+          />
           <View style={styles.ItemDetailTextInfo}>
             <Text style={styles.ItemDetailNameText}>
               {appStatus.itemDetail.goodsName}

@@ -92,9 +92,9 @@ const MyPage = () => {
   return (
     <MyPageStack.Navigator headerMode={false}>
       <MyPageStack.Screen name="MyPage" component={MyPageComponent} />
-      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
-      <HomeStack.Screen name="OrderList" component={OrderList} />
-      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
+      <MyPageStack.Screen name="DibsMarket" component={DibsMarket} />
+      <MyPageStack.Screen name="OrderList" component={OrderList} />
+      <MyPageStack.Screen name="OrderListDtl" component={OrderListDtl} />
       <MarketStack.Screen name="PaymentPage" component={PaymentPage} />
     </MyPageStack.Navigator>
   );
@@ -105,10 +105,7 @@ const Basket = () => {
     <BasketStack.Navigator headerMode={false}>
       <BasketStack.Screen name="BasketPage" component={BasketPage} />
       <BasketStack.Screen name="BasketDetail" component={BasketDetail} />
-      <BasketStack.Screen
-        name="PurchaseOrderPage"
-        component={PurchaseOrderPage}
-      />
+      <BasketStack.Screen name="PaymentPage" component={PaymentPage} />
     </BasketStack.Navigator>
   );
 };

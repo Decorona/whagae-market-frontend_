@@ -445,7 +445,13 @@ const PaymentPage = () => {
           </View>
         </View>
       </ScrollView>
-      <LongBottomButton>184,000원 결제하기</LongBottomButton>
+      <LongBottomButton
+        onPress={() => {
+          navigation.navigate("HomePage");
+        }}
+      >
+        184,000원 결제하기
+      </LongBottomButton>
     </View>
   );
 };

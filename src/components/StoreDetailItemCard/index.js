@@ -72,7 +72,10 @@ const StoreDetailItemCard = ({ item }) => {
         })
       }
     >
-      <View style={styles.StoreDetailItemCardImage}></View>
+      <Image
+        source={{ uri: item.goodsPhoto }}
+        style={styles.StoreDetailItemCardImage}
+      />
       <View style={styles.StoreDetailItemCardTextContainer}>
         <Text style={styles.StoreDetailItemCardNameText}>{item.goodsName}</Text>
         <Text style={styles.StoreDetailItemCardPriceText}>{item.price}원</Text>
