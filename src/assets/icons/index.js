@@ -17,6 +17,10 @@ const icons = {
   banner: require("./banner.png"),
   plusButton: require("./plus_button.png"),
   minusButton: require("./minus_button.png"),
+  checked: require("./checked.png"),
+  marketLogo: require("./market_logo.png"),
+  searchIcon: require("./icon_search.png"),
+  fullStar: require("./icon_fullstar.png"),
 };
 
 export default icons;
