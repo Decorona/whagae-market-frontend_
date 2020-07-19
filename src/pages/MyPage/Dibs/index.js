@@ -20,11 +20,11 @@ import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   DibsMarketContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.greyef,
   },
   StoreDetailGobackAndDibButtonContainer: {
     height: getHeight(61),
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
     width: 14,
     height: 23.3,
   },
-  TopText: {
+  DibsMarketTopText: {
     fontSize: 14,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: -0.28,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.greyf8,
     marginLeft: 21,
     alignSelf: "center",
   },
@@ -77,11 +77,11 @@ const DibsMarket = () => {
           }}
         >
           <Image
-            source={icons.leftArrowBlack}
+            source={icons.leftArrowWhite}
             style={styles.StoreDetailGobackbutton}
           />
         </TouchableOpacity>
-        <Text style={styles.TopText}>찜한가게</Text>
+        <Text style={styles.DibsMarketTopText}>찜한가게</Text>
       </View>
 
       <CategoryMenu category={storeCategory} />
