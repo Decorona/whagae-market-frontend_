@@ -445,9 +445,7 @@ const PaymentPage = () => {
           </View>
         </View>
       </ScrollView>
-      <LongBottomButton price={itemTotalPrice}>
-        {itemAmount}개 담기
-      </LongBottomButton>
+      <LongBottomButton>184,000원 결제하기</LongBottomButton>
     </View>
   );
 };

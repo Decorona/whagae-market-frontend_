@@ -74,12 +74,6 @@ const OrderListDtl = () => {
         <Text style={styles.OrderListDtlTopText}>주문 내역 상세</Text>
       </View>
       <RenderOrderListDtl basketItems={basketItems} />
-      <LongBottomButton
-        price={itemTotalPrice}
-        onPress={() => navigation.navigate("PaymentPage")}
-      >
-        구매하기
-      </LongBottomButton>
     </View>
   );
 };

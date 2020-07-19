@@ -11,7 +11,7 @@ import { colors, fonts } from "../../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
-
+import { LongBottomButton } from "../../../components";
 const styles = StyleSheet.create({
   BasketContainer: {
     width: "100%",
@@ -213,6 +213,13 @@ const BasketDetail = ({ route }) => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
       />
+      <LongBottomButton
+        onPress={() => {
+          navigation.navigate("PaymentPage");
+        }}
+      >
+        구매하기
+      </LongBottomButton>
     </View>
   );
 };
