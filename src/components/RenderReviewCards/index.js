@@ -7,9 +7,8 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { getWidth } from "../../utils/helper";
 import { ReviewCard } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   RenderReviewCardsContainer: {
     paddingTop: 5,

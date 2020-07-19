@@ -93,23 +93,6 @@ const ReadReviewPage = () => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
-  const [reviews, setReviews] = React.useState([
-    { name: "점순이", score: 5, text: "와 정말 저렴하고 좋아요!", image: null },
-    { name: "아이유", score: 5, text: "여기 물건 엄청 좋아요!", image: null },
-    {
-      name: "김태희",
-      score: 2,
-      text: "여기 물건 품질이 별로 안좋네요..!",
-      image: null,
-    },
-    { name: "지헌", score: 3, text: "그럭저럭 쏘쏘해요", image: null },
-    {
-      name: "혜리",
-      score: 4,
-      text: "쓸만해요. 엄청 좋지는 않구요",
-      image: null,
-    },
-  ]);
   return (
     <View style={styles.ReadReviewPageContainer}>
       <View style={styles.ReadReviewPageHeaderContainer}>
