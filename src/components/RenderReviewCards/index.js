@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { getWidth } from "../../utils/helper";
 import { ReviewCard } from "../../components";
-
+import { useDispatch, useSelector } from "react-redux";
 const styles = StyleSheet.create({
   RenderReviewCardsContainer: {
     paddingTop: 5,
@@ -17,14 +17,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderReviewCards = ({ reviews }) => {
+const RenderReviewCards = () => {
+  const appStatus = useSelector((state) => state.appStatus);
   const renderItems = React.useCallback(({ item }) => {
     return <ReviewCard review={item} />;
   }, []);
   return (
     <View style={styles.RenderReviewCardsContainer}>
       <FlatList
-        data={reviews}
+        data={appStatus.storeReviews}
         renderItem={renderItems}
         showsVerticalScrollIndicator={false}
       />

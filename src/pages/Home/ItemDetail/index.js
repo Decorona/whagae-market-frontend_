@@ -12,6 +12,10 @@ import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
 import { LongBottomButton, OrderTab } from "../../../components";
+import { URL_GET_ITEM_DETAIL } from "../../../constants/api";
+import { itemDetailUpdate } from "../../../actions/appStatus";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 const styles = StyleSheet.create({
   ItemDetailContainer: {
     flex: 1,
@@ -323,11 +327,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemDetail = () => {
+const ItemDetail = ({ route }) => {
   const navigation = useNavigation();
+  const { id } = route.params;
+  const dispatch = useDispatch();
+  const appStatus = useSelector((state) => state.appStatus);
   const [tabJudge, setTabJudge] = React.useState(true);
   const [itemAmount, setItemAmount] = React.useState(1);
-  const [itemTotalPrice, setItemTotalPrice] = React.useState(45000);
+  const [itemTotalPrice, setItemTotalPrice] = React.useState(1);
   const [orderInfo, setOrderInfo] = React.useState([
     {
       categoryName: "옵션 카테고리1",
@@ -348,6 +355,22 @@ const ItemDetail = () => {
       ],
     },
   ]);
+
+  const _getItemDetail = async (id) => {
+    try {
+      const res = await axios.get(URL_GET_ITEM_DETAIL(id), {});
+      if (res.status === 200) {
+        dispatch(itemDetailUpdate(res.data));
+        setItemTotalPrice(res.data.price);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
+  React.useEffect(() => {
+    _getItemDetail(id);
+  }, []);
   return (
     <View style={styles.ItemDetailContainer}>
       <View style={styles.ItemDetailGobackContainer}>
@@ -362,17 +385,23 @@ const ItemDetail = () => {
             style={styles.ItemDetailGobackButton}
           />
         </TouchableOpacity>
-        <Text style={styles.ItemDetailProductNameText1}>PRODUCT NAME</Text>
+        <Text style={styles.ItemDetailProductNameText1}>
+          {appStatus.itemDetail.goodsName}
+        </Text>
       </View>
       <ScrollView style={styles.ItemDetailScrollViewContainer}>
         <View style={styles.ItemDetailInfoContainer1}>
           <View style={styles.ItemDetailImage1}></View>
           <View style={styles.ItemDetailTextInfo}>
-            <Text style={styles.ItemDetailNameText}>PRODUCT NAME</Text>
-            <Text style={styles.ItemDetailProductInfoText}>
-              여름철 피부 유전을 활성화하는 마스크
+            <Text style={styles.ItemDetailNameText}>
+              {appStatus.itemDetail.goodsName}
             </Text>
-            <Text style={styles.ItemDetailPriceText}>45,000원</Text>
+            <Text style={styles.ItemDetailProductInfoText}>
+              {appStatus.itemDetail.description}
+            </Text>
+            <Text style={styles.ItemDetailPriceText}>
+              {appStatus.itemDetail.price}원
+            </Text>
             <View style={styles.ItemDetailMembershipContainer}>
               <View style={styles.ItemDetailMembershipCard}>
                 <Text style={styles.ItemDetailMembershipCardText}>
@@ -423,7 +452,7 @@ const ItemDetail = () => {
             <View style={styles.ItemDetailInfoContainer2}>
               <View style={styles.ItemDetailSaleUnitContainer}>
                 <Text style={styles.ItemDetailSaleUnitText1}>판매단위</Text>
-                <Text style={styles.ItemDetailSaleUnitText2}>1봉</Text>
+                <Text style={styles.ItemDetailSaleUnitText2}>1개</Text>
               </View>
               <View style={styles.ItemDetailWeightContainer}>
                 <Text style={styles.ItemDetailWeightText1}>중량/용량</Text>
@@ -432,7 +461,7 @@ const ItemDetail = () => {
               <View style={styles.ItemDetailNoticeContainer}>
                 <Text style={styles.ItemDetailNoticeText1}>안내사항</Text>
                 <Text style={styles.ItemDetailNoticeText2}>
-                  마스크 쓸때 주의하세요
+                  코로나 조심하세요 ㅎ
                 </Text>
               </View>
             </View>
@@ -440,13 +469,13 @@ const ItemDetail = () => {
               <View style={styles.ItemDetailImage2}></View>
               <Text style={styles.ItemDetailSubTitle}>SUB TITLE</Text>
               <Text style={styles.ItemDetailProductNameText2}>
-                PRODUCT NAME
+                {appStatus.itemDetail.goodsName}
               </Text>
             </View>
             <View style={styles.ItemDetailBar}></View>
             <View style={styles.ItemDetailDescriptionContainer}>
               <Text style={styles.ItemDetailDescriptionText}>
-                상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명상세설명
+                {appStatus.itemDetail.description}
               </Text>
             </View>
           </>
@@ -460,28 +489,32 @@ const ItemDetail = () => {
                 onPress={() => {
                   if (itemAmount > 1) {
                     let updatedAmount = itemAmount - 1;
-                    let updatedPrice = itemTotalPrice - 45000;
+                    let updatedPrice =
+                      itemTotalPrice - appStatus.itemDetail.price;
                     setItemAmount(updatedAmount);
                     setItemTotalPrice(updatedPrice);
                   }
                 }}
               >
-                <View
+                <Image
+                  source={icons.minusButton}
                   style={styles.ItemDetailOrderAmountCounterMinusButtonIcon}
-                ></View>
+                />
               </TouchableOpacity>
               <Text>{itemAmount}</Text>
               <TouchableOpacity
                 onPress={() => {
                   let updatedAmount = itemAmount + 1;
-                  let updatedPrice = itemTotalPrice + 45000;
+                  let updatedPrice =
+                    itemTotalPrice + appStatus.itemDetail.price;
                   setItemAmount(updatedAmount);
                   setItemTotalPrice(updatedPrice);
                 }}
               >
-                <View
+                <Image
+                  source={icons.plusButton}
                   style={styles.ItemDetailOrderAmountCounterPlusButtonIcon}
-                ></View>
+                />
               </TouchableOpacity>
             </View>
           </View>

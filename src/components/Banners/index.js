@@ -1,27 +1,29 @@
-import * as React from 'react';
-import Carousel from 'react-native-snap-carousel';
-import {View, StyleSheet} from 'react-native';
-import {getWidth} from '../../utils/helper';
-import {colors} from '../../constants';
+import * as React from "react";
+import Carousel from "react-native-snap-carousel";
+import { View, StyleSheet, Image } from "react-native";
+import { getWidth } from "../../utils/helper";
+import { colors } from "../../constants";
+import { icons } from "../../assets";
+
 const styles = StyleSheet.create({
   BannersItem: {
     height: 192,
-    backgroundColor: 'red',
+    width: getWidth(375),
   },
   BannersPaginationContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     width: getWidth(375),
     height: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
   BannersActiveDot: {
     height: 8,
     width: 8,
     borderRadius: 4,
-    backgroundColor: 'yellow',
-    alignSelf: 'center',
+    backgroundColor: "#ffb000",
+    alignSelf: "center",
     marginLeft: 7,
     marginRight: 7,
   },
@@ -30,16 +32,16 @@ const styles = StyleSheet.create({
     width: 8,
     borderRadius: 4,
     backgroundColor: colors.white,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 7,
     marginRight: 7,
   },
 });
 
-const Banners = ({banners}) => {
+const Banners = ({ banners }) => {
   const [activeSlide, setActiveSlide] = React.useState(0);
-  const renderBanner = React.useCallback(({item}) => {
-    return <View style={styles.BannersItem}></View>;
+  const renderBanner = React.useCallback(({ item }) => {
+    return <Image source={item.image} style={styles.BannersItem} />;
   }, []);
   const renderDots = React.useCallback(
     (items) => {
@@ -49,11 +51,12 @@ const Banners = ({banners}) => {
             style={[
               styles.BannersInactiveDots,
               index === activeSlide && styles.BannersActiveDot,
-            ]}></View>
+            ]}
+          ></View>
         );
       });
     },
-    [activeSlide],
+    [activeSlide]
   );
 
   return (
