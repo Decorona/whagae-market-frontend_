@@ -19,6 +19,7 @@ import {
   DibsMarket,
   OrderList,
   OrderListDtl,
+  PaymentPage,
 } from "../../pages/MyPage";
 import {
   BasketPage,
@@ -76,8 +77,8 @@ const Market = () => {
       <MarketStack.Screen name="MarketPage" component={MarketPage} />
       <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
       <MarketStack.Screen name="OrderList" component={OrderList} />
-
       <MarketStack.Screen name="OrderListDtl" component={OrderListDtl} />
+      <MarketStack.Screen name="PaymentPage" component={PaymentPage} />
     </MarketStack.Navigator>
   );
 };
@@ -89,6 +90,7 @@ const MyPage = () => {
       <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
       <HomeStack.Screen name="OrderList" component={OrderList} />
       <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
+      <MarketStack.Screen name="PaymentPage" component={PaymentPage} />
     </MyPageStack.Navigator>
   );
 };
