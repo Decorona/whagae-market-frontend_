@@ -113,23 +113,26 @@ const styles = StyleSheet.create({
   },
 });
 
-const WriteReviewPage = () => {
+const WriteReviewPage = ({ route }) => {
   const [stars, setStars] = React.useState(5);
   const navigation = useNavigation();
   const [buttonJudge, setButtonJudge] = React.useState(true);
   const [reviewContent, setReviewContent] = React.useState("");
   const appStatus = useSelector((state) => state.appStatus);
-  const _writeReview = async () => {
+  const { userId, marketId } = route.params;
+  const _writeReview = async (marketId, userId) => {
     try {
+      console.log(id, "call1");
       const body = {
         review: reviewContent,
         revievImage: "",
         reviewPoint: stars,
-        marketId: 2,
+        marketId: marketId,
         purchaseOrderId: 1,
-        userId: 1,
+        userId: userId,
       };
       const res = await axios.post(URL_POST_REVIEW, body, {});
+      console.log(res, "call2");
       if (res.status === 200) {
         navigation.goBack();
       }
@@ -201,7 +204,7 @@ const WriteReviewPage = () => {
           </View>
         </View>
         {buttonJudge && (
-          <LongBottomButton onPress={() => _writeReview()}>
+          <LongBottomButton onPress={() => _writeReview(marketId, userId)}>
             작성 완료
           </LongBottomButton>
         )}

@@ -82,11 +82,6 @@ const styles = StyleSheet.create({
   ReadReviewPageEmpty: {
     flex: 1,
   },
-  ReadReviewPageShortButton: {
-    width: 74,
-    height: 36,
-    marginTop: 20,
-  },
 });
 
 const ReadReviewPage = () => {
@@ -123,17 +118,6 @@ const ReadReviewPage = () => {
               {appStatus.storeItems.marketStarPoint}
             </Text>
           </View>
-        </View>
-        <View style={styles.ReadReviewPageEmpty}></View>
-        <View>
-          <ShortButton
-            containerStyle={styles.ReadReviewPageShortButton}
-            onPress={() => {
-              navigation.navigate("WriteReviewPage");
-            }}
-          >
-            리뷰 작성
-          </ShortButton>
         </View>
       </View>
       <RenderReviewCards />

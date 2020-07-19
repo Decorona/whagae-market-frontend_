@@ -4,6 +4,8 @@ import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
 import { useNavigation } from "@react-navigation/native";
 import { icons } from "../../assets";
+import { ShortButton } from "../../components";
+import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
   OrderListCardContainer: {
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
   OrderListCardAmountContainer: {
     flexDirection: "row",
     alignSelf: "flex-end",
+    marginTop: 5,
   },
   OrderListCardAmountText: {
     fontSize: 12,
@@ -103,10 +106,17 @@ const styles = StyleSheet.create({
     marginRight: 13,
     marginBottom: 20,
   },
+  OrderListCardShortButton: {
+    width: 78,
+    height: 30,
+    marginTop: 5,
+    alignSelf: "flex-end",
+  },
 });
 
-const OrderListCard = ({ item }) => {
+const OrderListCard = ({ item, marketId }) => {
   const navigation = useNavigation();
+  const user = useSelector((state) => state.user);
   return (
     <TouchableOpacity
       style={styles.OrderListCardContainer}
@@ -129,9 +139,19 @@ const OrderListCard = ({ item }) => {
           </Text>
         </View>
 
-        <View style={styles.OrderListCardFeeContainer}>
-          <Text style={styles.OrderListCardFeeText1}>{item.price}</Text>
-        </View>
+        <ShortButton
+          containerStyle={styles.OrderListCardShortButton}
+          onPress={() => {
+            navigation.navigate("WriteReviewPage", {
+              // userId: user.userId,
+              userId: 1,
+              // marketId: marketId,
+              marketId: 1,
+            });
+          }}
+        >
+          리뷰 작성
+        </ShortButton>
         <View style={styles.OrderListCardAmountContainer}>
           <Text style={styles.OrderListCardAmountText}>총 {item.amount}개</Text>
           <Image

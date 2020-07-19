@@ -1,7 +1,10 @@
 import * as React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { colors, fonts } from "../../../constants";
-import { URL_GET_REGIONAL_MARKET } from "../../../constants/api";
+import {
+  URL_GET_REGIONAL_MARKET,
+  URL_GET_ORDER_LIST,
+} from "../../../constants/api";
 import {
   Banners,
   RenderItemsComponents,
@@ -10,6 +13,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { storesUpdate } from "../../../actions/appStatus";
+//유저 관련
+import { userIdUpdate, orderListUpdate } from "../../../actions/user";
 import axios from "axios";
 import { icons } from "../../../assets";
 import { getWidth, getHeight } from "../../../utils/helper";
@@ -57,15 +62,7 @@ const HomePage = () => {
     { name: "꽃집" },
     { name: "철물점" },
   ]);
-  // redux store 내용으로 교체예정
-  const [stores, setStores] = React.useState([
-    { marketName: "순이네", marketStarPoint: 4, MarketReviews: [], id: 1 },
-    // { name: "점순이네" },
-    // { name: "털보네" },
-    // { name: "돌쇠네" },
-    // { name: "초삼이네" },
-    // { name: "돌석이네" },
-  ]);
+
   //
   // useSelector : redux store내 state를 사용할 수 있게 해줌
   // dispatch : redux에 정의한 함수를 사용할 수 있게 해줌
@@ -98,8 +95,25 @@ const HomePage = () => {
     }
   };
 
+  // 유저 정보 call 함수, login 로직으로 옮길 예정
+  const _getOrderList = async () => {
+    try {
+      // const res = await axios.get(URL_GET_ORDER_LIST(user.userId), {});
+      const res = await axios.get(URL_GET_ORDER_LIST(1), {});
+      if (res.status === 200) {
+        console.log(res);
+        dispatch(orderListUpdate(res.data));
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
+  //
+
   React.useEffect(() => {
     _getStores();
+    _getOrderList();
   }, []);
 
   return (
@@ -118,7 +132,7 @@ const HomePage = () => {
       </TouchableOpacity>
       <CategoryMenu category={storeCategory} />
       <Banners banners={banners} />
-      <RenderItemsComponents store={stores} />
+      <RenderItemsComponents />
     </View>
   );
 };
