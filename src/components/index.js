@@ -12,6 +12,7 @@ import OrderTab from "./OrderTab";
 import ShortButton from "./ShortButton";
 import ReviewCard from "./ReviewCard";
 import RenderReviewCards from "./RenderReviewCards";
+import SearchRender from "./SearchRender";
 export {
   Banners,
   RenderItemsComponents,
@@ -27,4 +28,5 @@ export {
   ShortButton,
   ReviewCard,
   RenderReviewCards,
+  SearchRender,
 };
