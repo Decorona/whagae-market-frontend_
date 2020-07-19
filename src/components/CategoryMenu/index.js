@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
-    color: colors.grey,
+    color: colors.grey8d,
     marginLeft: 16,
   },
   CategoryMenuActiveName: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: 37.6,
     paddingTop: 8.6,
     paddingBottom: 9,
-    borderBottomColor: colors.white,
+    borderBottomColor: colors.yellow,
     borderBottomWidth: 0.5,
   },
 });

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.grey8d,
   },
   RenderOrderListCategoryFlatlist: {
     marginTop: 14.6,

@@ -1,8 +1,9 @@
 import * as React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
 import { useNavigation } from "@react-navigation/native";
+import { icons } from "../../assets";
 
 const styles = StyleSheet.create({
   OrderListCardContainer: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     height: 88,
     paddingVertical: 16,
     borderRadius: 8,
-    backgroundColor: colors.lightgrey2,
+    backgroundColor: colors.greyf8,
     alignSelf: "center",
     flexDirection: "row",
     marginTop: 20,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.textblack,
   },
   OrderListCardCategoryText: {
     fontSize: 20,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.greyb5,
+    color: colors.grey8d,
   },
   OrderListCardEmpty: {
     flex: 1,
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     letterSpacing: -0.6,
     fontFamily: fonts.Medium,
-    color: colors.greyb5,
+    color: colors.grey6f,
   },
   OrderListCardFeeOptionText2: {
     fontSize: 8,
@@ -85,17 +86,16 @@ const styles = StyleSheet.create({
   },
   OrderListCardAmountText: {
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontStyle: "normal",
     lineHeight: 18,
     letterSpacing: -0.9,
     fontFamily: fonts.Medium,
-    color: colors.greyb5,
+    color: colors.grey6f,
   },
   OrderListCardAmountIcon: {
     width: 10,
     height: 10,
-    backgroundColor: "red",
     alignSelf: "center",
     marginLeft: 3,
   },
@@ -134,7 +134,10 @@ const OrderListCard = ({ item }) => {
         </View>
         <View style={styles.OrderListCardAmountContainer}>
           <Text style={styles.OrderListCardAmountText}>총 {item.amount}개</Text>
-          <View style={styles.OrderListCardAmountIcon}></View>
+          <Image
+            source={icons.downArrowBlack}
+            style={styles.OrderListCardAmountIcon}
+          />
         </View>
       </View>
     </TouchableOpacity>
