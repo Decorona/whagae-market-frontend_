@@ -19,6 +19,9 @@ const colors = {
   backgroundgrey: "#efefef",
   textblack: "#3c3a3a",
   whitebox: "#f8f8f8",
+  gold1: "#efb129",
+  greyf8: "#f8f8f8",
+  greyef: "#efefef",
 };
 
 export default colors;

@@ -5,15 +5,19 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
     paddingTop: 17.5,
     flex: 1,
+    backgroundColor: colors.greyef,
   },
   RenderItemsComponentsEmpty: {
     flex: 1,
@@ -28,7 +32,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   RenderItemsComponentsItemImage: {
-    backgroundColor: colors.lightgrey,
+    //     backgroundColor: colors.white,
+
     width: getWidth(166),
     height: getHeight(166),
   },
@@ -56,10 +61,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginLeft: 3,
   },
-  RenderItemsComponentsItemScoreIcon: {
+  FullStar: {
     width: 12,
     height: 12,
-    backgroundColor: "red",
     alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
@@ -111,35 +115,51 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontFamily: fonts.Medium,
   },
+  logoOption: {
+    width: getWidth(166),
+    height: getHeight(156),
+  },
 });
 
-const RenderItemsComponents = ({ stores }) => {
+const RenderItemsComponents = ({ store }) => {
   const navigation = useNavigation();
+  const appStatus = useSelector((state) => state.appStatus);
+  const dispatch = useDispatch();
   const renderItems = React.useCallback(({ item }) => {
     return (
       <TouchableOpacity
         style={styles.RenderItemsComponentsItemContainer}
-        onPress={() => navigation.navigate("StoreDetail")}
+        onPress={() =>
+          navigation.navigate("StoreDetail", {
+            id: item.id,
+          })
+        }
       >
-        <View style={styles.RenderItemsComponentsItemImage} />
+        <Image
+          source={icons.storeImage}
+          style={styles.RenderItemsComponentsItemImage}
+        />
         <View>
           <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
             <Text style={styles.RenderItemsComponentsItemTitle}>
-              {item.name} 가게
+              {item.marketName}
             </Text>
             <View style={styles.RenderItemsComponentsEmpty}></View>
-            <View style={styles.RenderItemsComponentsItemScoreIcon}></View>
-            <Text style={styles.RenderItemsComponentsItemScoreText}>4.2</Text>
+
+            <Image source={icons.fullStar} style={styles.FullStar}></Image>
+            <Text style={styles.RenderItemsComponentsItemScoreText}>
+              {item.marketStarPoint}
+            </Text>
           </View>
           <View
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
           >
             <Text style={styles.RenderItemsComponentsItemReviewText}>
-              최근리뷰 10+
+              최근리뷰 {item.MarketReviews.length}
             </Text>
-            <Text style={styles.RenderItemsComponentsItemCommentText}>
+            {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
@@ -157,7 +177,8 @@ const RenderItemsComponents = ({ stores }) => {
   return (
     <View style={styles.RenderItemsComponentsContainer}>
       <FlatList
-        data={stores}
+        data={appStatus.stores}
+        // data={store}
         renderItem={renderItems}
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}

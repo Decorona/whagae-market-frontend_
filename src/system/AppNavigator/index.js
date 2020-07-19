@@ -10,7 +10,6 @@ import {
   StoreDetail,
   ItemDetail,
   ReadReviewPage,
-  WriteReviewPage,
 } from "../../pages/Home";
 import { SearchPage } from "../../pages/Search";
 import { MarketPage } from "../../pages/Market";
