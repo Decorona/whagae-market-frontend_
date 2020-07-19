@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
 import OrderListCard from "../OrderListCard";
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   RenderOrderListCategoryText: {
     marginLeft: 16,
@@ -24,8 +25,9 @@ const styles = StyleSheet.create({
 });
 
 const RenderOrderList = ({ basketItems }) => {
-  const renderItem = React.useCallback(({ item }) => {
-    return <OrderListCard item={item} />;
+  const user = useSelector((state) => state.user);
+  const renderItem = React.useCallback(({ item, index }) => {
+    return <OrderListCard item={item} marketId={index} />;
   }, []);
   const renderCategory = React.useCallback(({ item }) => {
     return (

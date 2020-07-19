@@ -12,6 +12,7 @@ import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
+
 import RenderOrderList from "../../../components/RenderOrderList";
 
 const styles = StyleSheet.create({
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
 
 const OrderList = () => {
   const navigation = useNavigation();
+
   const [storeCategory, setStoreCategory] = React.useState([
     { name: "전체" },
     { name: "마트" },
