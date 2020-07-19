@@ -8,9 +8,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getHeight, getWidth } from "../../../utils/helper";
-import { SearchBar, RenderItemsComponents } from "../../../components";
+import {
+  SearchBar,
+  RenderItemsComponents,
+  SearchRender,
+} from "../../../components";
 import { colors, fonts } from "../../../constants";
 import { icons } from "../../../assets";
+import { URL_GET_SEARCH_ITEM } from "../../../constants/api";
+import axios from "axios";
 
 const styles = StyleSheet.create({
   SearchPageContainer: {
@@ -48,15 +54,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchPage = () => {
-  const [stores, setStores] = React.useState([
-    { name: "순이네" },
-    { name: "점순이네" },
-    { name: "털보네" },
-    { name: "돌쇠네" },
-    { name: "초삼이네" },
-    { name: "돌석이네" },
-  ]);
+const SearchPage = ({ name }) => {
+  const [search, setSearch] = React.useState(false);
   return (
     <View style={styles.SearchPageContainer}>
       <View style={styles.SearchPageLocationNameContainer}>
@@ -65,8 +64,11 @@ const SearchPage = () => {
         </Text>
         <Image source={icons.checked} style={styles.checkedOption}></Image>
       </View>
-      <SearchBar style={styles.SearchPageSearchBarMarginTop} />
-      <RenderItemsComponents stores={stores} />
+      <SearchBar
+        setSearch={setSearch}
+        style={styles.SearchPageSearchBarMarginTop}
+      />
+      {search ? <SearchRender search={search} /> : <RenderItemsComponents />}
     </View>
   );
 };

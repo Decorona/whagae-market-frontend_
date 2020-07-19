@@ -12,11 +12,14 @@ import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { icons } from "../../assets";
+import { ScrollView } from "react-native-gesture-handler";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
     paddingTop: 12.5,
-    flex: 1,
+    // flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
     backgroundColor: colors.greyef,
   },
   RenderItemsComponentsEmpty: {
@@ -122,11 +125,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderItemsComponents = ({ store }) => {
+const RenderItemsComponents = ({ search }) => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
-  const renderItems = React.useCallback(({ item }) => {
+  const temp = () => {
+    return appStatus.stores.map((item) => {
+      return renderItems(item);
+    });
+  };
+  const renderItems = (item) => {
+    console.log(item);
     return (
       <TouchableOpacity
         style={styles.RenderItemsComponentsItemContainer}
@@ -145,9 +154,11 @@ const RenderItemsComponents = ({ store }) => {
             <Text style={styles.RenderItemsComponentsItemTitle}>
               {item.marketName}
             </Text>
+
             <View style={styles.RenderItemsComponentsEmpty}></View>
 
             <Image source={icons.fullStar} style={styles.FullStar}></Image>
+
             <Text style={styles.RenderItemsComponentsItemScoreText}>
               {item.marketStarPoint}
             </Text>
@@ -155,9 +166,12 @@ const RenderItemsComponents = ({ store }) => {
           <View
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
           >
-            <Text style={styles.RenderItemsComponentsItemReviewText}>
-              최근리뷰 {item.MarketReviews.length}
-            </Text>
+            {search === true && (
+              <Text style={styles.RenderItemsComponentsItemReviewText}>
+                최근리뷰 {item.MarketReviews.length}
+              </Text>
+            )}
+
             <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
             </Text>
@@ -174,20 +188,15 @@ const RenderItemsComponents = ({ store }) => {
         </View>
       </TouchableOpacity>
     );
-  }, []);
+  };
+
   return (
-    <View style={styles.RenderItemsComponentsContainer}>
-      <FlatList
-        data={appStatus.stores}
-        // data={store}
-        renderItem={renderItems}
-        contentContainerStyle={styles.RenderItemsComponentsFlatList}
-        keyExtractor={(item) => item.name}
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
+    <ScrollView
+      contentContainerStyle={styles.RenderItemsComponentsContainer}
+      showsVerticalScrollIndicator={false}
+    >
+      {temp()}
+    </ScrollView>
   );
 };
-
 export default RenderItemsComponents;
