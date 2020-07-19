@@ -118,7 +118,7 @@ const Root = () => {
 const styles = StyleSheet.create({
   tabContainer: {
     height: 58,
-    backgroundColor: colors.greya5,
+    backgroundColor: colors.greyf7,
   },
   tabHomeIcon: {
     width: 28,
@@ -133,9 +133,8 @@ const styles = StyleSheet.create({
     height: 44.2,
   },
   tabMyPageIcon: {
-    width: 23.1,
-    height: 24.8,
-    alignSelf: "center",
+    width: 38,
+    height: 36.2,
   },
   tabMyPageText: {
     width: 46,
@@ -153,21 +152,30 @@ const Tab = () => {
     <TabNavigator.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        tabBarIcon: () => {
+        tabBarIcon: ({ focused }) => {
           switch (route.name) {
             case "Home":
               return (
-                <Image style={styles.tabHomeIcon} source={icons.tabHome} />
+                <Image
+                  style={styles.tabHomeIcon}
+                  source={focused ? icons.tabHomeOn : icons.tabHome}
+                />
               );
               break;
             case "Search":
               return (
-                <Image style={styles.tabSearchIcon} source={icons.tabSearch} />
+                <Image
+                  style={styles.tabSearchIcon}
+                  source={focused ? icons.tabSearchOn : icons.tabSearch}
+                />
               );
               break;
             case "Market":
               return (
-                <Image style={styles.tabMarketIcon} source={icons.tabMarket} />
+                <Image
+                  style={styles.tabMarketIcon}
+                  source={focused ? icons.tabMarketOn : icons.tabMarket}
+                />
               );
               break;
             case "MyPage":
@@ -175,18 +183,17 @@ const Tab = () => {
                 <View>
                   <Image
                     style={styles.tabMyPageIcon}
-                    source={icons.tabMypage}
-                  />
-                  <Image
-                    style={styles.tabMyPageText}
-                    source={icons.tabMypageText}
+                    source={focused ? icons.tabMypageOn : icons.tabMypage}
                   />
                 </View>
               );
               break;
             case "Basket":
               return (
-                <Image style={styles.tabBasketIcon} source={icons.tabBasket} />
+                <Image
+                  style={styles.tabBasketIcon}
+                  source={focused ? icons.tabBasketOn : icons.tabBasket}
+                />
               );
               break;
             default:
