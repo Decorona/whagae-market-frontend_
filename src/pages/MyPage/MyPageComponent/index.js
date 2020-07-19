@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../../constants";
 import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
 import { getWidth, getHeight } from "../../../utils/helper";
+import { icons } from "../../../assets";
 
 const styles = StyleSheet.create({
   MyPageContainer: {
@@ -16,10 +17,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   MyPageUserIcon: {
-    width: getWidth(56),
-    height: getHeight(56),
-    borderRadius: 96,
-    backgroundColor: colors.greyb5,
+    width: getWidth(58),
+    height: getHeight(66),
   },
   MyPageUserTitletext: {
     marginTop: 15,
@@ -105,7 +104,7 @@ const MyPage = () => {
     <View style={styles.MyPageContainer}>
       <TouchableOpacity style={styles.MyPageTouchableArea}>
         <View style={styles.MyPageTopIconArea}>
-          <Text style={styles.MyPageUserIcon}></Text>
+          <Image source={icons.profileIcon} style={styles.MyPageUserIcon} />
           <Text style={styles.MyPageUserTitletext}>USER</Text>
           <Text style={styles.MyPageUserPointtext}>200P</Text>
         </View>
