@@ -8,22 +8,21 @@ import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   RenderMyPageMenuContainer: {
     marginTop: 5,
-    backgroundColor: colors.lightgrey2,
+    backgroundColor: colors.whitebox,
   },
   RenderMyPageMenuItemTitleText: {
     fontSize: 16,
-    fontWeight: "500",
-    fontStyle: "normal",
+    fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.grey,
+    color: colors.textblack,
     marginRight: 200,
     width: getWidth(74),
     height: getHeight(24),
   },
   RenderMyPageMenuItemTitleAndScoreContainer: {
-    marginLeft: 20,
+    marginLeft: 40,
     alignItems: "center",
     flexDirection: "row",
     width: getWidth(375),

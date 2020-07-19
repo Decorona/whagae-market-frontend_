@@ -15,6 +15,10 @@ const colors = {
   greyeb: "#ebebeb",
   black76: "#767676",
   greyf7: "#f7f7f7",
+  yellow: "#efb129",
+  backgroundgrey: "#efefef",
+  textblack: "#3c3a3a",
+  whitebox: "#f8f8f8",
 };
 
 export default colors;
