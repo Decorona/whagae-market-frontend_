@@ -23,6 +23,7 @@ const icons = {
   marketLogo: require("./market_logo.png"),
   searchIcon: require("./icon_search.png"),
   fullStar: require("./icon_fullstar.png"),
+  app_logo: require("./app_logo.png"),
 };
 
 export default icons;
