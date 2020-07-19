@@ -15,40 +15,39 @@ import { icons } from "../../assets";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
-    paddingTop: 17.5,
+    paddingTop: 12.5,
     flex: 1,
     backgroundColor: colors.greyef,
   },
   RenderItemsComponentsEmpty: {
-    flex: 1,
+    flex: 0.9,
   },
   RenderItemsComponentsFlatList: {
     flexDirection: "column",
   },
   RenderItemsComponentsItemContainer: {
+    backgroundColor: colors.white,
     width: getWidth(166),
-    height: getHeight(256),
-    marginLeft: 5,
-    marginRight: 5,
+    height: getHeight(246),
+    margin: 5,
   },
   RenderItemsComponentsItemImage: {
-    //     backgroundColor: colors.white,
-
     width: getWidth(166),
     height: getHeight(166),
   },
   RenderItemsComponentsItemInfoContainer: {},
   RenderItemsComponentsItemTitleAndScoreContainer: {
     flexDirection: "row",
+    marginLeft: 5,
   },
   RenderItemsComponentsItemTitle: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "bold",
     fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.grey,
+    color: colors.textblack,
   },
   RenderItemsComponentsItemScoreText: {
     fontSize: 14,
@@ -67,10 +66,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   RenderItemsComponentsItemReviewAndCommentContainer: {
+    marginLeft: 5,
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
-    paddingBottom: 6.8,
+    borderBottomColor: colors.yellow,
+    paddingBottom: 5.8,
   },
   RenderItemsComponentsItemReviewText: {
     fontSize: 8,
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
   },
   RenderItemsComponentsItemDeliveryContainer: {
     flexDirection: "row",
-    paddingTop: 4.2,
+    justifyContent: "center",
+    paddingTop: 5,
   },
   RenderItemsComponentsItemDeliveryFeeText: {
     fontSize: 8,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 12,
     letterSpacing: -0.6,
-    color: colors.grey,
+    color: colors.textblack,
     fontFamily: fonts.Medium,
   },
   logoOption: {
@@ -157,9 +158,9 @@ const RenderItemsComponents = ({ store }) => {
             <Text style={styles.RenderItemsComponentsItemReviewText}>
               최근리뷰 {item.MarketReviews.length}
             </Text>
-            {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
+            <Text style={styles.RenderItemsComponentsItemCommentText}>
               최근사장님댓글 10+
-            </Text> */}
+            </Text>
           </View>
           <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>

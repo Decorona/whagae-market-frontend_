@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   LongBottomButtonContainer: {
     width: getWidth(375),
     height: getHeight(58),
-    backgroundColor: colors.gold1,
+
+    backgroundColor: colors.yellow,
     position: "absolute",
     justifyContent: "center",
     bottom: 0,
