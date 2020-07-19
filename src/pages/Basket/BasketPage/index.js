@@ -36,9 +36,7 @@ const styles = StyleSheet.create({
 });
 
 const BasketPage = ({ navigation }) => {
-  const userStatus = useSelector((state) => {
-    state.user;
-  });
+  const user = useSelector((state) => state.user);
   const [basketItems, setBasketItems] = React.useState([]);
 
   // 포커싱 감지하여 리렌더
@@ -52,14 +50,14 @@ const BasketPage = ({ navigation }) => {
   }, [navigation]);
 
   React.useEffect(() => {
-    getMyCartList();
+    getMyCartList(user.userId);
   }, []);
 
   // 내 장바구니 리스트 가져오기
-  const getMyCartList = async () => {
+  const getMyCartList = async (userId) => {
     try {
       // const res = await request.get(`/users/${userStatus.userId}/cart-list`);
-      const res = await request.get(`/users/27/cart-list`);
+      const res = await request.get(`/users/${userId}/cart-list`);
 
       if (res.status === 200) {
         console.log(res);
