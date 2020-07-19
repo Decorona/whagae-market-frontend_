@@ -12,6 +12,7 @@ import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
 import RenderOrderListDtl from "../../../components/RenderOrderListDtl";
+import { LongBottomButton } from "../../../components";
 
 const styles = StyleSheet.create({
   OrderListDtlContainer: {
@@ -46,6 +47,8 @@ const styles = StyleSheet.create({
 
 const OrderListDtl = () => {
   const navigation = useNavigation();
+  const [itemAmount, setItemAmount] = React.useState(1);
+  const [itemTotalPrice, setItemTotalPrice] = React.useState("90,000");
   const [basketItems, setBasketItems] = React.useState([
     {
       items: [
@@ -71,6 +74,12 @@ const OrderListDtl = () => {
         <Text style={styles.OrderListDtlTopText}>주문 내역 상세</Text>
       </View>
       <RenderOrderListDtl basketItems={basketItems} />
+      <LongBottomButton
+        price={itemTotalPrice}
+        onPress={() => navigation.navigate("PaymentPage")}
+      >
+        구매하기
+      </LongBottomButton>
     </View>
   );
 };
