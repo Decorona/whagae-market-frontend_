@@ -49,11 +49,38 @@ const styles = StyleSheet.create({
   ReviewCardStarContainer: {
     flexDirection: "row",
   },
+  ReviewCardShopKeeperContainer: {
+    width: getWidth(342),
+    backgroundColor: colors.greye6,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginTop: 13,
+  },
+  ReviewCardShopKeeperNameText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    lineHeight: 20,
+    letterSpacing: -1.05,
+    fontFamily: fonts.Medium,
+    color: colors.black65,
+  },
+  ReviewCardShopKeeperCommentText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    lineHeight: 20,
+    letterSpacing: -1.05,
+    fontFamily: fonts.Medium,
+    color: colors.black65,
+    marginTop: 3,
+  },
 });
 
 const ReviewCard = ({ review }) => {
-  const renderStars = React.useCallback((score) => {
-    return [...Array(score)].map(() => {
+  const renderStars = React.useCallback(() => {
+    return [...Array(Math.floor(review.reviewStarPoint))].map(() => {
       return <Image source={icons.star} style={styles.ReviewCardStar} />;
     });
   }, []);
@@ -63,14 +90,20 @@ const ReviewCard = ({ review }) => {
         <View style={styles.ReviewCardUserImage}></View>
         <View style={styles.ReviewCardUserNameAndScoreContainer}>
           <Text>{review.name}</Text>
-          <View style={styles.ReviewCardStarContainer}>
-            {renderStars(review.score)}
-          </View>
+          <View style={styles.ReviewCardStarContainer}>{renderStars()}</View>
         </View>
       </View>
       <View>
-        <Text style={styles.ReviewCardText}>{review.text}</Text>
+        <Text style={styles.ReviewCardText}>{review.review}</Text>
       </View>
+      {review.MarketOwnerReview !== null && (
+        <View style={styles.ReviewCardShopKeeperContainer}>
+          <Text style={styles.ReviewCardShopKeeperNameText}>사장님</Text>
+          <Text style={styles.ReviewCardShopKeeperCommentText}>
+            {review.MarketOwnerReview.review}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

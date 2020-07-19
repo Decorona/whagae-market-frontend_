@@ -81,6 +81,7 @@ const HomePage = () => {
       // );
       const res = await axios.get(URL_GET_REGIONAL_MARKET("마포구"), {});
       if (res.status === 200) {
+        console.log(res);
         dispatch(storesUpdate(res.data));
       }
     } catch (error) {
