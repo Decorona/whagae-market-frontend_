@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   ItemDetailGobackContainer: {
     height: getHeight(61),
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: -0.28,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.whitebox,
     marginLeft: 21,
   },
   ItemDetailScrollViewContainer: {
@@ -69,17 +69,14 @@ const styles = StyleSheet.create({
     lineHeight: 36,
     letterSpacing: -1.8,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   ItemDetailProductInfoText: {
     fontSize: 12,
-    fontWeight: "normal",
-    fontStyle: "normal",
     lineHeight: 18,
     letterSpacing: -0.9,
-
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.grey6f,
   },
   ItemDetailPriceText: {
     fontSize: 20,
@@ -88,7 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: 36,
     letterSpacing: -1.8,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
     marginTop: 18,
   },
   ItemDetailMembershipContainer: {
@@ -98,7 +95,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 22,
     borderRadius: 4,
-    backgroundColor: colors.black6c,
+    backgroundColor: colors.yellow,
     justifyContent: "center",
   },
   ItemDetailMembershipCardText: {
@@ -299,7 +296,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: -1.2,
     fontFamily: fonts.Medium,
-    color: colors.grey89,
+    color: colors.textblack,
   },
   ItemDetailOrderAmountCounterPlusButtonIcon: {
     width: 24,
@@ -324,6 +321,13 @@ const styles = StyleSheet.create({
   },
   ItemDetailEmpty: {
     flex: 1,
+  },
+  itemAmountArea: {
+    width: 20,
+    textAlign: "center",
+    borderWidth: 0.2,
+    borderColor: colors.yellow,
+    fontWeight: "bold",
   },
 });
 
@@ -381,7 +385,7 @@ const ItemDetail = ({ route }) => {
           }}
         >
           <Image
-            source={icons.leftArrowBlack}
+            source={icons.leftArrowWhite}
             style={styles.ItemDetailGobackButton}
           />
         </TouchableOpacity>
@@ -501,7 +505,7 @@ const ItemDetail = ({ route }) => {
                   style={styles.ItemDetailOrderAmountCounterMinusButtonIcon}
                 />
               </TouchableOpacity>
-              <Text>{itemAmount}</Text>
+              <Text style={styles.itemAmountArea}>{itemAmount}</Text>
               <TouchableOpacity
                 onPress={() => {
                   let updatedAmount = itemAmount + 1;

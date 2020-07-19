@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { colors, fonts } from "../../../constants";
 import { URL_GET_REGIONAL_MARKET } from "../../../constants/api";
 import {
@@ -12,17 +12,11 @@ import { useSelector, useDispatch, useStore } from "react-redux";
 import { storesUpdate } from "../../../actions/appStatus";
 import axios from "axios";
 import { icons } from "../../../assets";
+import { getWidth, getHeight } from "../../../utils/helper";
 const styles = StyleSheet.create({
   HomePageContainer: {
     flex: 1,
-  },
-  HomePageUserLocationNameContainer: {
-    height: 35,
-    paddingTop: 10,
-    paddingBottom: 5.4,
-    borderBottomWidth: 0.5,
-    backgroundColor: colors.greyf8,
-    borderBottomColor: colors.grey,
+    backgroundColor: colors.greyef,
   },
   HomePageUserlocationNameText: {
     fontSize: 14,
@@ -33,6 +27,20 @@ const styles = StyleSheet.create({
     fontFamily: fonts.Medium,
     color: colors.grey,
     alignSelf: "center",
+  },
+  checkedOption: {
+    marginLeft: 5,
+    marginTop: -8,
+    width: getWidth(18),
+    height: getHeight(18),
+  },
+  HomePageUserlocationContainer: {
+    width: getWidth(375),
+    height: getHeight(35),
+    padding: 20,
+    borderBottomColor: colors.grey,
+    justifyContent: "center",
+    flexDirection: "row",
   },
 });
 
@@ -97,14 +105,16 @@ const HomePage = () => {
   return (
     <View style={styles.HomePageContainer}>
       <TouchableOpacity
-        style={styles.HomePageUserLocationNameContainer}
         onPress={() => {
           navigation.navigate("SetAddress");
         }}
       >
-        <Text style={styles.HomePageUserlocationNameText}>
-          {user.location.display}
-        </Text>
+        <View style={styles.HomePageUserlocationContainer}>
+          <Text style={styles.HomePageUserlocationNameText}>
+            {user.location.display}
+          </Text>
+          <Image source={icons.checked} style={styles.checkedOption}></Image>
+        </View>
       </TouchableOpacity>
       <CategoryMenu category={storeCategory} />
       <Banners banners={banners} />
