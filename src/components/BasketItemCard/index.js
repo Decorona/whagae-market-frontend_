@@ -1,7 +1,10 @@
 import * as React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
+import { icons } from "../../assets";
+
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   BasketItemCardContainer: {
@@ -9,7 +12,7 @@ const styles = StyleSheet.create({
     height: 88,
     paddingVertical: 16,
     borderRadius: 8,
-    backgroundColor: colors.lightgrey2,
+    backgroundColor: colors.white8,
     alignSelf: "center",
     flexDirection: "row",
     marginTop: 10,
@@ -17,29 +20,28 @@ const styles = StyleSheet.create({
   BasketItemCardIcon: {
     width: 56,
     height: 56,
-    backgroundColor: "red",
     marginLeft: 10,
   },
   BasketItemCardNameAndCategoryContainer: {
     marginLeft: 10,
   },
   BasketItemCardNameText: {
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.black65,
+    color: colors.gray3,
   },
   BasketItemCardCategoryText: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 29,
     letterSpacing: -1.5,
     fontFamily: fonts.Medium,
-    color: colors.greyb5,
+    color: colors.grey89,
   },
   BasketItemCardEmpty: {
     flex: 1,
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   BasketItemCardFeeOptionText1: {
-    fontSize: 8,
+    fontSize: 10,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 12,
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     color: colors.greyb5,
   },
   BasketItemCardFeeOptionText2: {
-    fontSize: 8,
+    fontSize: 11,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 12,
@@ -94,19 +96,19 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   BasketItemCardAmountText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "500",
     fontStyle: "normal",
     lineHeight: 18,
     letterSpacing: -0.9,
     fontFamily: fonts.Medium,
-    color: colors.greyb5,
+    color: colors.gray6,
   },
   BasketItemCardAmountIcon: {
     width: 10,
-    height: 10,
-    backgroundColor: "red",
-    alignSelf: "center",
+    height: 20,
+    display: "flex",
+    justifyContent: "center",
     marginLeft: 3,
   },
   BasketItemCardFeeAndAmountContainer: {
@@ -114,14 +116,38 @@ const styles = StyleSheet.create({
   },
 });
 
+const marketCategory = {
+  mart: "마트",
+  hairshop: "헤어샵",
+  hardware_store: "철물점",
+  flowershop: "꽃집",
+  nail_art: "네일아트",
+  dress: "옷",
+  glasses: "안경점",
+  cleaning: "세탁소",
+};
+
 const BasketItemCard = ({ item }) => {
+  const navigation = useNavigation();
+
+  // console.log(item);
+
   return (
-    <TouchableOpacity style={styles.BasketItemCardContainer}>
-      <View style={styles.BasketItemCardIcon}></View>
+    <TouchableOpacity
+      style={styles.BasketItemCardContainer}
+      onPress={() => {
+        navigation.navigate("BasketDetail", {
+          bundleList: item.shoppingGoodsBundles,
+        });
+      }}
+    >
+      <View style={styles.BasketItemCardIcon}>
+        <Image source={item.marketPhoto} />
+      </View>
       <View style={styles.BasketItemCardNameAndCategoryContainer}>
         <Text style={styles.BasketItemCardNameText}>{item.name}</Text>
         <Text style={styles.BasketItemCardCategoryText}>
-          {item.categoryName}
+          {marketCategory[item.categoryName]}
         </Text>
       </View>
       <View style={styles.BasketItemCardEmpty}></View>
@@ -139,7 +165,15 @@ const BasketItemCard = ({ item }) => {
           <Text style={styles.BasketItemCardAmountText}>
             총 {item.amount}개
           </Text>
-          <View style={styles.BasketItemCardAmountIcon}></View>
+          <View style={styles.BasketItemCardAmountIcon}>
+            <Image
+              source={icons.arrowDown}
+              style={{
+                width: 10,
+                height: 6,
+              }}
+            />
+          </View>
         </View>
       </View>
     </TouchableOpacity>
