@@ -24,8 +24,10 @@ const icons = {
   marketLogo: require("./market_logo.png"),
   searchIcon: require("./icon_search.png"),
   fullStar: require("./icon_fullstar.png"),
+  app_logo: require("./app_logo.png"),
   checkedheart: require("./icon_heart_checked.png"),
   blankheart: require("./icon_heart_blank.png"),
+
 };
 
 export default icons;
