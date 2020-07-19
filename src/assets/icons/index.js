@@ -10,6 +10,7 @@ const icons = {
   leftArrowWhite: require("./left_arrow_white.png"),
   downArrowBlack: require("./down_arrow_black.png"),
   arrow: require("./chevron_left.png"),
+  arrowDown: require("./chevron_down.png"),
   list: require("./list.png"),
   optionCheckedBox: require("./option_checked_box.png"),
   optionCheckBox: require("./option_check_box.png"),

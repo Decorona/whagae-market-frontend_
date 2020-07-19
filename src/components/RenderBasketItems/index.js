@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 24,
     letterSpacing: -1.2,
-    fontFamily: fonts.Medium,
-    color: colors.black65,
+    fontFamily: fonts.Bold,
+    color: colors.gray3,
   },
   RenderBasketItemsCategoryFlatlist: {
     marginTop: 14.6,
@@ -23,29 +23,45 @@ const styles = StyleSheet.create({
   },
 });
 
+const marketCategory = {
+  mart: "마트",
+  hairshop: "헤어샵",
+  hardware_store: "철물점",
+  flowershop: "꽃집",
+  nail_art: "네일아트",
+  dress: "옷",
+  glasses: "안경점",
+  cleaning: "세탁소",
+};
+
 const RenderBasketItems = ({ basketItems }) => {
-  const renderItem = React.useCallback(({ item }) => {
-    return <BasketItemCard item={item} />;
+  const renderItem = React.useCallback(({ item, index }) => {
+    return <BasketItemCard item={item} key={`${item.name}${index}`} />;
   }, []);
-  const renderCategory = React.useCallback(({ item }) => {
+
+  const renderCategory = React.useCallback(({ item, index }) => {
     return (
-      <View style={styles.RenderBasketItemsFlatlistContainer}>
+      <View
+        style={styles.RenderBasketItemsFlatlistContainer}
+        key={`${item.categoryName}${index}`}
+      >
         <Text style={styles.RenderBasketItemsCategoryText}>
-          {item.categoryName}
+          {marketCategory[item.categoryName]}
         </Text>
         <FlatList
           data={item.items}
           renderItem={renderItem}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );
   }, []);
+
   return (
     <FlatList
       data={basketItems}
       renderItem={renderCategory}
-      keyExtractor={(item) => item.categoryName}
+      keyExtractor={(item, index) => `${item.categoryName}${index}`}
       contentContainerStyle={styles.RenderBasketItemsCategoryFlatlist}
     />
   );
