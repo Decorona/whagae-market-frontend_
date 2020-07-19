@@ -177,8 +177,8 @@ const RenderItemsComponents = ({ store }) => {
   return (
     <View style={styles.RenderItemsComponentsContainer}>
       <FlatList
-        // data={appStatus.stores}
-        data={store}
+        data={appStatus.stores}
+        // data={store}
         renderItem={renderItems}
         contentContainerStyle={styles.RenderItemsComponentsFlatList}
         keyExtractor={(item) => item.name}
