@@ -25,6 +25,7 @@ import {
   BasketDetail,
   PurchaseOrderPage,
 } from "../../pages/Basket";
+import { LoginPage } from "../../pages/Login";
 import { colors } from "../../constants";
 
 const RootStack = createStackNavigator();
@@ -59,7 +60,11 @@ const Home = () => {
 };
 
 const Login = () => {
-  return <LoginStack.Navigator headerMode={false}></LoginStack.Navigator>;
+  return (
+    <LoginStack.Navigator headerMode={false}>
+      <LoginStack.Screen name="LoginPage" component={LoginPage} />
+    </LoginStack.Navigator>
+  );
 };
 
 const Search = () => {
@@ -108,7 +113,7 @@ const Basket = () => {
 
 const Root = () => {
   return (
-    <RootStack.Navigator initialRouteName="Tab" headerMode={false}>
+    <RootStack.Navigator initialRouteName="Login" headerMode={false}>
       <RootStack.Screen name="Tab" component={Tab} />
       <RootStack.Screen name="Login" component={Login} />
     </RootStack.Navigator>

@@ -12,10 +12,14 @@ import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
 import { LongBottomButton, OrderTab } from "../../../components";
-import { URL_GET_ITEM_DETAIL } from "../../../constants/api";
+import {
+  URL_GET_ITEM_DETAIL,
+  URL_POST_ADD_ITEM_TO_BASKET,
+} from "../../../constants/api";
 import { itemDetailUpdate } from "../../../actions/appStatus";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+
 const styles = StyleSheet.create({
   ItemDetailContainer: {
     flex: 1,
@@ -336,9 +340,28 @@ const ItemDetail = ({ route }) => {
   const { id } = route.params;
   const dispatch = useDispatch();
   const appStatus = useSelector((state) => state.appStatus);
+  const user = useSelector((state) => state.user);
   const [tabJudge, setTabJudge] = React.useState(true);
   const [itemAmount, setItemAmount] = React.useState(1);
   const [itemTotalPrice, setItemTotalPrice] = React.useState(1);
+  const _addToCart = async () => {
+    try {
+      const body = {
+        userId: user.userId,
+        marketId: appStatus.itemDetail.MarketId,
+        totalPayment: itemTotalPrice,
+        goodsId: appStatus.itemDetail.id,
+      };
+      const res = await axios.post(URL_POST_ADD_ITEM_TO_BASKET, body, {});
+
+      if (res.status === 200) {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
   const [orderInfo, setOrderInfo] = React.useState([
     {
       categoryName: "옵션 카테고리1",
@@ -445,12 +468,7 @@ const ItemDetail = ({ route }) => {
           </TouchableOpacity>
         </View>
         {tabJudge ? (
-          <OrderTab
-            orderInfo={orderInfo}
-            setOrderInfo={setOrderInfo}
-            setItemTotalPrice={setItemTotalPrice}
-            itemTotalPrice={itemTotalPrice}
-          />
+          <View></View>
         ) : (
           <>
             <View style={styles.ItemDetailInfoContainer2}>
@@ -524,7 +542,7 @@ const ItemDetail = ({ route }) => {
           </View>
         )}
       </ScrollView>
-      <LongBottomButton price={itemTotalPrice}>
+      <LongBottomButton price={itemTotalPrice} onPress={() => _addToCart()}>
         {itemAmount}개 담기
       </LongBottomButton>
     </View>

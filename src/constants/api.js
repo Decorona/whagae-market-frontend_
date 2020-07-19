@@ -23,3 +23,7 @@ export const URL_GET_ORDER_LIST = (slug) => `${ADDRESS}/users/${slug}/orders`;
 //물품 검색
 export const URL_GET_SEARCH_ITEM = (slug) =>
   `${ADDRESS}/market/search?goodsName=${slug}`;
+//로그인
+export const URL_POST_LOGIN = `${ADDRESS}/users/login`;
+//장바구니 담기
+export const URL_POST_ADD_ITEM_TO_BASKET = `${ADDRESS}/users/add-to-cart`;

@@ -80,11 +80,11 @@ const HomePage = () => {
   // api 통신(현재 마포구 기준), api는 따로 정리해두기
   const _getStores = async () => {
     try {
-      // const res = await axios.get(
-      //   URL_GET_REGIONAL_MARKET(user.location.key),
-      //   {}
-      // );
-      const res = await axios.get(URL_GET_REGIONAL_MARKET("마포구"), {});
+      const res = await axios.get(
+        URL_GET_REGIONAL_MARKET(user.location.key),
+        {}
+      );
+      // const res = await axios.get(URL_GET_REGIONAL_MARKET("마포구"), {});
       if (res.status === 200) {
         console.log(res);
         dispatch(storesUpdate(res.data));
@@ -98,8 +98,8 @@ const HomePage = () => {
   // 유저 정보 call 함수, login 로직으로 옮길 예정
   const _getOrderList = async () => {
     try {
-      // const res = await axios.get(URL_GET_ORDER_LIST(user.userId), {});
-      const res = await axios.get(URL_GET_ORDER_LIST(1), {});
+      const res = await axios.get(URL_GET_ORDER_LIST(user.userId), {});
+      // const res = await axios.get(URL_GET_ORDER_LIST(1), {});
       if (res.status === 200) {
         console.log(res);
         dispatch(orderListUpdate(res.data));

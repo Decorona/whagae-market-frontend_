@@ -10,7 +10,7 @@ import {
 import { fonts, colors } from "../../constants";
 import { icons } from "../../assets";
 import { getWidth, getHeight } from "../../utils/helper";
-
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   OrderTabContainer: {
     paddingTop: 27,
@@ -89,72 +89,56 @@ const OrderTab = ({
   itemTotalPrice,
 }) => {
   const [, updateState] = React.useState();
+  const appStatus = useSelector((state) => state.appStatus);
   const forceUpdate = React.useCallback(() => updateState({}), []);
   return (
-    <View style={styles.OrderTabContainer}>
-      {orderInfo.map((value1, index1) => {
+    <View style={styles.OrderTabOptionCategoryFlatList}>
+      {appStatus.GoodsOptions.map((option, index2) => {
         return (
-          <View style={styles.OrderTabOptionCategoryFlatList}>
-            <View style={styles.OrderTabCategoryContainer}>
-              <Text style={styles.OrderTabCategoryNameText}>
-                {value1.categoryName}
-              </Text>
-              <View style={styles.OrderTabEmpty}></View>
-              <Text style={styles.OrderTabCategoryAmountText}>
-                총{value1.options.length}개
-              </Text>
-            </View>
-            <View style={styles.OrderTabOptionFlatList}>
-              {value1.options.map((value2, index2) => {
-                return (
-                  <View style={styles.OrderTabOptionContainer}>
-                    {value2.check == true ? (
-                      <TouchableOpacity
-                        style={styles.OrderTabOptionIconContainer}
-                        onPress={() => {
-                          let temp = orderInfo;
-                          let updatedPrice = itemTotalPrice - value2.price;
-                          temp[index1].options[index2].check = false;
-                          setItemTotalPrice(updatedPrice);
-                          setOrderInfo(temp);
-                          forceUpdate();
-                        }}
-                      >
-                        <Image
-                          source={icons.optionCheckedBox}
-                          style={styles.OrderTabOptionIcon}
-                        ></Image>
-                      </TouchableOpacity>
-                    ) : (
-                      <TouchableOpacity
-                        style={styles.OrderTabOptionIconContainer}
-                        onPress={() => {
-                          let temp = orderInfo;
-                          let updatedPrice = itemTotalPrice + value2.price;
-                          temp[index1].options[index2].check = true;
-                          setItemTotalPrice(updatedPrice);
-                          setOrderInfo(temp);
-                          forceUpdate();
-                        }}
-                      >
-                        <Image
-                          source={icons.optionCheckBox}
-                          style={styles.OrderTabOptionIcon}
-                        ></Image>
-                      </TouchableOpacity>
-                    )}
+          <View style={styles.OrderTabOptionContainer}>
+            {value2.check == true ? (
+              <TouchableOpacity
+                style={styles.OrderTabOptionIconContainer}
+                onPress={() => {
+                  let temp = orderInfo;
+                  let updatedPrice = itemTotalPrice - value2.price;
+                  temp[index1].options[index2].check = false;
+                  setItemTotalPrice(updatedPrice);
+                  setOrderInfo(temp);
+                  forceUpdate();
+                }}
+              >
+                <Image
+                  source={icons.optionCheckedBox}
+                  style={styles.OrderTabOptionIcon}
+                ></Image>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.OrderTabOptionIconContainer}
+                onPress={() => {
+                  let temp = orderInfo;
+                  let updatedPrice = itemTotalPrice + value2.price;
+                  temp[index1].options[index2].check = true;
+                  setItemTotalPrice(updatedPrice);
+                  setOrderInfo(temp);
+                  forceUpdate();
+                }}
+              >
+                <Image
+                  source={icons.optionCheckBox}
+                  style={styles.OrderTabOptionIcon}
+                ></Image>
+              </TouchableOpacity>
+            )}
 
-                    <Text style={styles.OrderTabOptionNameText}>
-                      {value2.name}
-                    </Text>
-                    <View style={styles.OrderTabEmpty}></View>
-                    <Text style={styles.OrderTabOptionPriceText}>
-                      +{value2.price}원
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
+            <Text style={styles.OrderTabOptionNameText}>
+              {option.optionsName}
+            </Text>
+            <View style={styles.OrderTabEmpty}></View>
+            <Text style={styles.OrderTabOptionPriceText}>
+              +{option.optionPrice}원
+            </Text>
           </View>
         );
       })}

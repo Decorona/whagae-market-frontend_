@@ -1,6 +1,6 @@
 import * as types from "../actions/user/types";
 const initialState = {
-  location: { key: "마포구", display: "서울 성북구 삼선동 1가" },
+  location: { key: "마포구", display: "서울특별시 마포구 성산동 336-1" },
   userId: 0,
   orderList: [],
 };
@@ -20,6 +20,7 @@ const user = (state = initialState, action) => {
     case types.USER_ID_UPDATE:
       return {
         ...state,
+        userId: action.id,
       };
     default:
       return state;

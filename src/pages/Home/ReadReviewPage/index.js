@@ -102,7 +102,9 @@ const ReadReviewPage = () => {
             style={styles.ReadReviewPageHeaderGobackIcon}
           ></Image>
         </TouchableOpacity>
-        <Text style={styles.ReadReviewPageHeaderText}>BRAND TITLE</Text>
+        <Text style={styles.ReadReviewPageHeaderText}>
+          {appStatus.storeItems.marketName}
+        </Text>
       </View>
       <View style={styles.ReadReviewPageTextInfoAndButtonContainer}>
         <View>

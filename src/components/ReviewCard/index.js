@@ -87,9 +87,12 @@ const ReviewCard = ({ review }) => {
   return (
     <View style={styles.ReviewCardContainer}>
       <View style={styles.ReviewCardUserInfoContainer}>
-        <View style={styles.ReviewCardUserImage}></View>
+        <Image
+          source={{ uri: review.User.profileImg }}
+          style={styles.ReviewCardUserImage}
+        />
         <View style={styles.ReviewCardUserNameAndScoreContainer}>
-          <Text>{review.name}</Text>
+          <Text>{review.User.name}</Text>
           <View style={styles.ReviewCardStarContainer}>{renderStars()}</View>
         </View>
       </View>
