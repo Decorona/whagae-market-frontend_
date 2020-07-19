@@ -82,6 +82,9 @@ const MyPage = () => {
   return (
     <MyPageStack.Navigator headerMode={false}>
       <MyPageStack.Screen name="MyPage" component={MyPageComponent} />
+      <HomeStack.Screen name="DibsMarket" component={DibsMarket} />
+      <HomeStack.Screen name="OrderList" component={OrderList} />
+      <HomeStack.Screen name="OrderListDtl" component={OrderListDtl} />
     </MyPageStack.Navigator>
   );
 };
