@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { RenderStoreDetailItems, ShortButton } from "../../../components";
+import { RenderStoreDetailItems, ShortButton1 } from "../../../components";
 import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
@@ -293,14 +293,14 @@ const StoreDetail = ({ route }) => {
                 {appStatus.storeItems.marketStarPoint}
               </Text>
             </View>
-            <ShortButton
+            <ShortButton1
               containerStyle={styles.StoreDetailStoreReviewButton}
               onPress={() => {
                 navigation.navigate("ReadReviewPage");
               }}
             >
               리뷰 {appStatus.storeReviews.length}
-            </ShortButton>
+            </ShortButton1>
           </View>
         </View>
       </View>

@@ -20,3 +20,10 @@ export const userIdUpdate = (id) => {
     id,
   };
 };
+
+export const basketListUpdate = (basketList) => {
+  return {
+    type: types.BASKET_LIST_UPDATE,
+    basketList,
+  };
+};

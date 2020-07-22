@@ -8,6 +8,8 @@ export const URL_GET_REGIONAL_MARKET = (location) =>
 //지역 점포 검색(카테고리별로)
 export const URL_GET_REGIONAL_CATEGORY_MARKET = (location, category) =>
   `${ADDRESS}/market?category=${category}&location=${location}`;
+//한 마켓의 상세 정보 가져오기
+export const URL_GET_MARKET_INFO = (slug) => `${ADDRESS}/market/${slug}`;
 //상점의 굿즈리스트 검색
 export const URL_GET_STORE_ITEMS = (slug) =>
   `${ADDRESS}/market/${slug}/goods-list`;
@@ -27,3 +29,5 @@ export const URL_GET_SEARCH_ITEM = (slug) =>
 export const URL_POST_LOGIN = `${ADDRESS}/users/login`;
 //장바구니 담기
 export const URL_POST_ADD_ITEM_TO_BASKET = `${ADDRESS}/users/add-to-cart`;
+//유저 장바구니 리스트 가져오기
+export const URL_GET_CART_LIST = (slug) => `${ADDRESS}/users/${slug}/cart-list`;

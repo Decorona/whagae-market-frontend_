@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { colors, fonts } from "../../constants";
-import { getHeight, getWidth } from "../../utils/helper";
 import { BasketItemCard } from "../../components";
 const styles = StyleSheet.create({
   RenderBasketItemsCategoryText: {
