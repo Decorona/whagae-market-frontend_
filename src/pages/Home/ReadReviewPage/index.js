@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { ShortButton, RenderReviewCards } from "../../../components";
+import { RenderReviewCards } from "../../../components";
 import { fonts, colors } from "../../../constants";
 import { getWidth, getHeight } from "../../../utils/helper";
 import { icons } from "../../../assets";

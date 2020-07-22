@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { icons } from "../../assets";
+import { icons } from "@assets/index";
 import {
   HomePage,
   SetAddress,
@@ -11,23 +11,18 @@ import {
   ItemDetail,
   ReadReviewPage,
   WriteReviewPage,
-} from "../../pages/Home";
-import { SearchPage } from "../../pages/Search";
-import { MarketPage } from "../../pages/Market";
+} from "@pages/Home/index";
+import { SearchPage } from "@pages/Search/index";
+import { MarketPage } from "@pages/Market/index";
 import {
   MyPageComponent,
   DibsMarket,
   OrderList,
   OrderListDtl,
-  PaymentPage,
-} from "../../pages/MyPage";
-import {
-  BasketPage,
-  BasketDetail,
-  PurchaseOrderPage,
-} from "../../pages/Basket";
-import { LoginPage } from "../../pages/Login";
-import { colors } from "../../constants";
+} from "@pages/MyPage/index";
+import { BasketPage, BasketDetail, Payment } from "@pages/Basket/index";
+import { LoginPage } from "@pages/Login/index";
+import { colors } from "@constants/index";
 
 const RootStack = createStackNavigator();
 
@@ -83,7 +78,6 @@ const Market = () => {
       <MarketStack.Screen name="DibsMarket" component={DibsMarket} />
       <MarketStack.Screen name="OrderList" component={OrderList} />
       <MarketStack.Screen name="OrderListDtl" component={OrderListDtl} />
-      <MarketStack.Screen name="PaymentPage" component={PaymentPage} />
     </MarketStack.Navigator>
   );
 };
@@ -95,17 +89,16 @@ const MyPage = () => {
       <MyPageStack.Screen name="DibsMarket" component={DibsMarket} />
       <MyPageStack.Screen name="OrderList" component={OrderList} />
       <MyPageStack.Screen name="OrderListDtl" component={OrderListDtl} />
-      <MarketStack.Screen name="PaymentPage" component={PaymentPage} />
     </MyPageStack.Navigator>
   );
 };
 
 const Basket = () => {
   return (
-    <BasketStack.Navigator headerMode={false}>
+    <BasketStack.Navigator initialRouteName={"BasketPage"} headerMode={false}>
       <BasketStack.Screen name="BasketPage" component={BasketPage} />
       <BasketStack.Screen name="BasketDetail" component={BasketDetail} />
-      <BasketStack.Screen name="PaymentPage" component={PaymentPage} />
+      <BasketStack.Screen name="Payment" component={Payment} />
     </BasketStack.Navigator>
   );
 };

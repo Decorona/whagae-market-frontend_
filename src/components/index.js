@@ -9,10 +9,15 @@ import RenderStoreDetailItems from "./RenderStoreDetailItems";
 import StoreDetailItemCard from "./StoreDetailItemCard";
 import LongBottomButton from "./LongBottomButton";
 import OrderTab from "./OrderTab";
-import ShortButton from "./ShortButton";
+import ShortButton1 from "./ShortButton1";
 import ReviewCard from "./ReviewCard";
 import RenderReviewCards from "./RenderReviewCards";
 import SearchRender from "./SearchRender";
+import Header from "./Header";
+import PaymentVisit from "./PaymentVisit";
+import PaymentDelivery from "./PaymentDelivery";
+import ShortButton2 from "./ShortButton2";
+import PaymentTextInput from "./PaymentTextInput";
 export {
   Banners,
   RenderItemsComponents,
@@ -25,8 +30,13 @@ export {
   StoreDetailItemCard,
   LongBottomButton,
   OrderTab,
-  ShortButton,
+  ShortButton1,
+  ShortButton2,
   ReviewCard,
   RenderReviewCards,
   SearchRender,
+  Header,
+  PaymentVisit,
+  PaymentDelivery,
+  PaymentTextInput,
 };

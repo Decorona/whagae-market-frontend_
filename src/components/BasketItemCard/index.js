@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { colors, fonts } from "../../constants";
+import { colors, fonts } from "@constants/index";
 import { getHeight, getWidth } from "../../utils/helper";
 import { icons } from "../../assets";
 
@@ -129,15 +129,13 @@ const marketCategory = {
 
 const BasketItemCard = ({ item }) => {
   const navigation = useNavigation();
-
-  // console.log(item);
-
   return (
     <TouchableOpacity
       style={styles.BasketItemCardContainer}
       onPress={() => {
         navigation.navigate("BasketDetail", {
           bundleList: item.shoppingGoodsBundles,
+          MarketId: item.MarketId,
         });
       }}
     >

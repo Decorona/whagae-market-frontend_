@@ -11,7 +11,8 @@ import { colors, fonts } from "../../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
-import { LongBottomButton } from "../../../components";
+import { Header, LongBottomButton } from "@components/index";
+
 const styles = StyleSheet.create({
   BasketContainer: {
     width: "100%",
@@ -107,29 +108,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 25,
   },
-  BasketPageHeaderText: {
-    fontSize: 17,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 36,
-    fontFamily: fonts.Medium,
-    color: colors.white8,
-    marginLeft: 16,
-  },
 });
 
 const BasketDetail = ({ route }) => {
+  const { MarketId } = route.params;
+
   const navigation = useNavigation();
 
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    // console.log(route);
     setMyBasketDetail();
   }, []);
 
   const setMyBasketDetail = () => {
     // 굿즈 번들 리스트
+    console.log(route.params.bundleList);
     let items = route.params.bundleList.map((bundle) => {
       const { Good, GoodsOption } = bundle;
       return {
@@ -147,14 +141,8 @@ const BasketDetail = ({ route }) => {
   };
 
   const renderItem = ({ item, index }) => {
-    console.log(item);
     return (
-      <TouchableOpacity
-        style={styles.BasketDetailContainer}
-        onPress={() => {
-          // navigation.navigate("OrderListDtl"); 결제페이지로 이동
-        }}
-      >
+      <TouchableOpacity style={styles.BasketDetailContainer}>
         <View style={styles.BasketDetailNameAndCategoryContainer}>
           <View style={styles.ProductNameLine}>
             <Text style={styles.ProductName}>{item.name}</Text>
@@ -191,23 +179,7 @@ const BasketDetail = ({ route }) => {
 
   return (
     <View style={styles.BasketContainer}>
-      <View style={styles.BasketPageHeader}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}
-          style={{ marginLeft: 16 }}
-        >
-          <Image
-            source={icons.leftArrowWhite}
-            style={{
-              width: 14,
-              height: 23.3,
-            }}
-          />
-        </TouchableOpacity>
-        <Text style={styles.BasketPageHeaderText}>물품 상세 리스트</Text>
-      </View>
+      <Header>물품 상세 리스트</Header>
       <FlatList
         data={items}
         renderItem={renderItem}
@@ -215,7 +187,10 @@ const BasketDetail = ({ route }) => {
       />
       <LongBottomButton
         onPress={() => {
-          navigation.navigate("PaymentPage");
+          navigation.navigate("Payment", {
+            items: items,
+            MarketId: MarketId,
+          });
         }}
       >
         구매하기

@@ -3,6 +3,7 @@ const initialState = {
   location: { key: "마포구", display: "서울특별시 마포구 성산동 336-1" },
   userId: 0,
   orderList: [],
+  basketList: [],
 };
 
 const user = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userId: action.id,
+      };
+    case types.BASKET_LIST_UPDATE:
+      return {
+        ...state,
+        basketList: action.basketList,
       };
     default:
       return state;

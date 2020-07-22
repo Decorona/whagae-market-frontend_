@@ -2,13 +2,11 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
-import { RenderBasketItems } from "../../../components";
-import { URL_GET_MY_CART_LIST } from "../../../constants/api";
-
+import { RenderBasketItems, Header } from "../../../components";
+import { URL_GET_CART_LIST } from "@constants/api";
+import { basketListUpdate } from "@actions/user/index";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import request from "../../../constants/request";
-
-import { useFocusEffect } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   BasketPageContainer: {
@@ -37,6 +35,7 @@ const styles = StyleSheet.create({
 
 const BasketPage = ({ navigation }) => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [basketItems, setBasketItems] = React.useState([]);
 
   // 포커싱 감지하여 리렌더
@@ -56,11 +55,10 @@ const BasketPage = ({ navigation }) => {
   // 내 장바구니 리스트 가져오기
   const getMyCartList = async (userId) => {
     try {
-      // const res = await request.get(`/users/${userStatus.userId}/cart-list`);
-      const res = await request.get(`/users/${userId}/cart-list`);
+      const res = await request.get(URL_GET_CART_LIST(userId), {});
 
       if (res.status === 200) {
-        console.log(res);
+        dispatch(basketListUpdate(res.data));
 
         // 쇼핑카트에 아이템이 들어있을 경우
         if (res.data.ShoppingCarts.length > 0) {
@@ -83,6 +81,7 @@ const BasketPage = ({ navigation }) => {
                 name: Market.marketName,
                 marketPhoto: Market.marketPhoto,
                 price: cart.totalAmount,
+                MarketId: cart.MarketId,
                 amount: accumulator,
                 categoryName: Market.marketCategory,
                 shoppingGoodsBundles: ShoppingGoodsBundles,
@@ -94,6 +93,7 @@ const BasketPage = ({ navigation }) => {
                 name: Market.marketName,
                 marketPhoto: Market.marketPhoto,
                 price: cart.totalAmount,
+                MarketId: cart.MarketId,
                 amount: accumulator,
                 categoryName: Market.marketCategory,
                 shoppingGoodsBundles: ShoppingGoodsBundles,
@@ -102,11 +102,12 @@ const BasketPage = ({ navigation }) => {
             }
           });
 
-          // console.log("basketItemsMap??", basketItemsMap);
+          console.log("basketItemsMap??", basketItemsMap);
 
           let basketItemList = [];
 
           Array.from(basketItemsMap).map((value) => {
+            console.log(value, "value");
             let item_bundle = {
               categoryName: value[0],
               items: value[1],
@@ -127,9 +128,7 @@ const BasketPage = ({ navigation }) => {
 
   return (
     <View style={styles.BasketPageContainer}>
-      <View style={styles.BasketPageHeader}>
-        <Text style={styles.BasketPageHeaderText}>장바구니</Text>
-      </View>
+      <Header>장바구니</Header>
       <View style={styles.BasketPageRenderBasketItemsContainer}>
         <RenderBasketItems basketItems={basketItems} />
       </View>

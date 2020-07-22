@@ -4,7 +4,7 @@ import { colors, fonts } from "../../constants";
 import { getHeight, getWidth } from "../../utils/helper";
 import { useNavigation } from "@react-navigation/native";
 import { icons } from "../../assets";
-import { ShortButton } from "../../components";
+import { ShortButton1 } from "../../components";
 import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     marginRight: 13,
     marginBottom: 20,
   },
-  OrderListCardShortButton: {
+  OrderListCardShortButton1: {
     width: 78,
     height: 30,
     marginTop: 5,
@@ -139,7 +139,7 @@ const OrderListCard = ({ item, marketId }) => {
           </Text>
         </View>
 
-        <ShortButton
+        <ShortButton1
           containerStyle={styles.OrderListCardShortButton}
           onPress={() => {
             navigation.navigate("WriteReviewPage", {
@@ -151,7 +151,7 @@ const OrderListCard = ({ item, marketId }) => {
           }}
         >
           리뷰 작성
-        </ShortButton>
+        </ShortButton1>
         <View style={styles.OrderListCardAmountContainer}>
           <Text style={styles.OrderListCardAmountText}>총 {item.amount}개</Text>
           <Image
