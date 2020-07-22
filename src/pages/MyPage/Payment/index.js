@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
-import { icons } from "../../../assets";
+import { icons } from "@assets";
 import { useNavigation } from "@react-navigation/native";
 import { LongBottomButton, OrderTab } from "../../../components";
 const styles = StyleSheet.create({
