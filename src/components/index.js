@@ -17,7 +17,8 @@ import Header from "./Header";
 import PaymentVisit from "./PaymentVisit";
 import PaymentDelivery from "./PaymentDelivery";
 import ShortButton2 from "./ShortButton2";
-import PaymentTextInput from "./PaymentTextInput";
+import PaymentTextinput from "./PaymentTextinput";
+import CheckBox from "./CheckBox";
 export {
   Banners,
   RenderItemsComponents,
@@ -38,5 +39,6 @@ export {
   Header,
   PaymentVisit,
   PaymentDelivery,
-  PaymentTextInput,
+  PaymentTextinput,
+  CheckBox,
 };
