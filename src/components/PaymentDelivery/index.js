@@ -2,7 +2,8 @@ import * as React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { ShortButton2, PaymentTextinput } from "@components/index";
 import { colors, fonts } from "@constants/index";
-import { getWidth, getHeight, height } from "@utils/helper";
+import { getWidth, getHeight } from "@utils/helper";
+import { useSelector, useDispatch } from "react-redux";
 const styles = StyleSheet.create({
   PaymentDeliveryContainer: {
     paddingTop: 8,
@@ -47,17 +48,16 @@ const styles = StyleSheet.create({
 });
 
 const PaymentDelivery = () => {
+  const user = useSelector((state) => state.user);
   return (
     <View style={styles.PaymentDeliveryContainer}>
-      <Text style={styles.PaymentDeliveryAddressText}>
-        서울특별시 성북구 삼성동
-      </Text>
+      <Text style={styles.PaymentDeliveryAddressText}>{user.location.key}</Text>
       <PaymentTextinput
         style={styles.PaymentDeliveryTextInput}
         placeholder={"상세 주소를 입력해주세요."}
       />
       <View style={styles.PaymentDeliveryPhoneNumContainer}>
-        <Text style={styles.PaymentDeliveryPhoneNumText}>010-0000-0000</Text>
+        <Text style={styles.PaymentDeliveryPhoneNumText}>{user.phoneNum}</Text>
         <View style={styles.PaymentDeliveryEmpty}></View>
         <ShortButton2 style={styles.PaymentDeliveryEditPhoneNumButton}>
           변경

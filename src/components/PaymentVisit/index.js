@@ -4,6 +4,7 @@ import { ShortButton1, ShortButton2 } from "@components/index";
 import { fonts, colors } from "@constants/index";
 import { URL_GET_MARKET_INFO } from "@constants/api";
 import axios from "axios";
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   PaymentVisitContainer: {
     paddingTop: 8,
@@ -59,25 +60,15 @@ const styles = StyleSheet.create({
 });
 
 const PaymentVisit = ({ MarketId }) => {
-  const [marketInfo, setMarketInfo] = React.useState([]);
-  const _getMarketInfo = async () => {
-    try {
-      const res = await axios.get(URL_GET_MARKET_INFO(MarketId));
-      if (res.status === 200) {
-        // console.log(res.data);
-        setMarketInfo(res.data);
-      }
-    } catch (error) {}
-  };
-  React.useEffect(() => {
-    _getMarketInfo(marketInfo);
-  }, []);
+  const user = useSelector((state) => state.user);
   return (
     <View style={styles.PaymentVisitContainer}>
-      <Text style={styles.PaymentVisitNameText}>{marketInfo.marketName}</Text>
+      <Text style={styles.PaymentVisitNameText}>
+        {user.paymentmarketInfo.marketName}
+      </Text>
       <View style={styles.PaymentVisitAddressContainer}>
         <Text style={styles.PaymentVisitAddressText}>
-          {marketInfo.marketBusinessLocation}
+          {user.paymentmarketInfo.marketBusinessLocation}
         </Text>
         <View style={styles.PaymentVisitEmpty}></View>
         <ShortButton2 style={styles.PaymentVisitAddressCopyButton}>
@@ -86,7 +77,7 @@ const PaymentVisit = ({ MarketId }) => {
       </View>
       <View style={styles.PaymentVisitPhoneNumContainer}>
         <Text style={styles.PaymentVisitPhoneNumText}>
-          {marketInfo.marketPhone}
+          {user.paymentmarketInfo.marketPhone}
         </Text>
         <View style={styles.PaymentVisitEmpty}></View>
         <ShortButton2 style={styles.PaymentVisitPhoneNumEditButton}>
