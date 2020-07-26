@@ -15,7 +15,15 @@ import { icons } from "../../../assets";
 import { getWidth } from "../../../utils/helper";
 import { URL_POST_LOGIN } from "../../../constants/api";
 import { useSelector, useDispatch } from "react-redux";
-import { userIdUpdate } from "../../../actions/user";
+import {
+  userIdUpdate,
+  userNameUpdate,
+  userPhoneNumUpdate,
+  userProfileImageUpdate,
+  userIsSellerUpdate,
+  userAddressUpdate,
+  locationUpdate,
+} from "../../../actions/user";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
@@ -77,6 +85,18 @@ const LoginPage = () => {
       if (res.status === 200) {
         console.log(res);
         dispatch(userIdUpdate(res.data.id));
+        dispatch(userNameUpdate(res.data.name));
+        dispatch(userPhoneNumUpdate(res.data.phone));
+        dispatch(userProfileImageUpdate(res.data.profileImg));
+        dispatch(userIsSellerUpdate(res.data.isSeller));
+        dispatch(
+          locationUpdate({
+            // key: res.data.address,
+            // display: res.data.address,
+            key: "마포구",
+            display: "마포구",
+          })
+        );
         navigation.navigate("Tab");
       }
     } catch (error) {

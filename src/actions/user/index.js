@@ -27,3 +27,35 @@ export const basketListUpdate = (basketList) => {
     basketList,
   };
 };
+
+export const userNameUpdate = (name) => {
+  return {
+    type: types.USER_NAME_UPDATE,
+    name,
+  };
+};
+export const userPhoneNumUpdate = (phoneNum) => {
+  return {
+    type: types.USER_PHONE_NUM_UPDATE,
+    phoneNum,
+  };
+};
+export const userProfileImageUpdate = (image) => {
+  return {
+    type: types.USER_PROFILE_IMAGE_UPDATE,
+    image,
+  };
+};
+
+export const userIsSellerUpdate = (isSeller) => {
+  return {
+    type: types.IS_SELLER_UPDATE,
+    isSeller,
+  };
+};
+export const paymentMarketInfo = (marketInfo) => {
+  return {
+    type: types.PAYMENT_MARKET_INFO,
+    marketInfo,
+  };
+};

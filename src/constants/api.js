@@ -27,6 +27,8 @@ export const URL_GET_SEARCH_ITEM = (slug) =>
   `${ADDRESS}/market/search?goodsName=${slug}`;
 //로그인
 export const URL_POST_LOGIN = `${ADDRESS}/users/login`;
+//유저 정보 가져오기
+export const URL_GET_USER_INFO = (slug) => `${ADDRESS}/users/${slug}`;
 //장바구니 담기
 export const URL_POST_ADD_ITEM_TO_BASKET = `${ADDRESS}/users/add-to-cart`;
 //유저 장바구니 리스트 가져오기
