@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PaymentDelivery = () => {
+const PaymentDelivery = ({ detailAddress, setDetailAddress }) => {
   const user = useSelector((state) => state.user);
   return (
     <View style={styles.PaymentDeliveryContainer}>
@@ -55,6 +55,10 @@ const PaymentDelivery = () => {
       <PaymentTextinput
         style={styles.PaymentDeliveryTextInput}
         placeholder={"상세 주소를 입력해주세요."}
+        value={detailAddress}
+        onChangeText={(text) => {
+          setDetailAddress(text);
+        }}
       />
       <View style={styles.PaymentDeliveryPhoneNumContainer}>
         <Text style={styles.PaymentDeliveryPhoneNumText}>{user.phoneNum}</Text>

@@ -19,6 +19,7 @@ import PaymentDelivery from "./PaymentDelivery";
 import ShortButton2 from "./ShortButton2";
 import PaymentTextinput from "./PaymentTextinput";
 import CheckBox from "./CheckBox";
+import SelectModal from "./SelectModal";
 export {
   Banners,
   RenderItemsComponents,
@@ -41,4 +42,5 @@ export {
   PaymentDelivery,
   PaymentTextinput,
   CheckBox,
+  SelectModal,
 };

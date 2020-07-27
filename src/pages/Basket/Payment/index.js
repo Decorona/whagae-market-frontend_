@@ -14,6 +14,7 @@ import {
   PaymentDelivery,
   ShortButton2,
   LongBottomButton,
+  SelectModal,
 } from "@components/index";
 import { useSelector, useDispatch } from "react-redux";
 import { fonts, colors } from "@constants/index";
@@ -185,6 +186,17 @@ const styles = StyleSheet.create({
 const Payment = ({ route }) => {
   const { MarketId, items } = route.params;
   const [takeItemOption, setTakeItemOption] = React.useState(true);
+  const [askText, setAskText] = React.useState("");
+  const [detailAddress, setDetailAddress] = React.useState("");
+  const [orderPrice, setOrderPrice] = React.useState(0);
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  const [selectModalVisible, setSelectModalVisible] = React.useState(true);
+  const [paymentMethod, setPaymentMethod] = React.useState([
+    "화개캐쉬",
+    "현금",
+    "신용카드",
+    "계좌이체",
+  ]);
   const dispatch = useDispatch();
   const _getMarketInfo = async () => {
     try {
@@ -197,8 +209,22 @@ const Payment = ({ route }) => {
       console.error(error);
     }
   };
+  const getTotalPrice = React.useCallback(() => {
+    try {
+      let res = 0;
+      for (let i = 0; i < items.length; i++) {
+        res += items[i].goodsBundlePaymentTotal;
+      }
+      setOrderPrice(res);
+      setTotalPrice(res);
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  }, [items]);
   React.useEffect(() => {
     _getMarketInfo(MarketId);
+    getTotalPrice();
   }, []);
   return (
     <TouchableWithoutFeedback
@@ -230,7 +256,10 @@ const Payment = ({ route }) => {
               <Text style={styles.PaymentDeliveryText}>배송</Text>
             </View>
             {takeItemOption ? (
-              <PaymentDelivery />
+              <PaymentDelivery
+                detailAddress={detailAddress}
+                setDetailAddress={setDetailAddress}
+              />
             ) : (
               <PaymentVisit MarketId={MarketId} />
             )}
@@ -240,6 +269,10 @@ const Payment = ({ route }) => {
             <PaymentTextinput
               style={styles.PaymentTextinputAskContainer}
               placeholder={"예) 천천히 와주세요."}
+              value={askText}
+              onChangeText={(text) => {
+                setAskText(text);
+              }}
             />
           </View>
           <View style={styles.PaymentMethodContainer}>
@@ -247,7 +280,12 @@ const Payment = ({ route }) => {
             <View style={styles.PaymentMethodBox}>
               <Text style={styles.PaymentMethodText}>화개캐쉬</Text>
               <View style={styles.PaymentEmpty}></View>
-              <ShortButton2 style={styles.PaymentMethodShortButton}>
+              <ShortButton2
+                style={styles.PaymentMethodShortButton}
+                onPress={() => {
+                  setSelectModalVisible(true);
+                }}
+              >
                 변경
               </ShortButton2>
             </View>
@@ -262,7 +300,7 @@ const Payment = ({ route }) => {
             <View style={styles.PaymentPriceTextContainer}>
               <Text style={styles.PaymentPriceText}>배달료</Text>
               <View style={styles.PaymentEmpty}></View>
-              <Text style={styles.PaymentPriceText}>0000원</Text>
+              <Text style={styles.PaymentPriceText}>{orderPrice}원</Text>
             </View>
             <View style={styles.PaymentPriceTextContainer}>
               <Text style={styles.PaymentPriceText}>화개 멤버십 할인</Text>
@@ -274,11 +312,15 @@ const Payment = ({ route }) => {
             <View style={styles.PaymentTotalPriceContainer}>
               <Text style={styles.PaymentTotalPriceText}>총 결제금액</Text>
               <View style={styles.PaymentEmpty}></View>
-              <Text style={styles.PaymentTotalPriceText}>0000원</Text>
+              <Text style={styles.PaymentTotalPriceText}>{totalPrice}원</Text>
             </View>
           </View>
         </ScrollView>
-        <LongBottomButton>0000원 결제하기</LongBottomButton>
+        <LongBottomButton>{totalPrice}원 결제하기</LongBottomButton>
+        <SelectModal
+          selectModalVisible={selectModalVisible}
+          setSelectModalVisible={setSelectModalVisible}
+        />
       </View>
     </TouchableWithoutFeedback>
   );

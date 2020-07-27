@@ -13,12 +13,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const PaymentTextinput = ({ style, placeholder }) => {
+const PaymentTextinput = ({ style, placeholder, value, onChangeText }) => {
   return (
     <View style={[styles.PaymentTextInputContainer, style]}>
       <TextInput
         style={styles.PaymentTextInputTextInput}
         placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );

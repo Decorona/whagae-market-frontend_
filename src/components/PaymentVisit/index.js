@@ -2,8 +2,6 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ShortButton1, ShortButton2 } from "@components/index";
 import { fonts, colors } from "@constants/index";
-import { URL_GET_MARKET_INFO } from "@constants/api";
-import axios from "axios";
 import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   PaymentVisitContainer: {
