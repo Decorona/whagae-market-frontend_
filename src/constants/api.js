@@ -33,3 +33,5 @@ export const URL_GET_USER_INFO = (slug) => `${ADDRESS}/users/${slug}`;
 export const URL_POST_ADD_ITEM_TO_BASKET = `${ADDRESS}/users/add-to-cart`;
 //유저 장바구니 리스트 가져오기
 export const URL_GET_CART_LIST = (slug) => `${ADDRESS}/users/${slug}/cart-list`;
+//주문하기, 실제 결재하기
+export const URL_POST_SUBMIT_ORDER = `${ADDRESS}/order`;

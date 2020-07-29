@@ -6,9 +6,10 @@ import {
   StyleSheet,
   Modal,
   ScrollView,
+  Text,
 } from "react-native";
-import { colors } from "@constants/index";
-import { getHeight, getWidth } from "@utils/helper";
+import { colors, fonts } from "@constants/index";
+import { getHeight, getWidth, width, height } from "@utils/helper";
 
 const styles = StyleSheet.create({
   SelectModalTouchableWithoutFeedback: {
@@ -25,22 +26,63 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     bottom: getHeight(812) / 2 - 125,
   },
+  SelectModalItemContainer: {
+    width: getWidth(175),
+    height: getHeight(83.3),
+    justifyContent: "center",
+  },
+  SelectModalText: {
+    marginLeft: 10,
+    fontSize: 14,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    lineHeight: 20,
+    letterSpacing: -1.05,
+    fontFamily: fonts.Medium,
+    color: colors.grey3c,
+  },
 });
 
-const SelectModal = ({ selectModalVisible, setSelectModalVisible, items }) => {
-  const renderItems = React.useCallback((items) => {}, [items]);
+const SelectModal = ({
+  selectModalVisible,
+  setSelectModalVisible,
+  items,
+  setItem,
+}) => {
+  const renderItems = React.useCallback(
+    (items) => {
+      return items.map((item) => {
+        return (
+          <TouchableOpacity
+            style={styles.SelectModalItemContainer}
+            onPress={() => {
+              setItem(item);
+              setSelectModalVisible(false);
+            }}
+          >
+            <Text style={styles.SelectModalText}>{item}</Text>
+          </TouchableOpacity>
+        );
+      });
+    },
+    [items]
+  );
   return (
     <Modal
       animationType={"none"}
       transparent={true}
       visible={selectModalVisible}
     >
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setSelectModalVisible(false);
+        }}
+      >
         <View style={styles.SelectModalTouchableWithoutFeedback}></View>
       </TouchableWithoutFeedback>
-      <ScrollView
-        contentContainerStyle={styles.SelectModalItemsContainer}
-      ></ScrollView>
+      <ScrollView style={styles.SelectModalItemsContainer}>
+        {renderItems(items)}
+      </ScrollView>
     </Modal>
   );
 };
