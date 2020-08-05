@@ -8,15 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getHeight, getWidth } from "../../../utils/helper";
-import {
-  SearchBar,
-  RenderItemsComponents,
-  SearchRender,
-} from "../../../components";
+import { SearchBar, SearchRender } from "../../../components";
 import { colors, fonts } from "../../../constants";
 import { icons } from "../../../assets";
-import { URL_GET_SEARCH_ITEM } from "../../../constants/api";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   SearchPageContainer: {
@@ -25,16 +21,12 @@ const styles = StyleSheet.create({
   SearchPageLocationNameContainer: {
     width: getWidth(375),
     height: getHeight(35),
-    paddingTop: 10,
-    paddingBottom: 5.4,
-    borderBottomWidth: 0.1,
+    padding: 20,
     borderBottomColor: colors.grey,
     justifyContent: "center",
     flexDirection: "row",
   },
   SearchPageLocationNameText: {
-    width: getWidth(131),
-    height: getHeight(20),
     fontSize: 14,
     fontWeight: "500",
     fontStyle: "normal",
@@ -42,33 +34,49 @@ const styles = StyleSheet.create({
     letterSpacing: -1.05,
     fontFamily: fonts.Medium,
     color: colors.grey,
+    alignSelf: "center",
   },
   SearchPageSearchBarMarginTop: {
     backgroundColor: colors.white,
     marginTop: 11.6,
   },
   checkedOption: {
-    marginTop: 2,
-    width: getWidth(18),
-    height: getHeight(18),
+    marginLeft: 5,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    alignSelf: "center",
   },
 });
 
-const SearchPage = ({ name }) => {
+const SearchPage = () => {
   const [search, setSearch] = React.useState(false);
+  const appStatus = useSelector((state) => state.appStatus);
+  const user = useSelector((state) => state.user);
+  const [searchStores, setSearchStores] = React.useState([]);
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    setSearchStores(appStatus.stores);
+  }, []);
   return (
     <View style={styles.SearchPageContainer}>
-      <View style={styles.SearchPageLocationNameContainer}>
+      <TouchableOpacity
+        style={styles.SearchPageLocationNameContainer}
+        onPress={() => {
+          navigation.navigate("SetAddress");
+        }}
+      >
         <Text style={styles.SearchPageLocationNameText}>
-          서울 성북구 삼선동 1가
+          {user.location.display}
         </Text>
         <Image source={icons.checked} style={styles.checkedOption}></Image>
-      </View>
+      </TouchableOpacity>
       <SearchBar
-        setSearch={setSearch}
+        setItems={setSearchStores}
         style={styles.SearchPageSearchBarMarginTop}
+        setSearch={setSearch}
       />
-      {search ? <SearchRender search={search} /> : <RenderItemsComponents />}
+      <SearchRender stores={searchStores} search={search} />
     </View>
   );
 };

@@ -10,14 +10,12 @@ import {
 import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector, useDispatch, useStore } from "react-redux";
 import { icons } from "../../assets";
 import { ScrollView } from "react-native-gesture-handler";
 const styles = StyleSheet.create({
   RenderItemsComponentsContainer: {
     paddingHorizontal: 11,
     paddingTop: 12.5,
-    // flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     backgroundColor: colors.greyef,
@@ -125,69 +123,124 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchRender = ({ search }) => {
+const SearchRender = ({ stores, search }) => {
   const navigation = useNavigation();
-  const appStatus = useSelector((state) => state.appStatus);
-  const dispatch = useDispatch();
   const temp = () => {
-    return appStatus.stores.map((item) => {
+    return stores.map((item) => {
       return renderItems(item);
     });
   };
   const renderItems = (item) => {
-    console.log(item);
-    return (
-      <TouchableOpacity
-        style={styles.RenderItemsComponentsItemContainer}
-        onPress={() =>
-          navigation.navigate("StoreDetail", {
-            id: item.id,
-          })
-        }
-      >
-        <Image
-          source={icons.storeImage}
-          style={styles.RenderItemsComponentsItemImage}
-        />
-        <View>
-          <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
-            <Text style={styles.RenderItemsComponentsItemTitle}>
-              {item.goodsName}
-            </Text>
-
-            <View style={styles.RenderItemsComponentsEmpty}></View>
-
-            {/* <Image source={icons.fullStar} style={styles.FullStar}></Image> */}
-
-            <Text style={styles.RenderItemsComponentsItemScoreText}>
-              {item.price}원
-            </Text>
-          </View>
-          <View
-            style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
-          >
-            {/* {search === true && (
-              <Text style={styles.RenderItemsComponentsItemReviewText}>
-                최근리뷰 {item.MarketReviews.length}
+    if (search) {
+      console.log(item);
+      return (
+        <TouchableOpacity
+          style={styles.RenderItemsComponentsItemContainer}
+          onPress={() =>
+            navigation.navigate("StoreDetail", {
+              id: item.id,
+            })
+          }
+        >
+          <Image
+            source={icons.storeImage}
+            style={styles.RenderItemsComponentsItemImage}
+          />
+          <View>
+            <View
+              style={styles.RenderItemsComponentsItemTitleAndScoreContainer}
+            >
+              <Text style={styles.RenderItemsComponentsItemTitle}>
+                {item.Market.marketName}
               </Text>
-            )} */}
 
-            {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
-              최근사장님댓글 10+
-            </Text> */}
+              <View style={styles.RenderItemsComponentsEmpty}></View>
+
+              <Image source={icons.fullStar} style={styles.FullStar}></Image>
+
+              <Text style={styles.RenderItemsComponentsItemScoreText}>
+                {item.Market.marketStarPoint}원
+              </Text>
+            </View>
+            <View
+              style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
+            >
+              {/* {search === true && (
+                <Text style={styles.RenderItemsComponentsItemReviewText}>
+                  최근리뷰 {item.MarketReviews.length}
+                </Text>
+              )} */}
+
+              {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
+                최근사장님댓글 10+
+              </Text> */}
+            </View>
+            <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
+              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+                배달비 0원
+              </Text>
+              <View style={styles.RenderItemsComponentsEmpty} />
+              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+                40~50분
+              </Text>
+            </View>
           </View>
-          <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
-            <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-              배달비 0원
-            </Text>
-            <View style={styles.RenderItemsComponentsEmpty} />
-            <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-              40~50분
-            </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <TouchableOpacity
+          style={styles.RenderItemsComponentsItemContainer}
+          onPress={() =>
+            navigation.navigate("StoreDetail", {
+              id: item.id,
+            })
+          }
+        >
+          <Image
+            source={icons.storeImage}
+            style={styles.RenderItemsComponentsItemImage}
+          />
+          <View>
+            <View
+              style={styles.RenderItemsComponentsItemTitleAndScoreContainer}
+            >
+              <Text style={styles.RenderItemsComponentsItemTitle}>
+                {item.marketName}
+              </Text>
+
+              <View style={styles.RenderItemsComponentsEmpty}></View>
+
+              <Image source={icons.fullStar} style={styles.FullStar}></Image>
+
+              <Text style={styles.RenderItemsComponentsItemScoreText}>
+                {item.marketStarPoint}
+              </Text>
+            </View>
+            <View
+              style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
+            >
+              {/* <Text style={styles.RenderItemsComponentsItemReviewText}>
+                  최근리뷰 {item.MarketReviews.length}
+                </Text> */}
+
+              <Text style={styles.RenderItemsComponentsItemCommentText}>
+                최근사장님댓글 10+
+              </Text>
+            </View>
+            <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
+              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+                배달비 0원
+              </Text>
+              <View style={styles.RenderItemsComponentsEmpty} />
+              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+                40~50분
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-    );
+        </TouchableOpacity>
+      );
+    }
   };
 
   return (

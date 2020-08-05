@@ -125,12 +125,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderItemsComponents = ({ search }) => {
+const RenderItemsComponents = ({ search, stores }) => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
   const temp = () => {
-    return appStatus.stores.map((item) => {
+    return stores.map((item) => {
       return renderItems(item);
     });
   };

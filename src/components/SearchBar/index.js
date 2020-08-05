@@ -35,19 +35,17 @@ const styles = StyleSheet.create({
 });
 
 const useForceUpdate = () => {
-  const [, setState] = React.useState();
   return setState;
 };
-const SearchBar = ({ style, setSearch }) => {
+const SearchBar = ({ style, setItems, setSearch }) => {
   const [searchName, setSearchName] = React.useState("");
   const dispatch = useDispatch();
-  const forceUpdate = useForceUpdate();
   const _searchStores = async (searchName) => {
     try {
-      // const res = await axios.get(URL_GET_SEARCH_ITEM(name), {});
       const res = await axios.get(URL_GET_SEARCH_ITEM(searchName), {});
       if (res.status === 200) {
-        dispatch(storesUpdate(res.data));
+        setItems(res.data);
+        setSearch(true);
       }
     } catch (error) {
       console.log(error);
@@ -69,8 +67,6 @@ const SearchBar = ({ style, setSearch }) => {
         style={{ alignSelf: "center" }}
         onPress={() => {
           _searchStores(searchName);
-          forceUpdate();
-          setSearch(true);
         }}
       >
         <Image source={icons.searchIcon} style={styles.SearchBarIcon} />

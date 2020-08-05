@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
   },
   checkedOption: {
     marginLeft: 5,
-    marginTop: -8,
-    width: getWidth(18),
-    height: getHeight(18),
+    borderRadius: 9,
+    width: 18,
+    height: 18,
+    alignSelf: "center",
   },
   HomePageUserlocationContainer: {
     width: getWidth(375),
@@ -70,24 +71,22 @@ const HomePage = () => {
   const appStatus = useSelector((state) => state.appStatus);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [homeStores, setHomeStores] = React.useState([]);
 
   const [banners, setBanners] = React.useState([
     { image: icons.banner },
     { image: icons.banner },
     { image: icons.banner },
   ]);
-
-  // api 통신(현재 마포구 기준), api는 따로 정리해두기
   const _getStores = async () => {
     try {
       const res = await axios.get(
         URL_GET_REGIONAL_MARKET(user.location.key),
         {}
       );
-      // const res = await axios.get(URL_GET_REGIONAL_MARKET("마포구"), {});
       if (res.status === 200) {
-        console.log(res);
         dispatch(storesUpdate(res.data));
+        setHomeStores(res.data);
       }
     } catch (error) {
       console.log(error);
@@ -95,13 +94,10 @@ const HomePage = () => {
     }
   };
 
-  // 유저 정보 call 함수, login 로직으로 옮길 예정
   const _getOrderList = async () => {
     try {
       const res = await axios.get(URL_GET_ORDER_LIST(user.userId), {});
-      // const res = await axios.get(URL_GET_ORDER_LIST(1), {});
       if (res.status === 200) {
-        console.log(res);
         dispatch(orderListUpdate(res.data));
       }
     } catch (error) {
@@ -130,9 +126,9 @@ const HomePage = () => {
           <Image source={icons.checked} style={styles.checkedOption}></Image>
         </View>
       </TouchableOpacity>
-      <CategoryMenu category={storeCategory} />
+      <CategoryMenu category={storeCategory} setStore={setHomeStores} />
       <Banners banners={banners} />
-      <RenderItemsComponents />
+      <RenderItemsComponents stores={homeStores} />
     </View>
   );
 };

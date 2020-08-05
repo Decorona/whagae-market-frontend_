@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CategoryMenu = ({ category }) => {
+const CategoryMenu = ({ category, setStore }) => {
   const appStatus = useSelector((state) => state.appStatus);
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -47,6 +47,7 @@ const CategoryMenu = ({ category }) => {
     let category = "";
     switch (name) {
       case "전체":
+        category = "entire";
         break;
       case "마트":
         category = "mart";
@@ -70,43 +71,35 @@ const CategoryMenu = ({ category }) => {
         category = "flowershop";
         break;
     }
-    if (category === "") {
+    if (category === "entire") {
+      setStore(appStatus.stores);
     } else {
-      let temp = [];
-      for (let i = 0; i < appStatus.stores.length; i++) {
-        if (appStatus.stores[i].marketCategory === category) {
-          console.log("call");
-          temp.push(appStatus.stores[i]);
-        }
-      }
-      console.log(category);
-      console.log(temp);
-      // dispatch(storesUpdate(temp));
+      let filteredStores = appStatus.stores.filter(
+        (store) => store.marketCategory === category
+      );
+      setStore(filteredStores);
     }
   };
 
-  const renderCategory = React.useCallback(
-    ({ item, index }) => {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            setActiveIndex(index);
-            filterStore(item.name);
-          }}
+  const renderCategory = ({ item, index }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setActiveIndex(index);
+          filterStore(item.name);
+        }}
+      >
+        <Text
+          style={[
+            styles.CategoryMenuName,
+            index === activeIndex && styles.CategoryMenuActiveName,
+          ]}
         >
-          <Text
-            style={[
-              styles.CategoryMenuName,
-              index === activeIndex && styles.CategoryMenuActiveName,
-            ]}
-          >
-            {item.name}
-          </Text>
-        </TouchableOpacity>
-      );
-    },
-    [activeIndex]
-  );
+          {item.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.CategoryMenuContainer}>
@@ -116,7 +109,7 @@ const CategoryMenu = ({ category }) => {
         keyExtractor={(item) => item.name}
         horizontal
         showsHorizontalScrollIndicator={false}
-        // extraData={category}
+        extraData={category}
       />
     </View>
   );
