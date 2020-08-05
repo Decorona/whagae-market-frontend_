@@ -102,12 +102,9 @@ const BasketPage = ({ navigation }) => {
             }
           });
 
-          console.log("basketItemsMap??", basketItemsMap);
-
           let basketItemList = [];
 
           Array.from(basketItemsMap).map((value) => {
-            console.log(value, "value");
             let item_bundle = {
               categoryName: value[0],
               items: value[1],

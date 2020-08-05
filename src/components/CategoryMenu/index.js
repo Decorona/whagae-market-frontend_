@@ -6,10 +6,8 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import { getWidth, getHeight } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { useSelector, useDispatch, useStore } from "react-redux";
-import { storesUpdate } from "../../actions/appStatus";
 const styles = StyleSheet.create({
   CategoryMenuName: {
     fontSize: 14,
@@ -39,8 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CategoryMenu = ({ category, setStore }) => {
-  const appStatus = useSelector((state) => state.appStatus);
+const CategoryMenu = ({ category, setStore, entire }) => {
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = React.useState(0);
   const filterStore = (name) => {
@@ -72,9 +69,9 @@ const CategoryMenu = ({ category, setStore }) => {
         break;
     }
     if (category === "entire") {
-      setStore(appStatus.stores);
+      setStore(entire);
     } else {
-      let filteredStores = appStatus.stores.filter(
+      let filteredStores = entire.filter(
         (store) => store.marketCategory === category
       );
       setStore(filteredStores);

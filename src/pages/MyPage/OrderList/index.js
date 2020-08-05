@@ -12,7 +12,7 @@ import { colors, fonts } from "../../../constants";
 import { getHeight, getWidth } from "../../../utils/helper";
 import { icons } from "../../../assets";
 import { useNavigation } from "@react-navigation/native";
-
+import { useSelector } from "react-redux";
 import RenderOrderList from "../../../components/RenderOrderList";
 
 const styles = StyleSheet.create({
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
 
 const OrderList = () => {
   const navigation = useNavigation();
+  const user = useSelector((state) => state.user);
 
   const [storeCategory, setStoreCategory] = React.useState([
     { name: "전체" },
@@ -68,6 +69,10 @@ const OrderList = () => {
       ],
     },
   ]);
+  React.useEffect(() => {
+    setBasketItems(user.orderList);
+    console.log(user.orderList);
+  }, []);
   return (
     <View style={styles.OrderListContainer}>
       <View style={styles.StoreDetailGobackAndDibButtonContainer}>
@@ -85,7 +90,11 @@ const OrderList = () => {
         <Text style={styles.OrderListTopText}>주문 내역</Text>
       </View>
 
-      <CategoryMenu category={storeCategory} />
+      {/* <CategoryMenu
+        category={storeCategory}
+        setStore={setBasketItems}
+        entire={user.orderList}
+      /> */}
       <RenderOrderList basketItems={basketItems} />
     </View>
   );

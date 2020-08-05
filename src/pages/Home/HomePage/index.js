@@ -126,7 +126,11 @@ const HomePage = () => {
           <Image source={icons.checked} style={styles.checkedOption}></Image>
         </View>
       </TouchableOpacity>
-      <CategoryMenu category={storeCategory} setStore={setHomeStores} />
+      <CategoryMenu
+        category={storeCategory}
+        setStore={setHomeStores}
+        entire={appStatus.stores}
+      />
       <Banners banners={banners} />
       <RenderItemsComponents stores={homeStores} />
     </View>

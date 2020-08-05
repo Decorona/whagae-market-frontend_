@@ -114,9 +114,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const OrderListCard = ({ item, marketId }) => {
+const OrderListCard = ({ item }) => {
   const navigation = useNavigation();
   const user = useSelector((state) => state.user);
+  console.log(item);
   return (
     <TouchableOpacity
       style={styles.OrderListCardContainer}
@@ -143,10 +144,8 @@ const OrderListCard = ({ item, marketId }) => {
           containerStyle={styles.OrderListCardShortButton}
           onPress={() => {
             navigation.navigate("WriteReviewPage", {
-              // userId: user.userId,
-              userId: 1,
-              // marketId: marketId,
-              marketId: 1,
+              userId: item.UserId,
+              marketId: item.MarketId,
             });
           }}
         >

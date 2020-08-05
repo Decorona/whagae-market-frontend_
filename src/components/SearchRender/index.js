@@ -132,7 +132,6 @@ const SearchRender = ({ stores, search }) => {
   };
   const renderItems = (item) => {
     if (search) {
-      console.log(item);
       return (
         <TouchableOpacity
           style={styles.RenderItemsComponentsItemContainer}

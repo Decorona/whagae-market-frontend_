@@ -122,7 +122,6 @@ const WriteReviewPage = ({ route }) => {
   const { userId, marketId } = route.params;
   const _writeReview = async (marketId, userId) => {
     try {
-      console.log(id, "call1");
       const body = {
         review: reviewContent,
         revievImage: "",
