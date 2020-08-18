@@ -4,16 +4,14 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Text,
   TouchableOpacity,
 } from "react-native";
-import { getWidth, getHeight } from "../../utils/helper";
+import { getWidth } from "../../utils/helper";
 import { colors, fonts } from "../../constants";
 import { icons } from "../../assets";
 import { URL_GET_SEARCH_ITEM } from "../../constants/api";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { storesUpdate } from "../../actions/appStatus";
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   SearchBarContainer: {
     width: getWidth(342),
@@ -33,19 +31,17 @@ const styles = StyleSheet.create({
     marginLeft: 14,
   },
 });
-
-const useForceUpdate = () => {
-  return setState;
-};
 const SearchBar = ({ style, setItems, setSearch }) => {
   const [searchName, setSearchName] = React.useState("");
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const _searchStores = async (searchName) => {
     try {
-      const res = await axios.get(URL_GET_SEARCH_ITEM(searchName), {});
+      const res = await axios.get(
+        URL_GET_SEARCH_ITEM(searchName, user.location.key),
+        {}
+      );
       if (res.status === 200) {
         setItems(res.data);
-        setSearch(true);
       }
     } catch (error) {
       console.log(error);

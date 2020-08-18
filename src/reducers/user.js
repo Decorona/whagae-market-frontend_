@@ -1,6 +1,9 @@
 import * as types from "../actions/user/types";
 const initialState = {
-  location: { key: "마포구", display: "서울특별시 마포구 성산동 336-1" },
+  location: {
+    key: "서울특별시 마포구 성산동 336-1",
+    display: "서울특별시 마포구 성산동 336-1",
+  },
   userId: 0,
   orderList: [],
   basketList: [],

@@ -61,14 +61,7 @@ const OrderList = () => {
     { name: "꽃집" },
     { name: "철물점" },
   ]);
-  const [basketItems, setBasketItems] = React.useState([
-    {
-      items: [
-        { name: "순이네", categoryName: "마트", amount: 6 },
-        { name: "털보네", categoryName: "마트", amount: 6 },
-      ],
-    },
-  ]);
+  const [basketItems, setBasketItems] = React.useState([]);
   React.useEffect(() => {
     setBasketItems(user.orderList);
     console.log(user.orderList);
@@ -89,12 +82,6 @@ const OrderList = () => {
         </TouchableOpacity>
         <Text style={styles.OrderListTopText}>주문 내역</Text>
       </View>
-
-      {/* <CategoryMenu
-        category={storeCategory}
-        setStore={setBasketItems}
-        entire={user.orderList}
-      /> */}
       <RenderOrderList basketItems={basketItems} />
     </View>
   );

@@ -83,17 +83,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: fonts.Medium,
   },
-  RenderItemsComponentsItemCommentText: {
-    fontSize: 8,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 12,
-    letterSpacing: -0.6,
-    color: colors.grey,
-    alignSelf: "center",
-    marginLeft: 3,
-    fontFamily: fonts.Medium,
-  },
+
   RenderItemsComponentsItemDeliveryContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -131,115 +121,53 @@ const SearchRender = ({ stores, search }) => {
     });
   };
   const renderItems = (item) => {
-    if (search) {
-      return (
-        <TouchableOpacity
-          style={styles.RenderItemsComponentsItemContainer}
-          onPress={() =>
-            navigation.navigate("StoreDetail", {
-              id: item.id,
-            })
-          }
-        >
-          <Image
-            source={icons.storeImage}
-            style={styles.RenderItemsComponentsItemImage}
-          />
-          <View>
-            <View
-              style={styles.RenderItemsComponentsItemTitleAndScoreContainer}
-            >
-              <Text style={styles.RenderItemsComponentsItemTitle}>
-                {item.Market.marketName}
-              </Text>
+    console.log(item);
+    return (
+      <TouchableOpacity
+        style={styles.RenderItemsComponentsItemContainer}
+        onPress={() =>
+          navigation.navigate("StoreDetail", {
+            id: item.id,
+          })
+        }
+      >
+        <Image
+          source={{ uri: item.Market.marketPhoto }}
+          style={styles.RenderItemsComponentsItemImage}
+        />
+        <View>
+          <View style={styles.RenderItemsComponentsItemTitleAndScoreContainer}>
+            <Text style={styles.RenderItemsComponentsItemTitle}>
+              {item.Market.marketName} ({item.goodsName})
+            </Text>
 
-              <View style={styles.RenderItemsComponentsEmpty}></View>
+            <View style={styles.RenderItemsComponentsEmpty}></View>
 
-              <Image source={icons.fullStar} style={styles.FullStar}></Image>
+            <Image source={icons.fullStar} style={styles.FullStar}></Image>
 
-              <Text style={styles.RenderItemsComponentsItemScoreText}>
-                {item.Market.marketStarPoint}원
-              </Text>
-            </View>
-            <View
-              style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
-            >
-              {/* {search === true && (
-                <Text style={styles.RenderItemsComponentsItemReviewText}>
-                  최근리뷰 {item.MarketReviews.length}
-                </Text>
-              )} */}
-
-              {/* <Text style={styles.RenderItemsComponentsItemCommentText}>
-                최근사장님댓글 10+
-              </Text> */}
-            </View>
-            <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
-              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-                배달비 0원
-              </Text>
-              <View style={styles.RenderItemsComponentsEmpty} />
-              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-                40~50분
-              </Text>
-            </View>
+            <Text style={styles.RenderItemsComponentsItemScoreText}>
+              {item.Market.marketStarPoint}
+            </Text>
           </View>
-        </TouchableOpacity>
-      );
-    } else {
-      return (
-        <TouchableOpacity
-          style={styles.RenderItemsComponentsItemContainer}
-          onPress={() =>
-            navigation.navigate("StoreDetail", {
-              id: item.id,
-            })
-          }
-        >
-          <Image
-            source={icons.storeImage}
-            style={styles.RenderItemsComponentsItemImage}
-          />
-          <View>
-            <View
-              style={styles.RenderItemsComponentsItemTitleAndScoreContainer}
-            >
-              <Text style={styles.RenderItemsComponentsItemTitle}>
-                {item.marketName}
-              </Text>
-
-              <View style={styles.RenderItemsComponentsEmpty}></View>
-
-              <Image source={icons.fullStar} style={styles.FullStar}></Image>
-
-              <Text style={styles.RenderItemsComponentsItemScoreText}>
-                {item.marketStarPoint}
-              </Text>
-            </View>
-            <View
-              style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
-            >
-              {/* <Text style={styles.RenderItemsComponentsItemReviewText}>
-                  최근리뷰 {item.MarketReviews.length}
-                </Text> */}
-
-              <Text style={styles.RenderItemsComponentsItemCommentText}>
-                최근사장님댓글 10+
-              </Text>
-            </View>
-            <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
-              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-                배달비 0원
-              </Text>
-              <View style={styles.RenderItemsComponentsEmpty} />
-              <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-                40~50분
-              </Text>
-            </View>
+          <View
+            style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
+          >
+            <Text style={styles.RenderItemsComponentsItemReviewText}>
+              최근 리뷰 {item.Market.MarketReviews.length}
+            </Text>
           </View>
-        </TouchableOpacity>
-      );
-    }
+          <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
+            <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+              배달비 {item.Market.deliveryFee}원
+            </Text>
+            <View style={styles.RenderItemsComponentsEmpty} />
+            <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
+              {item.Market.deliveryTime}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
   };
 
   return (

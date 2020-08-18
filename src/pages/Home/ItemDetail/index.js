@@ -441,7 +441,7 @@ const ItemDetail = ({ route }) => {
                 </Text>
               </View>
               <Text style={styles.ItemDetailMembershipText}>
-                개당 00포인트 적립
+                개당 17포인트 적립
               </Text>
             </View>
           </View>

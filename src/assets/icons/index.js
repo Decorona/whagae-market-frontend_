@@ -22,7 +22,7 @@ const icons = {
   star: require("./star.png"),
   storeImage: require("./store_image.png"),
   goldStar: require("./gold_star.png"),
-  banner: require("./banner.png"),
+  banner: require("./banner2.png"),
   plusButton: require("./plus_button.png"),
   minusButton: require("./minus_button.png"),
   checked: require("./checked.png"),

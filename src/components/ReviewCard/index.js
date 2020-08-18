@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 const ReviewCard = ({ review }) => {
   const renderStars = React.useCallback(() => {
     return [...Array(Math.floor(review.reviewStarPoint))].map(() => {
-      return <Image source={icons.star} style={styles.ReviewCardStar} />;
+      return <Image source={icons.fullStar} style={styles.ReviewCardStar} />;
     });
   }, []);
   return (

@@ -5,7 +5,7 @@ import { colors, fonts } from "../../../constants";
 import RenderMyPageMenu from "../../../components/RenderMyPageMenu";
 import { getWidth, getHeight } from "../../../utils/helper";
 import { icons } from "../../../assets";
-
+import { useSelector } from "react-redux";
 const styles = StyleSheet.create({
   MyPageContainer: {
     flex: 1,
@@ -17,8 +17,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   MyPageUserIcon: {
-    width: getWidth(58),
-    height: getHeight(66),
+    width: 56,
+    height: 56,
+    borderRadius: 28,
   },
   MyPageUserTitletext: {
     marginTop: 15,
@@ -100,13 +101,16 @@ const styles = StyleSheet.create({
 });
 
 const MyPage = () => {
+  const user = useSelector((state) => state.user);
   return (
     <View style={styles.MyPageContainer}>
       <TouchableOpacity style={styles.MyPageTouchableArea}>
         <View style={styles.MyPageTopIconArea}>
-          <Image source={icons.profileIcon} style={styles.MyPageUserIcon} />
-          <Text style={styles.MyPageUserTitletext}>USER</Text>
-          <Text style={styles.MyPageUserPointtext}>200P</Text>
+          <Image
+            source={{ uri: user.profileImg }}
+            style={styles.MyPageUserIcon}
+          />
+          <Text style={styles.MyPageUserTitletext}>{user.name}</Text>
         </View>
         <View style={styles.MyPagePrevillageContainer}>
           <Text style={styles.MyPagePrevillageTitletext}>

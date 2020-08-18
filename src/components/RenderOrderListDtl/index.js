@@ -27,25 +27,11 @@ const RenderOrderListDtl = ({ basketItems }) => {
   const renderItem = React.useCallback(({ item }) => {
     return <OrderListCardDtl item={item} />;
   }, []);
-  const renderCategory = React.useCallback(({ item }) => {
-    return (
-      <View style={styles.RenderOrderListDtlFlatlistContainer}>
-        <Text style={styles.RenderOrderListDtlCategoryText}>
-          {item.categoryName}
-        </Text>
-        <FlatList
-          data={item.items}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.name}
-        />
-      </View>
-    );
-  }, []);
   return (
     <FlatList
-      data={basketItems}
-      renderItem={renderCategory}
-      keyExtractor={(item) => item.categoryName}
+      data={ShoppingGoodsBundles}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
       contentContainerStyle={styles.RenderOrderListDtlCategoryFlatlist}
     />
   );

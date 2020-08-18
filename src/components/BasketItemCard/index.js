@@ -129,6 +129,7 @@ const marketCategory = {
 
 const BasketItemCard = ({ item }) => {
   const navigation = useNavigation();
+  console.log(item);
   return (
     <TouchableOpacity
       style={styles.BasketItemCardContainer}
@@ -139,8 +140,11 @@ const BasketItemCard = ({ item }) => {
         });
       }}
     >
-      <View style={styles.BasketItemCardIcon}>
-        <Image source={item.marketPhoto} />
+      <View>
+        <Image
+          source={{ uri: item.marketPhoto }}
+          style={styles.BasketItemCardIcon}
+        />
       </View>
       <View style={styles.BasketItemCardNameAndCategoryContainer}>
         <Text style={styles.BasketItemCardNameText}>{item.name}</Text>

@@ -125,17 +125,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderItemsComponents = ({ search, stores }) => {
+const RenderItemsComponents = ({ stores }) => {
   const navigation = useNavigation();
   const appStatus = useSelector((state) => state.appStatus);
-  const dispatch = useDispatch();
   const temp = () => {
     return stores.map((item) => {
       return renderItems(item);
     });
   };
   const renderItems = (item) => {
-    console.log(item);
     return (
       <TouchableOpacity
         style={styles.RenderItemsComponentsItemContainer}
@@ -146,7 +144,7 @@ const RenderItemsComponents = ({ search, stores }) => {
         }
       >
         <Image
-          source={icons.storeImage}
+          source={{ uri: item.marketPhoto }}
           style={styles.RenderItemsComponentsItemImage}
         />
         <View>
@@ -166,23 +164,17 @@ const RenderItemsComponents = ({ search, stores }) => {
           <View
             style={styles.RenderItemsComponentsItemReviewAndCommentContainer}
           >
-            {search === true && (
-              <Text style={styles.RenderItemsComponentsItemReviewText}>
-                최근리뷰 {item.MarketReviews.length}
-              </Text>
-            )}
-
-            <Text style={styles.RenderItemsComponentsItemCommentText}>
-              최근사장님댓글 10+
+            <Text style={styles.RenderItemsComponentsItemReviewText}>
+              최근리뷰 {item.MarketReviews.length}
             </Text>
           </View>
           <View style={styles.RenderItemsComponentsItemDeliveryContainer}>
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-              배달비 0원
+              배달비 {item.deliveryFee}원
             </Text>
             <View style={styles.RenderItemsComponentsEmpty} />
             <Text style={styles.RenderItemsComponentsItemDeliveryTimeText}>
-              40~50분
+              {item.deliveryTime}
             </Text>
           </View>
         </View>

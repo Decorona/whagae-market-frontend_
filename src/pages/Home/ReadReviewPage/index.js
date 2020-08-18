@@ -112,10 +112,13 @@ const ReadReviewPage = () => {
             최근 리뷰 {appStatus.storeReviews.length}개
           </Text>
           <Text style={styles.ReadReviewPageShopKeeperCommentCountText}>
-            사장님 댓글 2개
+            사장님 댓글 1개
           </Text>
           <View style={styles.ReadReviewPageScoreContainer}>
-            <Image source={icons.star} style={styles.ReadReviewPageScoreIcon} />
+            <Image
+              source={icons.fullStar}
+              style={styles.ReadReviewPageScoreIcon}
+            />
             <Text style={styles.ReadReviewPageScoreText}>
               {appStatus.storeItems.marketStarPoint}
             </Text>

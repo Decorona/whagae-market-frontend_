@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     height: 192,
     width: getWidth(375),
   },
+  temp: {
+    height: 192,
+    width: getWidth(375),
+    backgroundColor: "red",
+  },
   BannersPaginationContainer: {
     position: "absolute",
     bottom: 0,
@@ -42,6 +47,7 @@ const Banners = ({ banners }) => {
   const [activeSlide, setActiveSlide] = React.useState(0);
   const renderBanner = React.useCallback(({ item }) => {
     return <Image source={item.image} style={styles.BannersItem} />;
+    // return <View style={styles.temp}></View>;
   }, []);
   const renderDots = React.useCallback(
     (items) => {

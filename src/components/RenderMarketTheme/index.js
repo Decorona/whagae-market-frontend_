@@ -59,17 +59,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: fonts.Medium,
   },
-  RenderMarketThemeCommentText: {
-    fontSize: 8,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 12,
-    letterSpacing: -0.6,
-    color: colors.grey,
-    alignSelf: "center",
-    marginLeft: 3,
-    fontFamily: fonts.Medium,
-  },
+
   RenderMarketThemeDeliveryContainer: {
     flexDirection: "row",
     paddingTop: 4.2,
@@ -145,14 +135,11 @@ const RenderMarketTheme = ({ theme }) => {
               source={icons.goldStar}
               style={styles.RenderMarketThemeStar}
             />
-            4.2
+            4
           </Text>
         </View>
         <View style={styles.RenderMarketThemeReviewAndCommentContainer}>
           <Text style={styles.RenderMarketThemeReviewText}>최근리뷰 10+</Text>
-          <Text style={styles.RenderMarketThemeCommentText}>
-            최근사장님댓글 10+
-          </Text>
         </View>
         <View style={styles.RenderMarketThemeDeliveryContainer}>
           <Text style={styles.RenderMarketThemeDeliveryTimeText}>
@@ -168,11 +155,9 @@ const RenderMarketTheme = ({ theme }) => {
   const renderTheme = React.useCallback(({ item }) => {
     return (
       <View>
-        <Text style={styles.RenderMarketThemeTitleText}>
-          오늘 우리동네 핫플
-        </Text>
+        <Text style={styles.RenderMarketThemeTitleText}>{item[0].theme}</Text>
         <FlatList
-          data={item}
+          data={item[1].stores}
           renderItem={renderItems}
           horizontal
           showsHorizontalScrollIndicator={false}

@@ -219,12 +219,12 @@ const Payment = ({ route }) => {
         deliveryAddress: user.location.key + detailAddress,
         deliveryMemo: askText,
         receiverPhone: user.phoneNum,
-        paymentMethodType: selectedPaymentMethod,
+        paymentMethodType: "CreditCard",
+        deliveryType: "visit",
         marketId: MarketId,
         shoppingCartId: items[0].shoppingCartId,
         userId: user.userId,
       };
-      console.log(body);
       const res = await axios.post(URL_POST_SUBMIT_ORDER, body, {});
       if (res.status === 200) {
         alert("주문이 완료되었습니다.");

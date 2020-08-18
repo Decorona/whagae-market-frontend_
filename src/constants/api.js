@@ -23,8 +23,8 @@ export const URL_POST_REVIEW = `${ADDRESS}/reviews`;
 // 유저의 구매내역 가져오기
 export const URL_GET_ORDER_LIST = (slug) => `${ADDRESS}/users/${slug}/orders`;
 //물품 검색
-export const URL_GET_SEARCH_ITEM = (slug) =>
-  `${ADDRESS}/market/search?goodsName=${slug}`;
+export const URL_GET_SEARCH_ITEM = (slug, location) =>
+  `${ADDRESS}/market/search?goodsName=${slug}&location=${location}`;
 //로그인
 export const URL_POST_LOGIN = `${ADDRESS}/users/login`;
 //유저 정보 가져오기

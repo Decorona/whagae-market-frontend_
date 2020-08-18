@@ -104,12 +104,7 @@ const OrderListCardDtl = ({ item }) => {
   const navigation = useNavigation();
   const multiple = parseInt(item.price, 10) * parseInt(item.amount, 10);
   return (
-    <TouchableOpacity
-      style={styles.OrderListCardDtlContainer}
-      onPress={() => {
-        navigation.navigate("OrderListDtl");
-      }}
-    >
+    <View style={styles.OrderListCardDtlContainer}>
       <View style={styles.OrderListCardDtlNameAndCategoryContainer}>
         <View style={styles.OrderListDtlCardProductNameLine}>
           <Text style={styles.OrderListDtlCardProductName}>{item.name}</Text>
@@ -130,7 +125,7 @@ const OrderListCardDtl = ({ item }) => {
           </Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

@@ -56,28 +56,39 @@ const MarketPage = () => {
   ]);
   const [storeTheme, setStoreTheme] = React.useState([
     [
-      { name: "아이유 네일샵" },
-      { name: "승표네 철물점" },
-      { name: "재민이네 육포" },
-      { name: "지헌이 문방구" },
+      { theme: "우리동네 솜씨좋은 네일, 헤어샵들!" },
+
+      { stores: [{ name: "반짝반짝 네일샵" }, { name: "리안 헤어샵" }] },
     ],
     [
-      { name: "정한분식" },
-      { name: "엔젤핵" },
-      { name: "한결 타로" },
-      { name: "헤어 마스터" },
+      { theme: "우리동네 맛있는 먹거리 총 집합!" },
+
+      {
+        stores: [
+          { name: "정한 분식" },
+          { name: "황금돼지 떡볶이" },
+          { name: "한결 타로" },
+          { name: "헤어 마스터" },
+        ],
+      },
     ],
     [
-      { name: "싱그러운 꽃집" },
-      { name: "다빨아 세탁소" },
-      { name: "다보여 안경" },
-      { name: "엔젤핵 뽑기" },
+      { theme: "소중한 사람에게 꽃다발 하나 어때요?" },
+
+      {
+        stores: [
+          { name: "싱그러운 꽃집" },
+          { name: "베르사유 꽃집" },
+          { name: "다보여 안경" },
+          { name: "엔젤핵 뽑기" },
+        ],
+      },
     ],
   ]);
   return (
     <View style={styles.MarketPageContainer}>
       <View style={styles.MarketPageTopbar}>
-        <Text style={styles.MarketPageDayText}>D-7</Text>
+        <Text style={styles.MarketPageDayText}>D-5</Text>
         <View style={styles.MarketPageTitleAndDayContainer}>
           <Text style={styles.MarketPageTitletext}>화개장터</Text>
         </View>

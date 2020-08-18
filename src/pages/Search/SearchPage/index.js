@@ -13,7 +13,8 @@ import { colors, fonts } from "../../../constants";
 import { icons } from "../../../assets";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
+import axios from "axios";
+import { URL_GET_SEARCH_ITEM } from "../../../constants/api";
 const styles = StyleSheet.create({
   SearchPageContainer: {
     flex: 1,
@@ -50,13 +51,26 @@ const styles = StyleSheet.create({
 });
 
 const SearchPage = () => {
-  const [search, setSearch] = React.useState(false);
   const appStatus = useSelector((state) => state.appStatus);
   const user = useSelector((state) => state.user);
   const [searchStores, setSearchStores] = React.useState([]);
   const navigation = useNavigation();
+  const _searchStores = async (searchName) => {
+    try {
+      const res = await axios.get(
+        URL_GET_SEARCH_ITEM(searchName, user.location.key),
+        {}
+      );
+      if (res.status === 200) {
+        setSearchStores(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+    }
+  };
   React.useEffect(() => {
-    setSearchStores(appStatus.stores);
+    _searchStores("");
   }, []);
   return (
     <View style={styles.SearchPageContainer}>
@@ -74,9 +88,8 @@ const SearchPage = () => {
       <SearchBar
         setItems={setSearchStores}
         style={styles.SearchPageSearchBarMarginTop}
-        setSearch={setSearch}
       />
-      <SearchRender stores={searchStores} search={search} />
+      <SearchRender stores={searchStores} />
     </View>
   );
 };

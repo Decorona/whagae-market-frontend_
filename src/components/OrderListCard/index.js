@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   OrderListCardIcon: {
     width: 56,
     height: 56,
-    backgroundColor: "red",
     marginLeft: 10,
   },
   OrderListCardNameAndCategoryContainer: {
@@ -118,25 +117,52 @@ const OrderListCard = ({ item }) => {
   const navigation = useNavigation();
   const user = useSelector((state) => state.user);
   console.log(item);
+  const handleCategoryName = React.useCallback((categoryName) => {
+    let category = "";
+    switch (categoryName) {
+      case "mart":
+        category = "마트";
+        break;
+      case "hairshop":
+        category = "미용실";
+        break;
+      case "nail_art":
+        category = "네일아트";
+        break;
+      case "dress":
+        category = "의류";
+        break;
+      case "glasses":
+        category = "안경점";
+        break;
+      case "cleaning":
+        category = "세탁소";
+        break;
+      case "flowershop":
+        category = "꽃집";
+        break;
+    }
+    return category;
+  }, []);
   return (
-    <TouchableOpacity
-      style={styles.OrderListCardContainer}
-      onPress={() => {
-        navigation.navigate("OrderListDtl");
-      }}
-    >
-      <View style={styles.OrderListCardIcon}></View>
+    <View style={styles.OrderListCardContainer}>
+      <Image
+        style={styles.OrderListCardIcon}
+        source={{ uri: item.ShoppingCart.Market.marketPhoto }}
+      ></Image>
       <View style={styles.OrderListCardNameAndCategoryContainer}>
-        <Text style={styles.OrderListCardNameText}>{item.name}</Text>
+        <Text style={styles.OrderListCardNameText}>
+          {item.ShoppingCart.Market.marketName}
+        </Text>
         <Text style={styles.OrderListCardCategoryText}>
-          {item.categoryName}
+          {handleCategoryName(item.ShoppingCart.Market.marketCategory)}
         </Text>
       </View>
       <View style={styles.OrderListCardEmpty}></View>
       <View style={styles.OrderListCardFeeAndAmountContainer}>
         <View style={styles.OrderListCardFeeOptionContainer}>
           <Text style={styles.OrderListCardFeeOptionText1}>
-            마지막 주문일자 20.07.17
+            마지막 주문일자 {item.ShoppingCart.Market.createdAt.slice(0, 10)}
           </Text>
         </View>
 
@@ -152,14 +178,16 @@ const OrderListCard = ({ item }) => {
           리뷰 작성
         </ShortButton1>
         <View style={styles.OrderListCardAmountContainer}>
-          <Text style={styles.OrderListCardAmountText}>총 {item.amount}개</Text>
+          <Text style={styles.OrderListCardAmountText}>
+            총 {item.ShoppingCart.ShoppingGoodsBundles.length}개
+          </Text>
           <Image
             source={icons.downArrowBlack}
             style={styles.OrderListCardAmountIcon}
           />
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
