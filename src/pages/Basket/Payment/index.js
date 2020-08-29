@@ -22,6 +22,8 @@ import { getHeight, getWidth } from "@utils/helper";
 import { paymentMarketInfo } from "@actions/user";
 import { URL_GET_MARKET_INFO, URL_POST_SUBMIT_ORDER } from "@constants/api";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+
 const styles = StyleSheet.create({
   PaymentContainer: {
     flex: 1,
@@ -185,7 +187,6 @@ const styles = StyleSheet.create({
 const Payment = ({ route }) => {
   const { MarketId, items } = route.params;
   const user = useSelector((state) => state.user);
-  console.log(items, "11111");
   const [takeItemOption, setTakeItemOption] = React.useState(true);
   const [askText, setAskText] = React.useState("");
   const [detailAddress, setDetailAddress] = React.useState("");
@@ -196,12 +197,13 @@ const Payment = ({ route }) => {
     "화개캐쉬",
     "현금",
     "신용카드",
-    "계좌이체",
   ]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState(
     "화개캐쉬"
   );
+  const navigation = useNavigation();
   const dispatch = useDispatch();
+  console.log(items);
   const _getMarketInfo = async () => {
     try {
       const res = await axios.get(URL_GET_MARKET_INFO(MarketId));
@@ -213,14 +215,29 @@ const Payment = ({ route }) => {
       console.error(error);
     }
   };
+  const convertSelectedPaymentMethod = () => {
+    let convertedSelectedPaymentMethod = "";
+    switch (selectedPaymentMethod) {
+      case "화개캐쉬":
+        convertedSelectedPaymentMethod = "KakaoPay";
+        break;
+      case "현금":
+        convertedSelectedPaymentMethod = "Direct_Cash";
+        break;
+      case "신용카드":
+        convertedSelectedPaymentMethod = "CreditCard";
+        break;
+    }
+    return convertedSelectedPaymentMethod;
+  };
   const _submitOrder = async () => {
     try {
       const body = {
         deliveryAddress: user.location.key + detailAddress,
         deliveryMemo: askText,
         receiverPhone: user.phoneNum,
-        paymentMethodType: "CreditCard",
-        deliveryType: "visit",
+        paymentMethodType: convertSelectedPaymentMethod(selectedPaymentMethod),
+        deliveryType: takeItemOption ? "deliver" : "visit",
         marketId: MarketId,
         shoppingCartId: items[0].shoppingCartId,
         userId: user.userId,
@@ -228,6 +245,7 @@ const Payment = ({ route }) => {
       const res = await axios.post(URL_POST_SUBMIT_ORDER, body, {});
       if (res.status === 200) {
         alert("주문이 완료되었습니다.");
+        navigation.navigate("BasketPage");
       }
     } catch (error) {
       console.log(error);
@@ -241,7 +259,7 @@ const Payment = ({ route }) => {
         res += items[i].goodsBundlePaymentTotal;
       }
       setOrderPrice(res);
-      setTotalPrice(res);
+      setTotalPrice(res - user.paymentmarketInfo.deliveryFee);
     } catch (error) {
       console.log(error);
       console.error(error);
@@ -327,13 +345,15 @@ const Payment = ({ route }) => {
             <View style={styles.PaymentPriceTextContainer}>
               <Text style={styles.PaymentPriceText}>배달료</Text>
               <View style={styles.PaymentEmpty}></View>
-              <Text style={styles.PaymentPriceText}>0000원</Text>
+              <Text style={styles.PaymentPriceText}>
+                {user.paymentmarketInfo.deliveryFee}원
+              </Text>
             </View>
-            <View style={styles.PaymentPriceTextContainer}>
+            {/* <View style={styles.PaymentPriceTextContainer}>
               <Text style={styles.PaymentPriceText}>화개 멤버십 할인</Text>
               <View style={styles.PaymentEmpty}></View>
               <Text style={styles.PaymentPriceText}>0000원</Text>
-            </View>
+            </View> */}
             <View style={styles.PaymentPriceGrayBar}></View>
 
             <View style={styles.PaymentTotalPriceContainer}>

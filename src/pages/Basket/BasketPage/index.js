@@ -41,7 +41,7 @@ const BasketPage = ({ navigation }) => {
   // 포커싱 감지하여 리렌더
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
-      getMyCartList();
+      getMyCartList(user.userId);
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
@@ -59,7 +59,6 @@ const BasketPage = ({ navigation }) => {
 
       if (res.status === 200) {
         dispatch(basketListUpdate(res.data));
-
         // 쇼핑카트에 아이템이 들어있을 경우
         if (res.data.ShoppingCarts.length > 0) {
           // 아이템 맵
@@ -75,30 +74,34 @@ const BasketPage = ({ navigation }) => {
             }
 
             // 해당 마켓 카테고리가 이미 맵에 존재하면 아이템을 더해준다.
-            if (basketItemsMap.get(Market.marketCategory)) {
-              let items = basketItemsMap.get(Market.marketCategory);
-              items.push({
-                name: Market.marketName,
-                marketPhoto: Market.marketPhoto,
-                price: cart.totalAmount,
-                MarketId: cart.MarketId,
-                amount: accumulator,
-                categoryName: Market.marketCategory,
-                shoppingGoodsBundles: ShoppingGoodsBundles,
-              });
+            if (cart.paid === false) {
+              if (basketItemsMap.get(Market.marketCategory)) {
+                let items = basketItemsMap.get(Market.marketCategory);
+                items.push({
+                  name: Market.marketName,
+                  marketPhoto: Market.marketPhoto,
+                  price: cart.totalAmount,
+                  MarketId: cart.MarketId,
 
-              basketItemsMap.set(Market.marketCategory, items);
-            } else {
-              let items = new Array({
-                name: Market.marketName,
-                marketPhoto: Market.marketPhoto,
-                price: cart.totalAmount,
-                MarketId: cart.MarketId,
-                amount: accumulator,
-                categoryName: Market.marketCategory,
-                shoppingGoodsBundles: ShoppingGoodsBundles,
-              });
-              basketItemsMap.set(Market.marketCategory, items);
+                  amount: accumulator,
+                  categoryName: Market.marketCategory,
+                  shoppingGoodsBundles: ShoppingGoodsBundles,
+                });
+
+                basketItemsMap.set(Market.marketCategory, items);
+              } else {
+                let items = new Array({
+                  name: Market.marketName,
+                  marketPhoto: Market.marketPhoto,
+                  price: cart.totalAmount,
+                  MarketId: cart.MarketId,
+
+                  amount: accumulator,
+                  categoryName: Market.marketCategory,
+                  shoppingGoodsBundles: ShoppingGoodsBundles,
+                });
+                basketItemsMap.set(Market.marketCategory, items);
+              }
             }
           });
 

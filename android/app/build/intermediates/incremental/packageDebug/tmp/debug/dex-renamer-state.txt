@@ -1,4 +1,4 @@
-#Thu Jul 23 00:40:45 KST 2020
+#Sun Aug 30 00:09:05 KST 2020
 base.0=C\:\\Users\\elrio\\whaegae_frontend\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

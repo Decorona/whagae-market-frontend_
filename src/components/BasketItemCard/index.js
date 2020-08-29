@@ -129,7 +129,6 @@ const marketCategory = {
 
 const BasketItemCard = ({ item }) => {
   const navigation = useNavigation();
-  console.log(item);
   return (
     <TouchableOpacity
       style={styles.BasketItemCardContainer}

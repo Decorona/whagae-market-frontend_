@@ -63,9 +63,9 @@ const PaymentDelivery = ({ detailAddress, setDetailAddress }) => {
       <View style={styles.PaymentDeliveryPhoneNumContainer}>
         <Text style={styles.PaymentDeliveryPhoneNumText}>{user.phoneNum}</Text>
         <View style={styles.PaymentDeliveryEmpty}></View>
-        <ShortButton2 style={styles.PaymentDeliveryEditPhoneNumButton}>
+        {/* <ShortButton2 style={styles.PaymentDeliveryEditPhoneNumButton}>
           변경
-        </ShortButton2>
+        </ShortButton2> */}
       </View>
     </View>
   );

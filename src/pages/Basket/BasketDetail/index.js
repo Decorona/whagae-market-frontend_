@@ -17,14 +17,15 @@ const styles = StyleSheet.create({
   BasketContainer: {
     width: "100%",
     flex: 1,
+    backgroundColor: colors.greyef,
   },
   BasketDetailContainer: {
     width: getWidth(342),
-    height: getHeight(150),
+
     borderRadius: 3,
     backgroundColor: colors.greyf7,
     alignSelf: "center",
-    marginTop: 20,
+    marginTop: 30,
   },
   BasketDetailNameAndCategoryContainer: {
     padding: 10,
@@ -123,7 +124,6 @@ const BasketDetail = ({ route }) => {
 
   const setMyBasketDetail = () => {
     // 굿즈 번들 리스트
-    console.log(route.params.bundleList);
     let items = route.params.bundleList.map((bundle) => {
       const { Good, GoodsOption } = bundle;
       return {
@@ -146,11 +146,10 @@ const BasketDetail = ({ route }) => {
         <View style={styles.BasketDetailNameAndCategoryContainer}>
           <View style={styles.ProductNameLine}>
             <Text style={styles.ProductName}>{item.name}</Text>
-            <Text style={styles.OrderDate}>delete</Text>
           </View>
           <Text style={styles.BasicPrice}>기본: {item.goodsPrice}원</Text>
           <Text style={styles.BasicPrice}>
-            추가옵션:{" "}
+            {/* 추가옵션:{" "} */}
             {item.options
               ? Array.isArray(item.options)
                 ? item.options.map((option) => {

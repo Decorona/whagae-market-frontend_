@@ -69,18 +69,18 @@ const PaymentVisit = ({ MarketId }) => {
           {user.paymentmarketInfo.marketBusinessLocation}
         </Text>
         <View style={styles.PaymentVisitEmpty}></View>
-        <ShortButton2 style={styles.PaymentVisitAddressCopyButton}>
+        {/* <ShortButton2 style={styles.PaymentVisitAddressCopyButton}>
           가게주소 복사
-        </ShortButton2>
+        </ShortButton2> */}
       </View>
       <View style={styles.PaymentVisitPhoneNumContainer}>
         <Text style={styles.PaymentVisitPhoneNumText}>
           {user.paymentmarketInfo.marketPhone}
         </Text>
         <View style={styles.PaymentVisitEmpty}></View>
-        <ShortButton2 style={styles.PaymentVisitPhoneNumEditButton}>
+        {/* <ShortButton2 style={styles.PaymentVisitPhoneNumEditButton}>
           변경
-        </ShortButton2>
+        </ShortButton2> */}
       </View>
     </View>
   );
