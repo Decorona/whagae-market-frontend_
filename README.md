@@ -6,7 +6,7 @@
 
 ## 시스템 로직도
 
-![logic_2](https://user-images.githubusercontent.com/41279460/92005731-c8dfe500-ed7e-11ea-97dc-9f8adc0b0f2b.png)
+<img src="https://user-images.githubusercontent.com/41279460/92005731-c8dfe500-ed7e-11ea-97dc-9f8adc0b0f2b.png" width="50%"></img>
 
 
 ## 주요 기능
