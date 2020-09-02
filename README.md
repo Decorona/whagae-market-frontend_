@@ -1,4 +1,7 @@
-![main_Image](https://user-images.githubusercontent.com/41279460/92005655-b1086100-ed7e-11ea-9639-57bac99ce38c.png)
+
+
+<p align="center"><img src="https://user-images.githubusercontent.com/41279460/92007067-6ee01f00-ed80-11ea-8ad0-22e8a0b7500b.png" width="50%"></p>
+
 
 ## 화개장터(Hwagae Marketplace)
 
@@ -6,7 +9,8 @@
 
 ## 시스템 로직도
 
-<img src="https://user-images.githubusercontent.com/41279460/92005731-c8dfe500-ed7e-11ea-97dc-9f8adc0b0f2b.png" width="50%"></img>
+<p align="center"><img src="https://user-images.githubusercontent.com/41279460/92005731-c8dfe500-ed7e-11ea-97dc-9f8adc0b0f2b.png" width="70%"></p>
+
 
 
 ## 주요 기능
